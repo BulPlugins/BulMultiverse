@@ -1,0 +1,12 @@
+package com.alihaine.bulmultiverse.options;
+
+import com.alihaine.bulmultiverse.WorldOption;
+import org.bukkit.WorldCreator;
+
+public class Structures implements WorldOption {
+    @Override
+    public void optionExecutor(String value, WorldCreator worldCreator) {
+        worldCreator.generateStructures(Boolean.parseBoolean(value));
+
+    }
+}

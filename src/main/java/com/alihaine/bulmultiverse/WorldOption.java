@@ -1,7 +1,7 @@
-package com.alihaine.bulmultiverse.command.subcommands;
+package com.alihaine.bulmultiverse;
 
 import org.bukkit.WorldCreator;
 
-public interface Option {
+public interface WorldOption {
     void optionExecutor(String value, WorldCreator worldCreator);
 }

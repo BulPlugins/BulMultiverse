@@ -1,30 +1,33 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
+import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.WorldOption;
+import com.alihaine.bulmultiverse.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
-import com.alihaine.bulmultiverse.command.subcommands.options.Environment;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.CommandSender;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Create implements SubCommand {
-
-    HashMap<String, Option> options = new HashMap<>();
-
-    public Create() {
-        options.put("-e", new Environment());
-    }
+    private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        System.out.println(args);
         WorldCreator worldCreator = new WorldCreator(args.get(0));
 
         for (int i = 1; i < args.size() - 1; i++) {
-            options.get(args.get(i)).optionExecutor(args.get(i+1), worldCreator);
+            try {
+                String buildOptionString = worldOptionManager.buildOptionString(args.get(i));
+                WorldOption worldOption = worldOptionManager.getOption(buildOptionString);
+                worldOption.optionExecutor(args.get(i+1), worldCreator);
+            } catch (Exception exception) {
+                Bukkit.getConsoleSender().sendMessage("ERROR NOT FOUND");
+            }
         }
-
-        worldCreator.createWorld();
+        World w = worldCreator.createWorld();
+        BulMultiverse.getWorldsFileInstance().saveWorldsToFile();
     }
 }
