@@ -2,6 +2,12 @@ package com.alihaine.bulmultiverse;
 
 import org.bukkit.WorldCreator;
 
-public interface WorldOption {
-    void optionExecutor(String value, WorldCreator worldCreator);
+public abstract class WorldOption {
+    protected boolean needWorld;
+
+    public abstract void optionExecutor(String value, WorldCreator worldCreator);
+
+    public boolean isWorldRequired() {
+        return this.needWorld;
+    }
 }

@@ -1,13 +1,16 @@
-package com.alihaine.bulmultiverse.command.subcommands.options;
+package com.alihaine.bulmultiverse.options;
 
-import com.alihaine.bulmultiverse.command.subcommands.Option;
+import com.alihaine.bulmultiverse.WorldOption;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
-public class Environment implements Option {
+public class Environment extends WorldOption {
+    public Environment() {
+        this.needWorld = false;
+    }
+
     @Override
     public void optionExecutor(String value, WorldCreator worldCreator) {
-        System.out.println("set env");
         worldCreator.environment(World.Environment.valueOf(value.toUpperCase()));
     }
 }

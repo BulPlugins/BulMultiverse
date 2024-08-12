@@ -14,10 +14,10 @@ public class BulMultiverse extends JavaPlugin {
     public void onEnable() {
         bulMultiverse = this;
 
+        worldOptionManager = new WorldOptionManager();
+
         worldsFile = new WorldsFile(this);
         worldsFile.createWorldsFromFile();
-
-        worldOptionManager = new WorldOptionManager();
 
         this.getCommand("bmv").setExecutor(new BMV());
         System.out.println("enable");

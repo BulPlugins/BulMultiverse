@@ -1,10 +1,10 @@
 package com.alihaine.bulmultiverse.file;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.WorldOption;
 import com.alihaine.bulmultiverse.WorldOptionManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,6 +12,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WorldsFile {
     private File file;
@@ -52,18 +54,18 @@ public class WorldsFile {
 
     public void createWorldsFromFile() {
         ConfigurationSection worldsSection = fileConfiguration.getConfigurationSection("worlds");
+        Map<WorldOption, String> convertToOptionString = new HashMap<>();
+
         for (String worldName : worldsSection.getKeys(false)) {
             ConfigurationSection worldSection = fileConfiguration.getConfigurationSection("worlds." + worldName);
-            WorldCreator newWorldCreator = new WorldCreator(worldName);
             worldSection.getValues(false).forEach((key, value) -> {
                 try {
-                    worldOptionManager.getOption(key).optionExecutor((String) value, newWorldCreator);
+                    convertToOptionString.put(worldOptionManager.getOption(key), (String) value);
                 } catch (Exception exception) {
                     Bukkit.getConsoleSender().sendMessage("The option " + key + " is not found or supported.");
                 }
             });
-            newWorldCreator.createWorld();
+            worldOptionManager.createWorldWithMap(worldName, convertToOptionString);
         }
     }
-
 }

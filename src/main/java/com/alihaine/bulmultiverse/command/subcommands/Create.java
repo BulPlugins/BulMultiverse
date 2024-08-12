@@ -5,29 +5,29 @@ import com.alihaine.bulmultiverse.WorldOption;
 import com.alihaine.bulmultiverse.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.command.CommandSender;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Create implements SubCommand {
     private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        WorldCreator worldCreator = new WorldCreator(args.get(0));
+        Map<WorldOption, String> convertToOptionString = new HashMap<>();
 
         for (int i = 1; i < args.size() - 1; i++) {
             try {
-                String buildOptionString = worldOptionManager.buildOptionString(args.get(i));
-                WorldOption worldOption = worldOptionManager.getOption(buildOptionString);
-                worldOption.optionExecutor(args.get(i+1), worldCreator);
+                String optionAsStr = worldOptionManager.buildOptionString(args.get(i));
+                convertToOptionString.put(worldOptionManager.getOption(optionAsStr), args.get(i+1));
             } catch (Exception exception) {
                 Bukkit.getConsoleSender().sendMessage("ERROR NOT FOUND");
             }
         }
-        World w = worldCreator.createWorld();
+
+        worldOptionManager.createWorldWithMap(args.get(0), convertToOptionString);
         BulMultiverse.getWorldsFileInstance().saveWorldsToFile();
     }
 }

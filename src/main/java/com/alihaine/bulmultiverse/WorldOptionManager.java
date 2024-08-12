@@ -4,8 +4,11 @@ import com.alihaine.bulmultiverse.options.Environment;
 import com.alihaine.bulmultiverse.options.Seed;
 import com.alihaine.bulmultiverse.options.Structures;
 import com.alihaine.bulmultiverse.options.Type;
+import org.bukkit.WorldCreator;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class WorldOptionManager {
     protected HashMap<String, WorldOption> availableOptions = new HashMap<>();
@@ -38,4 +41,19 @@ public class WorldOptionManager {
         throw new Exception();
     }
 
+    public void createWorldWithMap(String name, Map<WorldOption, String> options) {
+        WorldCreator newWorldCreator = new WorldCreator(name);
+
+        Iterator<Map.Entry<WorldOption, String>> iterator = options.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<WorldOption, String> entry = iterator.next();
+            if (entry.getKey().isWorldRequired()) {
+                System.out.println("need world for " + entry.getValue());
+                return;
+            }
+            entry.getKey().optionExecutor(entry.getValue(), newWorldCreator);
+            iterator.remove();
+        }
+        newWorldCreator.createWorld();
+    }
 }
