@@ -1,9 +1,8 @@
 package com.alihaine.bulmultiverse;
 
-import com.alihaine.bulmultiverse.options.Environment;
-import com.alihaine.bulmultiverse.options.Seed;
-import com.alihaine.bulmultiverse.options.Structures;
-import com.alihaine.bulmultiverse.options.Type;
+import com.alihaine.bulmultiverse.options.*;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
 import java.util.HashMap;
@@ -18,6 +17,8 @@ public class WorldOptionManager {
         availableOptions.put("seed", new Seed());
         availableOptions.put("structures", new Structures());
         availableOptions.put("type", new Type());
+        availableOptions.put("difficulty", new Difficulty());
+        availableOptions.put("pvp", new Pvp());
     }
 
     public WorldOption getOption(String optionAsString) throws Exception {
@@ -37,6 +38,10 @@ public class WorldOptionManager {
                 return "structures";
             case "-t":
                 return "type";
+            case "-d":
+                return "difficulty";
+            case "-p":
+                return "pvp";
         }
         throw new Exception();
     }
@@ -45,15 +50,27 @@ public class WorldOptionManager {
         WorldCreator newWorldCreator = new WorldCreator(name);
 
         Iterator<Map.Entry<WorldOption, String>> iterator = options.entrySet().iterator();
+        Bukkit.getConsoleSender().sendMessage("----------------------------");
+        Bukkit.getConsoleSender().sendMessage("Start creation of " + name);
         while (iterator.hasNext()) {
             Map.Entry<WorldOption, String> entry = iterator.next();
             if (entry.getKey().isWorldRequired()) {
                 System.out.println("need world for " + entry.getValue());
-                return;
+                continue;
             }
             entry.getKey().optionExecutor(entry.getValue(), newWorldCreator);
             iterator.remove();
         }
-        newWorldCreator.createWorld();
+        World newWorld = newWorldCreator.createWorld();
+
+        Bukkit.getConsoleSender().sendMessage("World is created " + name);
+
+        iterator = options.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<WorldOption, String> entry = iterator.next();
+            entry.getKey().optionExecutor(entry.getValue(), newWorld);
+            iterator.remove();
+        }
+        Bukkit.getConsoleSender().sendMessage("----------------------------");
     }
 }

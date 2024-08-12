@@ -11,8 +11,6 @@ public class WorldData {
     private long seed;
     private boolean PVP;
     private String difficulty;
-    private boolean animals;
-    private boolean monsters;
     private String environment;
     private String type;
     private boolean keepSpawnInMemory;
@@ -22,8 +20,6 @@ public class WorldData {
         this.seed = world.getSeed();;
         this.PVP = world.getPVP();
         this.difficulty = world.getDifficulty().name();
-        this.animals = world.getAllowAnimals();
-        this.monsters = world.getAllowMonsters();
         this.environment = world.getEnvironment().name();
         this.type = world.getWorldType().name();
         this.keepSpawnInMemory = world.getKeepSpawnInMemory();
@@ -32,14 +28,12 @@ public class WorldData {
 
     public Map<String, Object> dumpsForSave() {
         Map<String, Object> data = new HashMap<>();
-        data.put("PVP", this.PVP);
+        data.put("seed", this.seed);
+        data.put("pvp", this.PVP);
         data.put("difficulty", this.difficulty);
-        data.put("animals", this.animals);
-        data.put("monsters", this.monsters);
         data.put("environment", this.environment);
         data.put("type", this.type);
         data.put("keepSpawnInMemory", this.keepSpawnInMemory);
-        data.put("time", this.time);
         return data;
     }
 

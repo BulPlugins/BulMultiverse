@@ -17,15 +17,15 @@ public class BulMultiverse extends JavaPlugin {
         worldOptionManager = new WorldOptionManager();
 
         worldsFile = new WorldsFile(this);
-        worldsFile.createWorldsFromFile();
+        worldsFile.extractWorldsFromFile();
 
         this.getCommand("bmv").setExecutor(new BMV());
-        System.out.println("enable");
+        System.out.println("[BULMultiverse enable]");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("disable");
+        System.out.println("[BULMultiverse disable]");
     }
 
     public static BulMultiverse getBulMultiverseInstance() {

@@ -52,7 +52,7 @@ public class WorldsFile {
         }
     }
 
-    public void createWorldsFromFile() {
+    public void extractWorldsFromFile() {
         ConfigurationSection worldsSection = fileConfiguration.getConfigurationSection("worlds");
         Map<WorldOption, String> convertToOptionString = new HashMap<>();
 

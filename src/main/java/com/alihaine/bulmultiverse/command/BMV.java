@@ -2,6 +2,7 @@ package com.alihaine.bulmultiverse.command;
 
 import com.alihaine.bulmultiverse.command.subcommands.Create;
 import com.alihaine.bulmultiverse.command.subcommands.ListWorlds;
+import com.alihaine.bulmultiverse.command.subcommands.Set;
 import com.alihaine.bulmultiverse.command.subcommands.Teleport;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,8 +18,9 @@ public class BMV implements CommandExecutor {
 
     public BMV() {
         subCommands.put("create", new Create());
-        subCommands.put("teleport", new Teleport());
+        subCommands.put("tp", new Teleport());
         subCommands.put("list", new ListWorlds());
+        subCommands.put("set", new Set());
     }
 
     @Override
