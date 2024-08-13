@@ -5,7 +5,6 @@ import com.alihaine.bulmultiverse.WorldOption;
 import com.alihaine.bulmultiverse.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import com.alihaine.bulmultiverse.file.ConfigFile;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;

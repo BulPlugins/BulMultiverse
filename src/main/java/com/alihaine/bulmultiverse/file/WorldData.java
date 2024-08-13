@@ -8,12 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WorldData {
-    private long seed;
-    private boolean PVP;
-    private String difficulty;
-    private String environment;
-    private String type;
-    private boolean structures;
+    private final long seed;
+    private final boolean PVP;
+    private final String difficulty;
+    private final String environment;
+    private final String type;
+    private final boolean structures;
 
     public WorldData(World world) {
         this.seed = world.getSeed();;
@@ -34,53 +34,5 @@ public class WorldData {
         data.put("structures", this.structures);
 
         return data;
-    }
-
-    public long getSeed() {
-        return seed;
-    }
-
-    public boolean isPVP() {
-        return PVP;
-    }
-
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public String getEnvironment() {
-        return environment;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public boolean getStructures() {
-        return structures;
-    }
-
-    public void setSeed(long seed) {
-        this.seed = seed;
-    }
-
-    public void setPVP(boolean PVP) {
-        this.PVP = PVP;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public void setEnvironment(String environment) {
-        this.environment = environment;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setStructures(boolean structure) {
-        this.structures = structure;
     }
 }

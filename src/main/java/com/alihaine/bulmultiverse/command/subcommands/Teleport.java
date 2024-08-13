@@ -4,7 +4,6 @@ import com.alihaine.bulmultiverse.command.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class Teleport implements SubCommand {
             return;
         }
 
-        Player player = (CraftPlayer) sender;
+        Player player = (Player) sender;
         try {
             World world = Bukkit.getWorld(args.get(0));
             player.teleport(world.getSpawnLocation());
