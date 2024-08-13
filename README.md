@@ -1,10 +1,10 @@
 # BulMultiverse
 
 BulMultiverse is an ultra-optimized lightweight world management plugin. Compatible with version 1.8 to the Latest Minecrat version. Unlike the default Multiverse-Core plugin, BulMultiverse is designed to be lean and efficient, without any unnecessary listeners.. This plugin don't contain and will never contain any listeners for any reason.
-[Download page](https://www.spigotmc.org/resources/93260/ "Click to download")
+[Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
 ## Features
-- Create world with customizable settings (ve.g seed, difficulty, etc).
-- Modify Existing World Settings (e.g, difficulty, PvP, etc.).
+- Create world with customizable settings (e.g seed, difficulty, etc).
+- Modify Existing World Settings (e.g, difficulty, PvP, etc).
 - Teleport between world.
 - Load existing world.
 - List loaded worlds.
@@ -47,7 +47,7 @@ You can chain flags together, for example:
 Mised a flag ruing creation? You can set it later using the set command:
 `/bmv set exemple -d peaceful`
 > NOTE
-> Some flags like the seed, cannot be changed after the world is created. If you make an error in the command, such as setting and invalid difficulty:
+> Some flags like the seed, cannot be changed after the world is created. If you make an error in the command, such as setting an invalid difficulty:
 '/bmv create exemple -d SUPERHARDCORP'
 the default difficulty will be used instead. Be sure to check the console for errors when creating worlds.
 

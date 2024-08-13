@@ -43,11 +43,11 @@ public class BulMultiverse extends JavaPlugin {
     }
 
     private void updateChecker() {
-        try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=93260").openStream(); Scanner scanner = new Scanner(inputStream)) {
+        try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=118884").openStream(); Scanner scanner = new Scanner(inputStream)) {
             if (!scanner.next().equals(this.getDescription().getVersion())) {
                 Bukkit.getConsoleSender().sendMessage("------------------------------------------------------------------");
                 Bukkit.getConsoleSender().sendMessage("There is a new update available for BulMultiverse !");
-                Bukkit.getConsoleSender().sendMessage("Download here : https://www.spigotmc.org/resources/93260");
+                Bukkit.getConsoleSender().sendMessage("Download here : https://www.spigotmc.org/resources/118884");
                 Bukkit.getConsoleSender().sendMessage("------------------------------------------------------------------");
             }
         } catch (IOException exception) {
