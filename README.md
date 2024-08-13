@@ -20,26 +20,26 @@ messages:
 ```
 ## Commands and permissions
 
-| Command        | Description                                                         | Permission |
-|----------------|---------------------------------------------------------------------| ------|
-| bmv create <World Name> (Flags) | Create a world with the given name and optionals flags | bulmultiverse.admin
-| bmv load <World Name> | Load the target existing world | bulmultiverse.admin
-| bmv set <World Name> <Flag> | Set the flag for the target world | bulmultiverse.admin
-| bmv tp <World Name> | Teleport to the target world | bulmultiverse.admin
-| bmv list | List all the loaded worlds | bulmultiverse.admin
-| bmv help | Display the in-game help | bulmultiverse.admin
-| bmv flags | Display all the availables flag | bulmultiverse.admin
+| Command                         | Description                                                         | Permission |
+|---------------------------------|---------------------------------------------------------------------| ------|
+| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags | bulmultiverse.admin
+| bmv load [World Name]           | Load the target existing world | bulmultiverse.admin
+| bmv set [World Name] [Flag]     | Set the flag for the target world | bulmultiverse.admin
+| bmv tp [World Name]             | Teleport to the target world | bulmultiverse.admin
+| bmv list                        | List all the loaded worlds | bulmultiverse.admin
+| bmv help                        | Display the in-game help | bulmultiverse.admin
+| bmv flags                       | Display all the availables flag | bulmultiverse.admin
 
 ## Flags
 
 | Command        | Description                                                         | example
 |----------------|---------------------------------------------------------------------|------|
-| -s <Number> | Create a world with the given seed | /bmv create exemple -s 15648648949 |
-| -b <true or false> | Enable the default builds in the world (e.g, village) | /bmv create exemple -b false |
-| -e <Environment> | Set the environment (e.g, nether) | /bmv create exemple -e the_end |
-| -p <true or false> | Enable the pvp | /bmv create exemple -p false |
-| -t <Type> | Set type (e.g, flat, amplified) | /bmv create exemple -t large_biomes |
-| -d <Difficulty> | Set difficulty (e.g, easy, hard) | /bmv create exemple -d peaceful |
+| -s [Number] | Create a world with the given seed | /bmv create exemple -s 15648648949 |
+| -b [true or false] | Enable the default builds in the world (e.g, village) | /bmv create exemple -b false |
+| -e [Environment] | Set the environment (e.g, nether) | /bmv create exemple -e the_end |
+| -p [true or false] | Enable the pvp | /bmv create exemple -p false |
+| -t [Type] | Set type (e.g, flat, amplified) | /bmv create exemple -t large_biomes |
+| -d [Difficulty] | Set difficulty (e.g, easy, hard) | /bmv create exemple -d peaceful |
 
 You can chain flags together, for example:
 `/bmv create exemple -d peaceful -p false -t flat`
