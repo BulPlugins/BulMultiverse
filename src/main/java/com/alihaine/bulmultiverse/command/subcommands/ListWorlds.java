@@ -12,6 +12,7 @@ public class ListWorlds implements SubCommand {
     public void executor(CommandSender sender, java.util.List<String> args) {
         List<World> worlds = Bukkit.getWorlds();
 
+        sender.sendMessage("§aLoaded worlds");
         worlds.forEach(world -> {
             sender.sendMessage(world.getName());
         });

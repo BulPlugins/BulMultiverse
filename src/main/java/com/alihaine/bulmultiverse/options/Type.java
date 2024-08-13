@@ -10,7 +10,12 @@ public class Type extends WorldOption {
     }
 
     @Override
-    public void optionExecutor(String value, WorldCreator worldCreator) {
-        worldCreator.type(WorldType.valueOf(value.toUpperCase()));
+    public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
+        try {
+            WorldType worldType = WorldType.valueOf(value.toUpperCase());
+            worldCreator.type(worldType);
+        } catch (IllegalArgumentException exception) {
+            throw new Exception("The type " + value + " don't exist");
+        }
     }
 }

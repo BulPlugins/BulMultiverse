@@ -13,8 +13,7 @@ public class WorldData {
     private String difficulty;
     private String environment;
     private String type;
-    private boolean keepSpawnInMemory;
-    private long time;
+    private boolean structures;
 
     public WorldData(World world) {
         this.seed = world.getSeed();;
@@ -22,8 +21,7 @@ public class WorldData {
         this.difficulty = world.getDifficulty().name();
         this.environment = world.getEnvironment().name();
         this.type = world.getWorldType().name();
-        this.keepSpawnInMemory = world.getKeepSpawnInMemory();
-        this.time = world.getTime();
+        this.structures = world.canGenerateStructures();
     }
 
     public Map<String, Object> dumpsForSave() {
@@ -33,8 +31,13 @@ public class WorldData {
         data.put("difficulty", this.difficulty);
         data.put("environment", this.environment);
         data.put("type", this.type);
-        data.put("keepSpawnInMemory", this.keepSpawnInMemory);
+        data.put("structures", this.structures);
+
         return data;
+    }
+
+    public long getSeed() {
+        return seed;
     }
 
     public boolean isPVP() {
@@ -49,12 +52,16 @@ public class WorldData {
         return environment;
     }
 
-    public boolean isKeepSpawnInMemory() {
-        return keepSpawnInMemory;
+    public String getType() {
+        return type;
     }
 
-    public long getTime() {
-        return time;
+    public boolean getStructures() {
+        return structures;
+    }
+
+    public void setSeed(long seed) {
+        this.seed = seed;
     }
 
     public void setPVP(boolean PVP) {
@@ -69,11 +76,11 @@ public class WorldData {
         this.environment = environment;
     }
 
-    public void setKeepSpawnInMemory(boolean keepSpawnInMemory) {
-        this.keepSpawnInMemory = keepSpawnInMemory;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setStructures(boolean structure) {
+        this.structures = structure;
     }
 }

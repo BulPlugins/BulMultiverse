@@ -4,6 +4,7 @@ import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.WorldOption;
 import com.alihaine.bulmultiverse.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
+import com.alihaine.bulmultiverse.file.ConfigFile;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
@@ -13,21 +14,33 @@ import java.util.Map;
 
 public class Create implements SubCommand {
     private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
+    private final ConfigFile configFile = BulMultiverse.getConfigFileInstance();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
         Map<WorldOption, String> convertToOptionString = new HashMap<>();
+        if (args.isEmpty()) {
+            sender.sendMessage("§cYour world must have a name. §e/bmv help");
+            return;
+        }
+
+        String worldName = args.get(0);
+        if (configFile.isDisableWorldName(worldName)) {
+            sender.sendMessage("§cThis name is forbidden and can't be a world: " + worldName);
+            return;
+        }
 
         for (int i = 1; i < args.size() - 1; i++) {
+            String flag = args.get(i);
             try {
-                String optionAsStr = worldOptionManager.buildOptionString(args.get(i));
+                String optionAsStr = worldOptionManager.buildOptionString(flag);
                 convertToOptionString.put(worldOptionManager.getOption(optionAsStr), args.get(i+1));
             } catch (Exception exception) {
-                Bukkit.getConsoleSender().sendMessage("ERROR NOT FOUND");
+                sender.sendMessage("§cFlag " + flag + " not found, check §e/bmv flag");
             }
         }
 
-        worldOptionManager.createWorldWithMap(args.get(0), convertToOptionString);
+        worldOptionManager.createWorldWithMap(sender, worldName, convertToOptionString);
         BulMultiverse.getWorldsFileInstance().saveWorldsToFile();
     }
 }

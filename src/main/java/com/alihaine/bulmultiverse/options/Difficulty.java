@@ -9,7 +9,12 @@ public class Difficulty extends WorldOption {
     }
 
     @Override
-    public void optionExecutor(String value, World world) {
-        world.setDifficulty(org.bukkit.Difficulty.valueOf(value.toUpperCase()));
+    public void optionExecutor(String value, World world) throws Exception {
+        try {
+            org.bukkit.Difficulty difficulty = org.bukkit.Difficulty.valueOf(value.toUpperCase());
+            world.setDifficulty(difficulty);
+        } catch (IllegalArgumentException exception) {
+            throw new Exception("The difficulty " + value + " don't exist");
+        }
     }
 }

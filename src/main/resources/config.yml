@@ -1,2 +1,4 @@
+world_disable_name: [logs, plugins, plugin, bStats, PluginMetrics]
+
 messages:
   no_permission: "You don't have the permission to do that"

@@ -9,7 +9,12 @@ public class Seed extends WorldOption {
     }
 
     @Override
-    public void optionExecutor(String value, WorldCreator worldCreator) {
-        worldCreator.seed(Long.parseLong(value));
+    public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
+        try {
+            long seed = Long.parseLong(value);
+            worldCreator.seed(seed);
+        } catch (NumberFormatException exception) {
+            throw new Exception("§cInvalid seed: " + value + " Need to contain numbers only.");
+        }
     }
 }

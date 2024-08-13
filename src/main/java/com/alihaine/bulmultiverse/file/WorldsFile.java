@@ -40,11 +40,7 @@ public class WorldsFile {
         return this.fileConfiguration;
     }
 
-    public void saveWorldsToFile() {
-        for (World world: Bukkit.getWorlds()) {
-            WorldData worldData = new WorldData(world);
-            fileConfiguration.createSection("worlds." + world.getName(), worldData.dumpsForSave());
-        }
+    public void saveFile() {
         try {
             fileConfiguration.save(file);
         } catch (IOException e) {
@@ -52,20 +48,42 @@ public class WorldsFile {
         }
     }
 
+    public void saveWorldsToFile() {
+        for (World world: Bukkit.getWorlds()) {
+            WorldData worldData = new WorldData(world);
+            fileConfiguration.createSection("worlds." + world.getName(), worldData.dumpsForSave());
+        }
+        saveFile();
+    }
+
+    public void removeWorldFromFile(String worldName) {
+        fileConfiguration.set("worlds." + worldName, null);
+        saveFile();
+    }
+
     public void extractWorldsFromFile() {
         ConfigurationSection worldsSection = fileConfiguration.getConfigurationSection("worlds");
+        if (worldsSection == null)
+            return;
+
         Map<WorldOption, String> convertToOptionString = new HashMap<>();
 
         for (String worldName : worldsSection.getKeys(false)) {
+            if (!worldOptionManager.isWorldFolderExisting(worldName)) {
+                Bukkit.getConsoleSender().sendMessage("§cThe world " + worldName + " folder don't exist, but are in worlds.yml. Remove from worlds.yml");
+                removeWorldFromFile(worldName);
+                continue;
+            }
+
             ConfigurationSection worldSection = fileConfiguration.getConfigurationSection("worlds." + worldName);
             worldSection.getValues(false).forEach((key, value) -> {
                 try {
-                    convertToOptionString.put(worldOptionManager.getOption(key), (String) value);
+                    convertToOptionString.put(worldOptionManager.getOption(key), value.toString());
                 } catch (Exception exception) {
-                    Bukkit.getConsoleSender().sendMessage("The option " + key + " is not found or supported.");
+                    Bukkit.getConsoleSender().sendMessage(exception.getMessage());
                 }
             });
-            worldOptionManager.createWorldWithMap(worldName, convertToOptionString);
+            worldOptionManager.createWorldWithMap(Bukkit.getConsoleSender(), worldName, convertToOptionString);
         }
     }
 }

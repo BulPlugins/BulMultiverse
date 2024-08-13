@@ -10,7 +10,12 @@ public class Environment extends WorldOption {
     }
 
     @Override
-    public void optionExecutor(String value, WorldCreator worldCreator) {
-        worldCreator.environment(World.Environment.valueOf(value.toUpperCase()));
+    public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
+        try {
+            World.Environment environment = World.Environment.valueOf(value.toUpperCase());
+            worldCreator.environment(environment);
+        } catch (IllegalArgumentException exception) {
+            throw new Exception("The environment " + value + " don't exist");
+        }
     }
 }

@@ -13,7 +13,7 @@ public class Teleport implements SubCommand {
     @Override
     public void executor(CommandSender sender, List<String> args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("ONLY IN GAME");
+            sender.sendMessage("§e[BULMultiverse] §cThis command can be executed only in-game");
             return;
         }
 
@@ -21,10 +21,11 @@ public class Teleport implements SubCommand {
         try {
             World world = Bukkit.getWorld(args.get(0));
             player.teleport(world.getSpawnLocation());
+            player.sendMessage("§e[BULMultiverse] §aSuccessfully teleported to the world: " + world.getName());
         } catch (NullPointerException exception) {
-            player.sendMessage("MSG WORLD DONT EXIST");
+            player.sendMessage("§cThe world: §e" + args.get(0) + " §cdon't exist or are not loaded.");
         } catch (ArrayIndexOutOfBoundsException exception) {
-            player.sendMessage("MSG NO WORLD SPECIFIED");
+            player.sendMessage("§cPlease specify a world. Check commands usage with /bmv help or in the wiki.");
         }
     }
 }
