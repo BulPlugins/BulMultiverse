@@ -1,8 +1,6 @@
 package com.alihaine.bulmultiverse.file;
 
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
-import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.HashMap;
 import java.util.Map;

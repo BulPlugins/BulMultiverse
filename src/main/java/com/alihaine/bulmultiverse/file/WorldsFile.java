@@ -36,10 +36,6 @@ public class WorldsFile {
         }
     }
 
-    public FileConfiguration getWorldsFile() {
-        return this.fileConfiguration;
-    }
-
     public void saveFile() {
         try {
             fileConfiguration.save(file);
