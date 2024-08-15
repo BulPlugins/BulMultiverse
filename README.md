@@ -20,15 +20,16 @@ messages:
 ```
 ## Commands and permissions
 
-| Command                         | Description                                                         | Permission |
-|---------------------------------|---------------------------------------------------------------------| ------|
-| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags | bulmultiverse.admin
-| bmv load [World Name]           | Load the target existing world | bulmultiverse.admin
-| bmv set [World Name] [Flag]     | Set the flag for the target world | bulmultiverse.admin
-| bmv tp [World Name]             | Teleport to the target world | bulmultiverse.admin
-| bmv list                        | List all the loaded worlds | bulmultiverse.admin
-| bmv help                        | Display the in-game help | bulmultiverse.admin
-| bmv flags                       | Display all the availables flag | bulmultiverse.admin
+| Command                         | Description                                                 | Permission |
+|---------------------------------|-------------------------------------------------------------| ------|
+| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags      | bulmultiverse.admin
+| bmv load [World Name]           | Load the target existing world                              | bulmultiverse.admin
+| bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) | bulmultiverse.admin
+| bmv set [World Name] [Flag]     | Set the flag for the target world                           | bulmultiverse.admin
+| bmv tp [World Name]             | Teleport to the target world                                | bulmultiverse.admin
+| bmv list                        | List all the loaded worlds                                  | bulmultiverse.admin
+| bmv help                        | Display the in-game help                                    | bulmultiverse.admin
+| bmv flags                       | Display all the availables flag                             | bulmultiverse.admin
 
 ## Flags
 
@@ -44,7 +45,7 @@ messages:
 You can chain flags together, for example:
 `/bmv create exemple -d peaceful -p false -t flat`
 
-Mised a flag ruing creation? You can set it later using the set command:
+Missed a flag during creation? You can set it later using the set command:
 `/bmv set exemple -d peaceful`
 > NOTE
 > Some flags like the seed, cannot be changed after the world is created. If you make an error in the command, such as setting an invalid difficulty:

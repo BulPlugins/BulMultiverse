@@ -1,7 +1,6 @@
 package com.alihaine.bulmultiverse.command;
 
 import com.alihaine.bulmultiverse.command.subcommands.*;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +8,6 @@ import org.bukkit.entity.Player;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BMV implements CommandExecutor {
@@ -18,6 +16,7 @@ public class BMV implements CommandExecutor {
     public BMV() {
         subCommands.put("create", new Create());
         subCommands.put("load", new Load());
+        subCommands.put("unload", new Unload());
         subCommands.put("tp", new Teleport());
         subCommands.put("list", new ListWorlds());
         subCommands.put("set", new Set());

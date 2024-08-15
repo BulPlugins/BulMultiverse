@@ -10,6 +10,7 @@ public class Help implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         sender.sendMessage("§e/bmv create <world_name> (options) §8| Create a new world");
         sender.sendMessage("§e/bmv load <world_name> §8| Load existing world");
+        sender.sendMessage("§e/bmv unload <world_name> §8| UnLoad existing world");
         sender.sendMessage("§e/bmv list §8| List all the loaded worlds");
         sender.sendMessage("§e/bmv tp <world_name> §8| Teleport to the target world");
         sender.sendMessage("§e/bmv set <world_name> <option> §8| Set a option to the target world");

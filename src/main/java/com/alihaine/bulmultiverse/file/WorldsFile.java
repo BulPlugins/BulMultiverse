@@ -55,6 +55,7 @@ public class WorldsFile {
     public void removeWorldFromFile(String worldName) {
         fileConfiguration.set("worlds." + worldName, null);
         saveFile();
+        Bukkit.getConsoleSender().sendMessage("§eThe world " + worldName + " is removed from worlds.yml file.");
     }
 
     public void extractWorldsFromFile() {
