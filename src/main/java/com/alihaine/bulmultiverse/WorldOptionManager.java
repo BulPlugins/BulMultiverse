@@ -7,20 +7,18 @@ import org.bukkit.WorldCreator;
 import org.bukkit.command.CommandSender;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class WorldOptionManager {
-    protected HashMap<String, WorldOption> availableOptions = new HashMap<>();
+    private List<WorldOption> availableOptions = new ArrayList<>();
 
     public WorldOptionManager() {
-        availableOptions.put("environment", new Environment());
-        availableOptions.put("seed", new Seed());
-        availableOptions.put("structures", new Structures());
-        availableOptions.put("type", new Type());
-        availableOptions.put("difficulty", new Difficulty());
-        availableOptions.put("pvp", new Pvp());
+        availableOptions.add(new Environment());
+        availableOptions.add(new Seed());
+        availableOptions.add(new Structures());
+        availableOptions.add(new Type());
+        availableOptions.add( new Difficulty());
+        availableOptions.add(new Pvp());
     }
 
     public boolean isWorldFolderExisting(String worldName) {
@@ -29,28 +27,11 @@ public class WorldOptionManager {
     }
 
     public WorldOption getOption(String optionAsString) throws Exception {
-        WorldOption option = availableOptions.get(optionAsString);
-        if (option == null)
-            throw new Exception("§cOption " + optionAsString + " not found or not supported");
-        return option;
-    }
-
-    public String buildOptionString(String optionFromCmd) throws Exception {
-        switch (optionFromCmd) {
-            case "-e":
-                return "environment";
-            case "-s":
-                return "seed";
-            case "-b":
-                return "structures";
-            case "-t":
-                return "type";
-            case "-d":
-                return "difficulty";
-            case "-p":
-                return "pvp";
+        for (WorldOption option : availableOptions) {
+            if (option.matches(optionAsString))
+                return option;
         }
-        throw new Exception("§cThe flag " + optionFromCmd + " don't exist, check with §e/bmv flags");
+        throw new Exception("§cOption " + optionAsString + " not found or not supported");
     }
 
     public void createWorldWithMap(CommandSender sender, String name, Map<WorldOption, String> options) {
@@ -83,5 +64,9 @@ public class WorldOptionManager {
             iterator.remove();
         }
         sender.sendMessage("§e[BULMultiverse] §aworld: §2" + name + " §aloaded.");
+    }
+
+    public void addNewOption(WorldOption option) {
+        this.availableOptions.add(option);
     }
 }

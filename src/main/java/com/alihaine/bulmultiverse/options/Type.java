@@ -6,7 +6,7 @@ import org.bukkit.WorldType;
 
 public class Type extends WorldOption {
     public Type() {
-        this.needWorld = false;
+        super("type", "-t", false);
     }
 
     @Override

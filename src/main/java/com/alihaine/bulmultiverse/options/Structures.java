@@ -5,7 +5,7 @@ import org.bukkit.WorldCreator;
 
 public class Structures extends WorldOption {
     public Structures() {
-        this.needWorld = false;
+        super("structures", "-b", false);
     }
 
     @Override

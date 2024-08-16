@@ -32,8 +32,7 @@ public class Create implements SubCommand {
         for (int i = 1; i < args.size() - 1; i++) {
             String flag = args.get(i);
             try {
-                String optionAsStr = worldOptionManager.buildOptionString(flag);
-                convertToOptionString.put(worldOptionManager.getOption(optionAsStr), args.get(i+1));
+                convertToOptionString.put(worldOptionManager.getOption(flag), args.get(i+1));
             } catch (Exception exception) {
                 sender.sendMessage("§cFlag " + flag + " not found, check §e/bmv flag");
             }

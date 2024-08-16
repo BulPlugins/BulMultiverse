@@ -6,7 +6,7 @@ import org.bukkit.WorldCreator;
 
 public class Environment extends WorldOption {
     public Environment() {
-        this.needWorld = false;
+        super("environment", "-e", false);
     }
 
     @Override

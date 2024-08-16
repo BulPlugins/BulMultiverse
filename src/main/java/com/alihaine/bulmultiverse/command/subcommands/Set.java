@@ -21,7 +21,7 @@ public class Set implements SubCommand {
             return;
         }
         try {
-            WorldOption worldOption = worldOptionManager.getOption(worldOptionManager.buildOptionString(args.get(1)));
+            WorldOption worldOption = worldOptionManager.getOption(args.get(1));
             worldOption.optionExecutor(args.get(2), world);
             sender.sendMessage("§e[BULMultiverse] §aYou set the value §e" + args.get(1) + ": " + args.get(2) + " §ato the world §e" + world.getName());
         } catch (Exception exception) {

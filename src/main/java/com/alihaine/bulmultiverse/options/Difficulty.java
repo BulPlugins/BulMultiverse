@@ -5,7 +5,7 @@ import org.bukkit.World;
 
 public class Difficulty extends WorldOption {
     public Difficulty() {
-        this.needWorld = true;
+        super("difficulty", "-d", true);
     }
 
     @Override
