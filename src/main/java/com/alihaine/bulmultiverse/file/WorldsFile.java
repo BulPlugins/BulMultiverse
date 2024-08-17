@@ -1,8 +1,8 @@
 package com.alihaine.bulmultiverse.file;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.WorldOption;
-import com.alihaine.bulmultiverse.WorldOptionManager;
+import com.alihaine.bulmultiverse.world.WorldOption;
+import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;

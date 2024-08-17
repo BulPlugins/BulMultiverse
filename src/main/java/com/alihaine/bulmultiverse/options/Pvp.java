@@ -1,6 +1,6 @@
 package com.alihaine.bulmultiverse.options;
 
-import com.alihaine.bulmultiverse.WorldOption;
+import com.alihaine.bulmultiverse.world.WorldOption;
 import org.bukkit.World;
 
 public class Pvp extends WorldOption {

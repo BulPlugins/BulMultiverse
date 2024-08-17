@@ -1,5 +1,6 @@
-package com.alihaine.bulmultiverse;
+package com.alihaine.bulmultiverse.world;
 
+import com.alihaine.bulmultiverse.BulMultiverse;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 

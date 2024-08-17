@@ -1,4 +1,4 @@
-package com.alihaine.bulmultiverse;
+package com.alihaine.bulmultiverse.world;
 
 import com.alihaine.bulmultiverse.options.*;
 import org.bukkit.Bukkit;
@@ -10,15 +10,15 @@ import java.io.File;
 import java.util.*;
 
 public class WorldOptionManager {
-    private List<WorldOption> availableOptions = new ArrayList<>();
+    private final List<WorldOption> availableOptions = new ArrayList<>();
 
-    public WorldOptionManager() {
-        availableOptions.add(new Environment());
-        availableOptions.add(new Seed());
-        availableOptions.add(new Structures());
-        availableOptions.add(new Type());
-        availableOptions.add( new Difficulty());
-        availableOptions.add(new Pvp());
+    public void loadDefaultOption() {
+        new Environment();
+        new Seed();
+        new Structures();
+        new Type();
+        new Difficulty();
+        new Pvp();
     }
 
     public boolean isWorldFolderExisting(String worldName) {

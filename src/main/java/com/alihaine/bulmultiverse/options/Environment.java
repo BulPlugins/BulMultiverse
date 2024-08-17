@@ -1,6 +1,6 @@
 package com.alihaine.bulmultiverse.options;
 
-import com.alihaine.bulmultiverse.WorldOption;
+import com.alihaine.bulmultiverse.world.WorldOption;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 

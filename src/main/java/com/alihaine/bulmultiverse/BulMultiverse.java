@@ -3,13 +3,17 @@ package com.alihaine.bulmultiverse;
 import com.alihaine.bulmultiverse.command.BMV;
 import com.alihaine.bulmultiverse.file.ConfigFile;
 import com.alihaine.bulmultiverse.file.WorldsFile;
+import com.alihaine.bulmultiverse.world.WorldAddonManager;
+import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Scanner;
 
 public class BulMultiverse extends JavaPlugin {
@@ -29,17 +33,50 @@ public class BulMultiverse extends JavaPlugin {
         configFile = new ConfigFile();
 
         worldOptionManager = new WorldOptionManager();
+        worldOptionManager.loadDefaultOption();;
 
         worldsFile = new WorldsFile(this);
         worldsFile.extractWorldsFromFile();
 
         this.getCommand("bmv").setExecutor(new BMV());
-        Bukkit.getConsoleSender().sendMessage("[BulMultiverse] enable");
+
+        loadAddons();
+
+        Bukkit.getConsoleSender().sendMessage("§e[BulMultiverse] §aenable");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage("[BulMultiverse] disable");
+        Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] disable");
+    }
+
+    private void loadAddons() {
+        File addonsFolder = new File(this.getDataFolder() + "/addons");
+        if(!addonsFolder.exists()) {
+            addonsFolder.mkdir();
+            return;
+        }
+
+        File[] addonsJar = addonsFolder.listFiles((dir, name) -> name.endsWith(".jar"));
+        if (addonsJar == null)
+            return;
+
+
+        for (File addonFile : addonsJar) {
+            try {
+                URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader());
+                Class<?> addonMainClass = Class.forName("com.alihaine.voidworld.VoidWorld", true, loader);
+                Object addonInstance = addonMainClass.getDeclaredConstructor().newInstance();
+                if (addonInstance instanceof WorldAddonManager) {
+                    WorldAddonManager addon = (WorldAddonManager) addonInstance;
+                    addon.onEnable();
+                }
+
+            } catch (Exception e) {
+                Bukkit.getConsoleSender().sendMessage("§cError when trying to load the addon: §e" + addonFile.getName());
+                Bukkit.getConsoleSender().sendMessage(e.getMessage());
+            }
+        }
     }
 
     private void updateChecker() {

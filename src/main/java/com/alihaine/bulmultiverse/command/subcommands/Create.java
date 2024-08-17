@@ -1,8 +1,8 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.WorldOption;
-import com.alihaine.bulmultiverse.WorldOptionManager;
+import com.alihaine.bulmultiverse.world.WorldOption;
+import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import com.alihaine.bulmultiverse.file.ConfigFile;
 import org.bukkit.command.CommandSender;
