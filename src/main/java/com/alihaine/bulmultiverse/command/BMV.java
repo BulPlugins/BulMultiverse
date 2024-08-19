@@ -47,4 +47,8 @@ public class BMV implements CommandExecutor {
         subCommands.get("help").executor(sender, null);
         return true;
     }
+
+    public void addCommand(String command, SubCommand subCommand) {
+        this.subCommands.put(command, subCommand);
+    }
 }

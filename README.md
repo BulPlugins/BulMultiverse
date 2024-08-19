@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://i.goopics.net/77bvma.png" width="256">
+</p>
+
 # BulMultiverse
 
 BulMultiverse is an ultra-optimized lightweight world management plugin. Compatible with version 1.8 to the Latest Minecrat version. Unlike the default Multiverse-Core plugin, BulMultiverse is designed to be lean and efficient, without any unnecessary listeners.. This plugin don't contain and will never contain any listeners for any reason.
@@ -9,6 +13,15 @@ BulMultiverse is an ultra-optimized lightweight world management plugin. Compati
 - Load existing world.
 - List loaded worlds.
 - Disable invalid world names (e.g, "plugins").
+
+# Table of contents
+
+1. [Configuration file](#configuration-file)
+2. [Commands and permissions](#commands-and-permissions)
+3. [Flags](#flags)
+4. [How to delete a world](#how-to-delete-a-world)
+5. [Addons](#addons)
+6. [Distribution](#distribution)
 
 ## Configuration file
 ```
@@ -60,6 +73,37 @@ BulMultiverse does not delete server files or folders directly. To remove a worl
 3. Restart your server.
 
 BulMultiverse will detect that the world folder is missing and automatically remove it from its worlds.yml file.
+
+## Addons 
+
+> /!\ DO NOT RENAME THE ADDONS JAR FILE, OR THE PLUGIN WILL NOT DETECT THEM
+
+So the default BulMultiverse.jar is very light and optimized, but what if you want an additional specific feature ?
+
+To address this, I've created a robust addons system. This means you can add a specific .jar file (for example, PerWorldInventory.jar)
+to the 'addons' folder within the BulMultiverse directory, and you'll have a new feature: PerWorldInventory!
+
+#### VoidWorld
+
+This addon allow you to create a totally empty world. [Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
+
+| Type               | value                             | Description                        | example                     
+|--------------------|-----------------------------------|------------------------------------|-----------------------------|
+| flag               | -c void                           | Create a empty world (void)        | /bmv create exemple -c void |
+| command            | /setblock                         | Create a block at your position    | /setblock |
+
+#### PerWorldInventory
+
+WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
+
+#### GuiWorldManager
+
+WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
+
+#### Portal
+
+WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
+
 
 ## Distribution
 

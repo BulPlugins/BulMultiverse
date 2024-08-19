@@ -22,6 +22,7 @@ public class BulMultiverse extends JavaPlugin {
     private static ConfigFile configFile;
     private static WorldsFile worldsFile;
     private static WorldOptionManager worldOptionManager;
+    private static BMV bmv;
 
     @Override
     public void onEnable() {
@@ -38,7 +39,8 @@ public class BulMultiverse extends JavaPlugin {
         worldsFile = new WorldsFile(this);
         worldsFile.extractWorldsFromFile();
 
-        this.getCommand("bmv").setExecutor(new BMV());
+        bmv = new BMV();
+        this.getCommand("bmv").setExecutor(bmv);
 
         loadAddons();
 
@@ -61,11 +63,13 @@ public class BulMultiverse extends JavaPlugin {
         if (addonsJar == null)
             return;
 
-
         for (File addonFile : addonsJar) {
+            String jarName = addonFile.getName().replace(".jar", "");
+            System.out.println(jarName);
+
             try {
                 URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader());
-                Class<?> addonMainClass = Class.forName("com.alihaine.voidworld.VoidWorld", true, loader);
+                Class<?> addonMainClass = Class.forName("com.alihaine." + jarName.toLowerCase() + "." + jarName, true, loader);
                 Object addonInstance = addonMainClass.getDeclaredConstructor().newInstance();
                 if (addonInstance instanceof WorldAddonManager) {
                     WorldAddonManager addon = (WorldAddonManager) addonInstance;
@@ -108,5 +112,9 @@ public class BulMultiverse extends JavaPlugin {
 
     public static WorldOptionManager getWorldOptionManager() {
         return worldOptionManager;
+    }
+
+    public static BMV getBMVInstance() {
+        return bmv;
     }
 }
