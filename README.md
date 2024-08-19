@@ -2,12 +2,10 @@
     <img src="https://i.goopics.net/77bvma.png" width="256">
 </p>
 
-![BulMultiverse](https://img.shields.io/badge/BulMultiverse-50C878?style=for-the-badge)
-
 BulMultiverse is an ultra-optimized lightweight world management plugin. Compatible with version 1.8 to the Latest Minecrat version. Unlike the default Multiverse-Core plugin, BulMultiverse is designed to be lean and efficient, without any unnecessary listeners.. This plugin don't contain and will never contain any listeners for any reason.
 [Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
 
-![Table of contents](https://img.shields.io/badge/Table_of_contents-50C878?style=for-the-badge)
+<img src="https://img.shields.io/badge/Table_of_contents-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 1. [Features](#features)
 1. [Configuration file](#configuration-file)
@@ -17,10 +15,7 @@ BulMultiverse is an ultra-optimized lightweight world management plugin. Compati
 5. [Addons](#addons)
 6. [Distribution](#distribution)
 
-<p id="features"></p>
-
-![Features](https://img.shields.io/badge/Features-50C878?style=for-the-badge)
-
+<img id="features" src="https://img.shields.io/badge/Features-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 - Create world with customizable settings (e.g seed, difficulty, etc).
 - Modify Existing World Settings (e.g, difficulty, PvP, etc).
@@ -29,9 +24,7 @@ BulMultiverse is an ultra-optimized lightweight world management plugin. Compati
 - List loaded worlds.
 - Disable invalid world names (e.g, "plugins").
 
-<p id="configuration-file"></p>
-
-![Configuration file](https://img.shields.io/badge/Configuration_file-50C878?style=for-the-badge)
+<img id="configuration-file" src="https://img.shields.io/badge/Configuration_file-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 ```
 //Disable invalid world names
@@ -40,10 +33,8 @@ world_disable_name: [plugins, bStats, PluginMetrics]
 messages:   
   no_permission: "You don't have the permission to do that"
 ```
-<p id="commands-and-permissions"></p>
 
-![Configuration file](https://img.shields.io/badge/Commands_and_permissions-50C878?style=for-the-badge)
-
+<img id="commands-and-permissions" src="https://img.shields.io/badge/Commands_and_permissions-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 | Command                         | Description                                                       | Permission          |
 |---------------------------------|-------------------------------------------------------------------|---------------------|
@@ -56,10 +47,7 @@ messages:
 | bmv help                        | Display the in-game help                                          | bulmultiverse.admin |
 | bmv flags                       | Display all the availables flag                                   | bulmultiverse.admin |
 
-<p id="flags"></p>
-
-![Flags](https://img.shields.io/badge/Flags-50C878?style=for-the-badge)
-
+<img id="flags" src="https://img.shields.io/badge/Flags-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 | Command            | Description                                           | example                             |
 |--------------------|-------------------------------------------------------|-------------------------------------|
@@ -80,9 +68,7 @@ Missed a flag during creation? You can set it later using the set command:
 '/bmv create exemple -d SUPERHARDCORP'
 the default difficulty will be used instead. Be sure to check the console for errors when creating worlds.
 
-<p id="how-to-delete-a-world"></p>
-
-![Delete world](https://img.shields.io/badge/How_to_delete_a_world-50C878?style=for-the-badge)
+<img id="how-to-delete-a-world" src="https://img.shields.io/badge/How_to_delete_a_world-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 BulMultiverse does not delete server files or folders directly. To remove a world:
 1. Stop your server.
@@ -91,9 +77,7 @@ BulMultiverse does not delete server files or folders directly. To remove a worl
 
 BulMultiverse will detect that the world folder is missing and automatically remove it from its worlds.yml file.
 
-<p id="addons"></p>
-
-![Addons](https://img.shields.io/badge/Addons-50C878?style=for-the-badge)
+<img id="addons" src="https://img.shields.io/badge/Addons-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 > /!\ DO NOT RENAME THE ADDONS JAR FILE, OR THE PLUGIN WILL NOT DETECT THEM
 
@@ -123,8 +107,6 @@ WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
 
 WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
 
-<p id="distribution"></p>
-
-![Distribution](https://img.shields.io/badge/Distribution-50C878?style=for-the-badge)
+<img id="distribution" src="https://img.shields.io/badge/Distribution-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
 This is a public plugin. You are free to use it and create a fork to develop your own version. However you are not allowed to sell or distribute it in a private manner.
