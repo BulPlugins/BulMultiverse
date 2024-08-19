@@ -2,11 +2,13 @@
     <img src="https://i.goopics.net/77bvma.png" width="256">
 </p>
 
-# BulMultiverse
+<h1 style="color:#50C878;">BulMultiverse</h1>
 
 BulMultiverse is an ultra-optimized lightweight world management plugin. Compatible with version 1.8 to the Latest Minecrat version. Unlike the default Multiverse-Core plugin, BulMultiverse is designed to be lean and efficient, without any unnecessary listeners.. This plugin don't contain and will never contain any listeners for any reason.
 [Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
-## Features
+
+<h1 style="color:#50C878;">Features</h1>
+
 - Create world with customizable settings (e.g seed, difficulty, etc).
 - Modify Existing World Settings (e.g, difficulty, PvP, etc).
 - Teleport between world.
@@ -14,7 +16,7 @@ BulMultiverse is an ultra-optimized lightweight world management plugin. Compati
 - List loaded worlds.
 - Disable invalid world names (e.g, "plugins").
 
-# Table of contents
+<h1 style="color:#50C878;">Table of contents</h1>
 
 1. [Configuration file](#configuration-file)
 2. [Commands and permissions](#commands-and-permissions)
@@ -23,7 +25,8 @@ BulMultiverse is an ultra-optimized lightweight world management plugin. Compati
 5. [Addons](#addons)
 6. [Distribution](#distribution)
 
-## Configuration file
+<h1 id="configuration-file" style="color:#50C878;">Configuration file</h1>
+
 ```
 //Disable invalid world names
 world_disable_name: [plugins, bStats, PluginMetrics]
@@ -31,29 +34,30 @@ world_disable_name: [plugins, bStats, PluginMetrics]
 messages:   
   no_permission: "You don't have the permission to do that"
 ```
-## Commands and permissions
 
-| Command                         | Description                                                 | Permission |
-|---------------------------------|-------------------------------------------------------------| ------|
-| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags      | bulmultiverse.admin
-| bmv load [World Name]           | Load the target existing world                              | bulmultiverse.admin
-| bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) | bulmultiverse.admin
-| bmv set [World Name] [Flag]     | Set the flag for the target world                           | bulmultiverse.admin
-| bmv tp [World Name]             | Teleport to the target world                                | bulmultiverse.admin
-| bmv list                        | List all the loaded worlds                                  | bulmultiverse.admin
-| bmv help                        | Display the in-game help                                    | bulmultiverse.admin
-| bmv flags                       | Display all the availables flag                             | bulmultiverse.admin
+<h1 id="commands-and-permissions" style="color:#50C878;">Commands and permissions</h1>
 
-## Flags
+| Command                         | Description                                                       | Permission          |
+|---------------------------------|-------------------------------------------------------------------|---------------------|
+| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags            | bulmultiverse.admin |
+| bmv load [World Name]           | Load the target existing world                                    | bulmultiverse.admin |
+| bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) | bulmultiverse.admin |
+| bmv set [World Name] [Flag]     | Set the flag for the target world                                 | bulmultiverse.admin |
+| bmv tp [World Name]             | Teleport to the target world                                      | bulmultiverse.admin |
+| bmv list                        | List all the loaded worlds                                        | bulmultiverse.admin |
+| bmv help                        | Display the in-game help                                          | bulmultiverse.admin |
+| bmv flags                       | Display all the availables flag                                   | bulmultiverse.admin |
 
-| Command        | Description                                                         | example
-|----------------|---------------------------------------------------------------------|------|
-| -s [Number] | Create a world with the given seed | /bmv create exemple -s 15648648949 |
-| -b [true or false] | Enable the default builds in the world (e.g, village) | /bmv create exemple -b false |
-| -e [Environment] | Set the environment (e.g, nether) | /bmv create exemple -e the_end |
-| -p [true or false] | Enable the pvp | /bmv create exemple -p false |
-| -t [Type] | Set type (e.g, flat, amplified) | /bmv create exemple -t large_biomes |
-| -d [Difficulty] | Set difficulty (e.g, easy, hard) | /bmv create exemple -d peaceful |
+<h1 id="flags" style="color:#50C878;">Flags</h1>
+
+| Command            | Description                                           | example                             |
+|--------------------|-------------------------------------------------------|-------------------------------------|
+| -s [Number]        | Create a world with the given seed                    | /bmv create exemple -s 15648648949  |
+| -b [true or false] | Enable the default builds in the world (e.g, village) | /bmv create exemple -b false        |
+| -e [Environment]   | Set the environment (e.g, nether)                     | /bmv create exemple -e the_end      |
+| -p [true or false] | Enable the pvp                                        | /bmv create exemple -p false        |
+| -t [Type]          | Set type (e.g, flat, amplified)                       | /bmv create exemple -t large_biomes |
+| -d [Difficulty]    | Set difficulty (e.g, easy, hard)                      | /bmv create exemple -d peaceful     |
 
 You can chain flags together, for example:
 `/bmv create exemple -d peaceful -p false -t flat`
@@ -65,7 +69,7 @@ Missed a flag during creation? You can set it later using the set command:
 '/bmv create exemple -d SUPERHARDCORP'
 the default difficulty will be used instead. Be sure to check the console for errors when creating worlds.
 
-## How to delete a world
+<h1 id="how-to-delete-a-world" style="color:#50C878;">How to delete a world</h1>
 
 BulMultiverse does not delete server files or folders directly. To remove a world:
 1. Stop your server.
@@ -74,7 +78,7 @@ BulMultiverse does not delete server files or folders directly. To remove a worl
 
 BulMultiverse will detect that the world folder is missing and automatically remove it from its worlds.yml file.
 
-## Addons 
+<h1 id="addons" style="color:#50C878;">Addons</h1>
 
 > /!\ DO NOT RENAME THE ADDONS JAR FILE, OR THE PLUGIN WILL NOT DETECT THEM
 
@@ -87,10 +91,10 @@ to the 'addons' folder within the BulMultiverse directory, and you'll have a new
 
 This addon allow you to create a totally empty world. [Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
 
-| Type               | value                             | Description                        | example                     
-|--------------------|-----------------------------------|------------------------------------|-----------------------------|
-| flag               | -c void                           | Create a empty world (void)        | /bmv create exemple -c void |
-| command            | /setblock                         | Create a block at your position    | /setblock |
+| Type    | value     | Description                     | example                     |
+|---------|-----------|---------------------------------|-----------------------------|
+| flag    | -c void   | Create a empty world (void)     | /bmv create exemple -c void |
+| command | /setblock | Create a block at your position | /setblock                   |
 
 #### PerWorldInventory
 
@@ -104,7 +108,6 @@ WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
 
 WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
 
-
-## Distribution
+<h1 id="distribution" style="color:#50C878;">Distribution</h1>
 
 This is a public plugin. You are free to use it and create a fork to develop your own version. However you are not allowed to sell or distribute it in a private manner.

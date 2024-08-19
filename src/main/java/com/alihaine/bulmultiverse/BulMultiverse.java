@@ -56,6 +56,7 @@ public class BulMultiverse extends JavaPlugin {
         File addonsFolder = new File(this.getDataFolder() + "/addons");
         if(!addonsFolder.exists()) {
             addonsFolder.mkdir();
+            saveResource("addons/how_to_use.yml", false);
             return;
         }
 
@@ -65,8 +66,6 @@ public class BulMultiverse extends JavaPlugin {
 
         for (File addonFile : addonsJar) {
             String jarName = addonFile.getName().replace(".jar", "");
-            System.out.println(jarName);
-
             try {
                 URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader());
                 Class<?> addonMainClass = Class.forName("com.alihaine." + jarName.toLowerCase() + "." + jarName, true, loader);
