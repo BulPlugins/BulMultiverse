@@ -88,7 +88,7 @@ to the 'addons' folder within the BulMultiverse directory, and you'll have a new
 
 #### VoidWorld
 
-This addon allow you to create a totally empty world. [Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
+This addon allow you to create a totally empty world. [Download page](https://www.spigotmc.org/resources/119020/ "Click to download")
 
 | Type    | value     | Description                     | example                     |
 |---------|-----------|---------------------------------|-----------------------------|
