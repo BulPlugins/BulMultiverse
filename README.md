@@ -30,8 +30,18 @@ BulMultiverse is an ultra-optimized lightweight world management plugin. Compati
 //Disable invalid world names
 world_disable_name: [plugins, bStats, PluginMetrics]
 
-messages:   
-  no_permission: "You don't have the permission to do that"
+messages:
+  no_world_target: "&e[BULMultiverse] &cYou didn't target any world or world name. &e/bmv help"
+  world_not_found: "&e[BULMultiverse] &cThe world &e%name% is not found. &e/bmv list"
+  flag_not_found: "&e[BULMultiverse] &cThe flag %name% don't exist. &e/bmv flags"
+  forbidden_world_name: "&e[BULMultiverse] &cYou can't create a world with this name, check your config.yml."
+  cmd_load_success: "&e[BULMultiverse] &aworld: &2%name% &aloaded."
+  cmd_teleport_success: "&e[BULMultiverse] &aYou are teleported to the world: &2%name%."
+  cmd_unload_success: "&e[BULMultiverse] &aThe world: &2%name% is unload."
+  error_set_option: "&e[BULMultiverse] &cImpossible to set this option."
+  error_world_creator: "&e[BULMultiverse] &cThis option does not support WorldCreator."
+  only_ingame_command: "&e[BULMultiverse] &cThis command can be executed only in-game."
+  no_permission: "&e[BULMultiverse] &cYou don't have the permission to do that"
 ```
 
 <img id="commands-and-permissions" src="https://img.shields.io/badge/Commands_and_permissions-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
