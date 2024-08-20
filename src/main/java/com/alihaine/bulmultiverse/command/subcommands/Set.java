@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
@@ -17,7 +18,7 @@ public class Set implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         World world = Bukkit.getWorld(args.get(0));
         if (world == null) {
-            sender.sendMessage("§e[BULMultiverse] §cThe world §e" + args.get(0) + " §cis not found, check §e/bmv help");
+            Message.WORLD_NOT_FOUND.sendMessageWithPlaceHolder(sender, args.get(0));
             return;
         }
         try {

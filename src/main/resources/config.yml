@@ -1,4 +1,14 @@
 world_disable_name: [logs, plugins, plugin, bStats, PluginMetrics]
 
 messages:
-  no_permission: "You don't have the permission to do that"
+  no_world_target: "&e[BULMultiverse] &cYou didn't target any world or world name. &e/bmv help"
+  world_not_found: "&e[BULMultiverse] &cThe world &e%name% is not found. &e/bmv list"
+  flag_not_found: "&e[BULMultiverse] &cThe flag %name% don't exist. &e/bmv flags"
+  forbidden_world_name: "&e[BULMultiverse] &cYou can't create a world with this name, check your config.yml."
+  cmd_load_success: "&e[BULMultiverse] &aworld: &2%name% &aloaded."
+  cmd_teleport_success: "&e[BULMultiverse] &aYou are teleported to the world: &2%name%."
+  cmd_unload_success: "&e[BULMultiverse] &aThe world: &2%name% is unload."
+  error_set_option: "&cImpossible to set this addon."
+  error_world_creator: "&cThis option does not support WorldCreator."
+  only_ingame_command: "&cThis command can be executed only in-game."
+  no_permission: "&cYou don't have the permission to do that"

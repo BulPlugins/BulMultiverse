@@ -19,7 +19,6 @@ import java.util.Scanner;
 public class BulMultiverse extends JavaPlugin {
 
     private static BulMultiverse bulMultiverse;
-    private static ConfigFile configFile;
     private static WorldsFile worldsFile;
     private static WorldOptionManager worldOptionManager;
     private static BMV bmv;
@@ -30,8 +29,7 @@ public class BulMultiverse extends JavaPlugin {
         new Metrics(this, 22989);
         bulMultiverse = this;
         this.saveDefaultConfig();
-
-        configFile = new ConfigFile();
+        ConfigFile.bulMultiverse = this;
 
         worldOptionManager = new WorldOptionManager();
         worldOptionManager.loadDefaultOption();;
@@ -99,11 +97,6 @@ public class BulMultiverse extends JavaPlugin {
     public static BulMultiverse getBulMultiverseInstance() {
         return bulMultiverse;
     }
-
-    public static ConfigFile getConfigFileInstance() {
-        return configFile;
-    }
-
 
     public static WorldsFile getWorldsFileInstance() {
         return worldsFile;

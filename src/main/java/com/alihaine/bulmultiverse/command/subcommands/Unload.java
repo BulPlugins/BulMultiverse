@@ -2,6 +2,7 @@ package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.command.SubCommand;
+import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.file.WorldsFile;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -15,13 +16,13 @@ public class Unload implements SubCommand {
     @Override
     public void executor(CommandSender sender, List<String> args) {
         if (args.isEmpty()) {
-            sender.sendMessage("§cPlease specify a world. §e/bmv help");
+            Message.NO_WORLD_TARGET.sendMessage(sender);
             return;
         }
 
         World world = Bukkit.getWorld(args.get(0));
         if (world == null) {
-            sender.sendMessage("§cThe world §e" + args.get(0) + " §cis not found. §e/bmv help");
+            Message.WORLD_NOT_FOUND.sendMessageWithPlaceHolder(sender, args.get(0));
             return;
         }
 
@@ -32,6 +33,6 @@ public class Unload implements SubCommand {
 
         worldsFile.removeWorldFromFile(world.getName());
         Bukkit.unloadWorld(world, true);
-        sender.sendMessage("§aThe world " + args.get(0) + " is unloaded");
+        Message.CMD_UNLOAD_SUCCESS.sendMessageWithPlaceHolder(sender, args.get(0));
     }
 }

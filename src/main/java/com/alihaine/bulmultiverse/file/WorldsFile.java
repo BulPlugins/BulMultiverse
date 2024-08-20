@@ -31,7 +31,7 @@ public class WorldsFile {
         try {
             fileConfiguration.load(file);
         } catch (IOException | InvalidConfigurationException e) {
-            Bukkit.getConsoleSender().sendMessage("[BulMultiverse] Error with the worlds saver file");
+            Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] Error with the worlds saver file");
             e.printStackTrace();
         }
     }
@@ -40,7 +40,7 @@ public class WorldsFile {
         try {
             fileConfiguration.save(file);
         } catch (IOException e) {
-            Bukkit.getConsoleSender().sendMessage("[BulMultiverse] Error when trying to save worlds to file");
+            Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] Error when trying to save worlds to file");
         }
     }
 

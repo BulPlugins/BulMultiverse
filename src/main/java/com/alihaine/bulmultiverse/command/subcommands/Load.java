@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import org.bukkit.WorldCreator;
@@ -14,17 +15,17 @@ public class Load implements SubCommand {
     @Override
     public void executor(CommandSender sender, List<String> args) {
         if (args.isEmpty()) {
-            sender.sendMessage("§cYour world must have a name. §e/bmv help");
+            Message.NO_WORLD_TARGET.sendMessage(sender);
             return;
         }
 
         String worldName = args.get(0);
 
         if (!worldOptionManager.isWorldFolderExisting(worldName)) {
-            sender.sendMessage("§cNo world folder with name " + worldName + " found");
+            Message.WORLD_NOT_FOUND.sendMessageWithPlaceHolder(sender, args.get(0));
             return;
         }
         new WorldCreator(worldName).createWorld();
-        sender.sendMessage("§aWorld " + worldName + " loaded");
+        Message.CMD_LOAD_SUCCESS.sendMessageWithPlaceHolder(sender, worldName);
     }
 }

@@ -58,8 +58,8 @@ public class WorldOptionManager {
             Map.Entry<WorldOption, String> entry = iterator.next();
             try {
                 entry.getKey().optionExecutor(entry.getValue(), newWorld);
-            } catch (Exception exception){
-                sender.sendMessage("§c" + exception.getMessage());
+            } catch (Exception exception) {
+                sender.sendMessage(exception.getMessage());
             }
             iterator.remove();
         }

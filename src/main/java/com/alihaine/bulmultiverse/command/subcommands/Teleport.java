@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.command.SubCommand;
+import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -12,7 +13,7 @@ public class Teleport implements SubCommand {
     @Override
     public void executor(CommandSender sender, List<String> args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("§e[BULMultiverse] §cThis command can be executed only in-game");
+            Message.ONLY_INGAME_COMMAND.sendMessage(sender);
             return;
         }
 
@@ -20,11 +21,11 @@ public class Teleport implements SubCommand {
         try {
             World world = Bukkit.getWorld(args.get(0));
             player.teleport(world.getSpawnLocation());
-            player.sendMessage("§e[BULMultiverse] §aSuccessfully teleported to the world: " + world.getName());
+            Message.CMD_TELEPORT_SUCCESS.sendMessageWithPlaceHolder(sender, world.getName());
         } catch (NullPointerException exception) {
-            player.sendMessage("§cThe world: §e" + args.get(0) + " §cdon't exist or are not loaded.");
+            Message.WORLD_NOT_FOUND.sendMessageWithPlaceHolder(sender, args.get(0));
         } catch (ArrayIndexOutOfBoundsException exception) {
-            player.sendMessage("§cPlease specify a world. Check commands usage with /bmv help or in the wiki.");
+            Message.NO_WORLD_TARGET.sendMessage(sender);
         }
     }
 }
