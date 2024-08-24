@@ -5,7 +5,7 @@ import org.bukkit.WorldCreator;
 
 public class Structures extends WorldOption {
     public Structures() {
-        super("structures", "-b", false);
+        super("structures", "-b", "-b <true or false>", "Enable default build such as village", false);
     }
 
     @Override

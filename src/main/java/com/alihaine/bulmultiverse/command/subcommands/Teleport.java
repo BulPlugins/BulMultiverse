@@ -1,7 +1,9 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.command.SubCommand;
-import com.alihaine.bulmultiverse.file.Message;
+import com.alihaine.bulmultiverse.message.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
+import com.alihaine.bulmultiverse.message.PlaceHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -10,10 +12,11 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class Teleport implements SubCommand {
+
     @Override
     public void executor(CommandSender sender, List<String> args) {
         if (!(sender instanceof Player)) {
-            Message.ONLY_INGAME_COMMAND.sendMessage(sender);
+            new Message(MessageType.ONLY_INGAME_COMMAND).sendMessage(sender);
             return;
         }
 
@@ -21,11 +24,21 @@ public class Teleport implements SubCommand {
         try {
             World world = Bukkit.getWorld(args.get(0));
             player.teleport(world.getSpawnLocation());
-            Message.CMD_TELEPORT_SUCCESS.sendMessageWithPlaceHolder(sender, world.getName());
+            new Message(MessageType.CMD_TELEPORT_SUCCESS).withPlaceHolder(PlaceHolder.NAME, world.getName()).sendMessage(sender);
         } catch (NullPointerException exception) {
-            Message.WORLD_NOT_FOUND.sendMessageWithPlaceHolder(sender, args.get(0));
+            new Message(MessageType.WORLD_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, args.get(0)).sendMessage(sender);
         } catch (ArrayIndexOutOfBoundsException exception) {
-            Message.NO_WORLD_TARGET.sendMessage(sender);
+            new Message(MessageType.NO_WORLD_TARGET).sendMessage(sender);
         }
+    }
+
+    @Override
+    public String getUsage() {
+        return "/bmv tp <world_name>";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Teleport to the target world";
     }
 }

@@ -1,19 +1,35 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
+import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.command.SubCommand;
+import com.alihaine.bulmultiverse.message.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
+import com.alihaine.bulmultiverse.message.PlaceHolder;
+import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
 public class Flags implements SubCommand {
+    private final WorldOptionManager worldOptionManagerInstance = BulMultiverse.getWorldOptionManager();
+
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        sender.sendMessage("§e-e <environment> §8| Environment such as nether, normal..");
-        sender.sendMessage("§e-s <seed> §8| Seed of the world");
-        sender.sendMessage("§e-d <difficulty> §8| Difficulty such as easy, normal..");
-        sender.sendMessage("§e-b <true or false> §8| Enable default build such as village");
-        sender.sendMessage("§e-t <type> §8| Type such as flat, amplified..");
-        sender.sendMessage("§e-p <true or false> §8| Enable pvp");
-        sender.sendMessage("§eMore help here: §ahttps://github.com/AliHaine/BulMultiverse");
+        worldOptionManagerInstance.getAvailableOptionsList().forEach((value) -> {
+            new Message(MessageType.FLAGS_PATTERN).
+                    withPlaceHolder(PlaceHolder.USAGE, value.getUsage()).
+                    withPlaceHolder(PlaceHolder.DESCRIPTION, value.getDescription()).
+                    sendMessage(sender);
+        });
+    }
+
+    @Override
+    public String getUsage() {
+        return "/flags";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Display all the available flags";
     }
 }

@@ -5,7 +5,7 @@ import org.bukkit.WorldCreator;
 
 public class Seed extends WorldOption {
     public Seed () {
-        super("seed", "-s", false);
+        super("seed", "-s", "-s <seed>", "Seed of the world", false);
     }
 
     @Override

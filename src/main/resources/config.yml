@@ -10,5 +10,7 @@ messages:
   cmd_unload_success: "&e[BULMultiverse] &aThe world: &2%name% is unload."
   error_set_option: "&e[BULMultiverse] &cImpossible to set this option."
   error_world_creator: "&e[BULMultiverse] &cThis option does not support WorldCreator."
+  help_pattern: "&e%usage% &8| &e%description%"
+  flags_pattern: "&e%usage% &8| &e%description%"
   only_ingame_command: "&e[BULMultiverse] &cThis command can be executed only in-game."
   no_permission: "&e[BULMultiverse] &cYou don't have the permission to do that"

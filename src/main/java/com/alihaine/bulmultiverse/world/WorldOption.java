@@ -2,29 +2,33 @@ package com.alihaine.bulmultiverse.world;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.ConfigFile;
-import com.alihaine.bulmultiverse.file.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
 public abstract class WorldOption {
     protected String name;
     protected String shortName;
+    protected String usage;
+    protected String description;
     protected boolean needWorld;
     WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
 
-    public WorldOption(String name, String shortName, boolean needWorld) {
+    public WorldOption(String name, String shortName, String usage, String description, boolean needWorld) {
         this.name = name;
         this.shortName = shortName;
+        this.usage = usage;
+        this.description = description;
         this.needWorld = needWorld;
         worldOptionManager.addNewOption(this);
     }
 
     public void optionExecutor(String value, World world) throws Exception {
-        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(Message.ERROR_SET_OPTION));
+        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_SET_OPTION));
     }
 
     public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
-        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(Message.ERROR_WORLD_CREATOR));
+        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_WORLD_CREATOR));
     }
 
     public boolean isWorldRequired() {
@@ -33,5 +37,13 @@ public abstract class WorldOption {
 
     public boolean matches(String option) {
         return this.name.equalsIgnoreCase(option) || this.shortName.equalsIgnoreCase(option);
+    }
+
+    public String getUsage() {
+        return this.usage;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

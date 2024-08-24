@@ -6,7 +6,7 @@ import org.bukkit.WorldType;
 
 public class Type extends WorldOption {
     public Type() {
-        super("type", "-t", false);
+        super("type", "-t", "-t <type>", "Type such as flat, amplified..", false);
     }
 
     @Override

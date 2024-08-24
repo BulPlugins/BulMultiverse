@@ -1,20 +1,36 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
+import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.command.BMV;
 import com.alihaine.bulmultiverse.command.SubCommand;
+import com.alihaine.bulmultiverse.message.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
+import com.alihaine.bulmultiverse.message.PlaceHolder;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
 public class Help implements SubCommand {
+    private final BMV bmvInstance = BulMultiverse.getBMVInstance();
+
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        sender.sendMessage("§e/bmv create <world_name> (options) §8| Create a new world");
-        sender.sendMessage("§e/bmv load <world_name> §8| Load existing world");
-        sender.sendMessage("§e/bmv unload <world_name> §8| UnLoad existing world");
-        sender.sendMessage("§e/bmv list §8| List all the loaded worlds");
-        sender.sendMessage("§e/bmv tp <world_name> §8| Teleport to the target world");
-        sender.sendMessage("§e/bmv set <world_name> <option> §8| Set a option to the target world");
-        sender.sendMessage("§e/bmv flags §8| See all available flags");
-        sender.sendMessage("§eMore help here: §ahttps://github.com/AliHaine/BulMultiverse");
+
+        bmvInstance.getSubCommandsHashMap().forEach((key, value) -> {
+            new Message(MessageType.HELP_PATTERN).
+                    withPlaceHolder(PlaceHolder.USAGE, value.getUsage()).
+                    withPlaceHolder(PlaceHolder.DESCRIPTION, value.getDescription()).
+                    sendMessage(sender);
+        });
+    }
+
+    @Override
+    public String getUsage() {
+        return "/help";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Display the help menu";
     }
 }

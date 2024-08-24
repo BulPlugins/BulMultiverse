@@ -1,7 +1,9 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.file.Message;
+import com.alihaine.bulmultiverse.message.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
+import com.alihaine.bulmultiverse.message.PlaceHolder;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
@@ -18,7 +20,7 @@ public class Set implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         World world = Bukkit.getWorld(args.get(0));
         if (world == null) {
-            Message.WORLD_NOT_FOUND.sendMessageWithPlaceHolder(sender, args.get(0));
+            new Message(MessageType.WORLD_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, args.get(0)).sendMessage(sender);
             return;
         }
         try {
@@ -29,5 +31,15 @@ public class Set implements SubCommand {
             sender.sendMessage(exception.getMessage());
         }
         BulMultiverse.getWorldsFileInstance().saveWorldsToFile();
+    }
+
+    @Override
+    public String getUsage() {
+        return "/bmv set <world_name> <option>";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Set a option to the target world";
     }
 }

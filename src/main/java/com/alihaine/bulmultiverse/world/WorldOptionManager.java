@@ -69,4 +69,8 @@ public class WorldOptionManager {
     public void addNewOption(WorldOption option) {
         this.availableOptions.add(option);
     }
+
+    public List<WorldOption> getAvailableOptionsList() {
+        return this.availableOptions;
+    }
 }

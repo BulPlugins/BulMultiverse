@@ -5,7 +5,7 @@ import org.bukkit.World;
 
 public class Pvp extends WorldOption {
     public Pvp() {
-        super("pvp", "-p", true);
+        super("pvp", "-p", "-p <true or false>", "Enable pvp", true);
     }
 
     @Override

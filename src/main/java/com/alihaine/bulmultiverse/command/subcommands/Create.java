@@ -1,7 +1,9 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.file.Message;
+import com.alihaine.bulmultiverse.message.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
+import com.alihaine.bulmultiverse.message.PlaceHolder;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
@@ -19,26 +21,36 @@ public class Create implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         Map<WorldOption, String> convertToOptionString = new HashMap<>();
         if (args.isEmpty()) {
-            Message.NO_WORLD_TARGET.sendMessage(sender);
+            new Message(MessageType.NO_WORLD_TARGET).sendMessage(sender);
             return;
         }
 
         String worldName = args.get(0);
         if (ConfigFile.isDisableWorldName(worldName)) {
-            Message.FORBIDDEN_WORLD_NAME.sendMessage(sender);
+            new Message(MessageType.FORBIDDEN_WORLD_NAME).sendMessage(sender);
             return;
         }
 
-        for (int i = 1; i < args.size() - 1; i++) {
+        for (int i = 1; i < args.size() - 1; i+=2) {
             String flag = args.get(i);
             try {
                 convertToOptionString.put(worldOptionManager.getOption(flag), args.get(i+1));
             } catch (Exception exception) {
-                Message.FLAG_NOT_FOUND.sendMessageWithPlaceHolder(sender, flag);
+                new Message(MessageType.FLAG_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, flag).sendMessage(sender);
             }
         }
 
         worldOptionManager.createWorldWithMap(sender, worldName, convertToOptionString);
         BulMultiverse.getWorldsFileInstance().saveWorldsToFile();
+    }
+
+    @Override
+    public String getUsage() {
+        return "/bmv create <world_name> (options)";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Create a new world";
     }
 }

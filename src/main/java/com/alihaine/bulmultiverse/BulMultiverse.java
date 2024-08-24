@@ -12,6 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Scanner;
@@ -39,6 +41,7 @@ public class BulMultiverse extends JavaPlugin {
 
         bmv = new BMV();
         this.getCommand("bmv").setExecutor(bmv);
+        bmv.loadDefaultCommands();
 
         loadAddons();
 
@@ -72,9 +75,11 @@ public class BulMultiverse extends JavaPlugin {
                     WorldAddonManager addon = (WorldAddonManager) addonInstance;
                     addon.onEnable();
                 }
-
             } catch (Exception e) {
-                Bukkit.getConsoleSender().sendMessage("§cError when trying to load the addon: §e" + addonFile.getName());
+                Bukkit.getConsoleSender().sendMessage("§cException when trying to load the addon: §e" + addonFile.getName());
+                Bukkit.getConsoleSender().sendMessage(e.getMessage());
+            } catch (Error e) {
+                Bukkit.getConsoleSender().sendMessage("§cSerious error when trying to load the addon: §e" + addonFile.getName());
                 Bukkit.getConsoleSender().sendMessage(e.getMessage());
             }
         }

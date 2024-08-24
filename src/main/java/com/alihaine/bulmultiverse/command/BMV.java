@@ -1,7 +1,8 @@
 package com.alihaine.bulmultiverse.command;
 
 import com.alihaine.bulmultiverse.command.subcommands.*;
-import com.alihaine.bulmultiverse.file.Message;
+import com.alihaine.bulmultiverse.message.Message;
+import com.alihaine.bulmultiverse.message.MessageType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,9 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BMV implements CommandExecutor {
-    HashMap<String, SubCommand> subCommands = new HashMap<>();
 
-    public BMV() {
+    private final HashMap<String, SubCommand> subCommands = new HashMap<>();
+
+    public void loadDefaultCommands() {
         subCommands.put("create", new Create());
         subCommands.put("load", new Load());
         subCommands.put("unload", new Unload());
@@ -29,7 +31,7 @@ public class BMV implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             if (!sender.hasPermission("bulmultiverse.admin")) {
-                Message.NO_PERMISSION.sendMessage(sender);
+                new Message(MessageType.NO_PERMISSION).sendMessage(sender);
                 return true;
             }
         }
@@ -47,6 +49,10 @@ public class BMV implements CommandExecutor {
         }
         subCommands.get("help").executor(sender, null);
         return true;
+    }
+
+    public HashMap<String, SubCommand> getSubCommandsHashMap() {
+        return this.subCommands;
     }
 
     public void addCommand(String command, SubCommand subCommand) {

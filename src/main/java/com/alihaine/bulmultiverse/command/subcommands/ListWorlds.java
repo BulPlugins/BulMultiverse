@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class ListWorlds implements SubCommand {
+
     @Override
     public void executor(CommandSender sender, java.util.List<String> args) {
         List<World> worlds = Bukkit.getWorlds();
@@ -16,5 +17,15 @@ public class ListWorlds implements SubCommand {
         worlds.forEach(world -> {
             sender.sendMessage(world.getName());
         });
+    }
+
+    @Override
+    public String getUsage() {
+        return "/bmv list";
+    }
+
+    @Override
+    public String getDescription() {
+        return "List all the loaded worlds";
     }
 }
