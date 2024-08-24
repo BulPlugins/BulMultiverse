@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WorldsFile {
-    private File file;
-    private FileConfiguration fileConfiguration;
+    private final File file;
+    private final FileConfiguration fileConfiguration;
     private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
 
     public WorldsFile(BulMultiverse bulMultiverseInstance) {
