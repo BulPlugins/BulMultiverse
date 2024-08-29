@@ -57,7 +57,7 @@ public class BulMultiverse extends JavaPlugin {
         File addonsFolder = new File(this.getDataFolder() + "/addons");
         if(!addonsFolder.exists()) {
             addonsFolder.mkdir();
-            saveResource("addons/how_to_use.yml", false);
+            saveResource("addons/how_to_use.txt", false);
             return;
         }
 
