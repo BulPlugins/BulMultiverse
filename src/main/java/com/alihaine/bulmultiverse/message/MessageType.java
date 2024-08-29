@@ -13,5 +13,5 @@ public enum MessageType {
     HELP_PATTERN,
     FLAGS_PATTERN,
     ONLY_INGAME_COMMAND,
-    NO_PERMISSION;
+    NO_PERMISSION
 }

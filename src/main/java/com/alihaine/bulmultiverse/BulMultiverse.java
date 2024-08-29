@@ -34,7 +34,7 @@ public class BulMultiverse extends JavaPlugin {
 
         worldDataManager = new WorldDataManager();
         worldOptionManager = new WorldOptionManager();
-        worldOptionManager.loadDefaultOption();;
+        worldOptionManager.loadDefaultOption();
 
         bmv = new BMV();
         this.getCommand("bmv").setExecutor(bmv);
