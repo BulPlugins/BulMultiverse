@@ -1,4 +1,7 @@
-<img src="https://i.goopics.net/77bvma.png" width="256" alt="Logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%">
+<p align="center">
+  <img src="https://i.goopics.net/77bvma.png" width="256" alt="Logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%">
+</p>
+
 
 **BulMultiverse** is an ultra-optimized, lightweight, world management _Spigot_ plugin for _Minecraft: Java Edition_.
 It is compatible with a wide array of versions: from legacy Minecraft 1.8 to modern 1.20+.
