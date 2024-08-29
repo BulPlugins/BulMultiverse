@@ -3,6 +3,7 @@ package com.alihaine.bulmultiverse;
 import com.alihaine.bulmultiverse.command.BMV;
 import com.alihaine.bulmultiverse.file.ConfigFile;
 import com.alihaine.bulmultiverse.file.WorldsFile;
+import com.alihaine.bulmultiverse.message.Message;
 import com.alihaine.bulmultiverse.world.WorldDataManager;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import org.bstats.bukkit.Metrics;
@@ -56,8 +57,9 @@ public class BulMultiverse extends JavaPlugin {
     private void loadAddons() {
         File addonsFolder = new File(this.getDataFolder() + "/addons");
         if(!addonsFolder.exists()) {
-            addonsFolder.mkdir();
-            saveResource("addons/how_to_use.txt", false);
+            if (addonsFolder.mkdir()) {
+                saveResource("addons/how_to_use.txt", false);
+            }
             return;
         }
 

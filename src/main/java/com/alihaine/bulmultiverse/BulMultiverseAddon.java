@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse;
 
 import java.io.*;
+import java.nio.file.Files;
 
 public abstract class BulMultiverseAddon {
     public abstract void onEnable();
@@ -9,20 +10,20 @@ public abstract class BulMultiverseAddon {
 
     public File createCustomFile(String fileName, InputStream defaultValues) throws IOException {
         File newFile = new File(BulMultiverse.getBulMultiverseInstance().getDataFolder(), fileName);
+
         if (!newFile.exists()) {
-            newFile.getParentFile().mkdirs();
-            try {
-                newFile.createNewFile();
-                copyDefaultResource(fileName, newFile, defaultValues);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            File parentFile = newFile.getParentFile();
+            if (parentFile.mkdirs()) {
+                if (newFile.createNewFile()) {
+                    copyDefaultResource(fileName, newFile, defaultValues);
+                }
             }
         }
         return newFile;
     }
 
     private void copyDefaultResource(String fileName, File file, InputStream defaultValues) throws IOException  {
-        try (OutputStream out = new FileOutputStream(file)) {
+        try (OutputStream out = Files.newOutputStream(file.toPath())) {
 
             if (defaultValues == null) {
                 throw new IllegalArgumentException("Resource not found: " + fileName);

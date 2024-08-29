@@ -18,8 +18,10 @@ public class WorldsFile {
     public WorldsFile(BulMultiverse bulMultiverseInstance) {
         file = new File(bulMultiverseInstance.getDataFolder(), "worlds.yml");
         if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            bulMultiverseInstance.saveResource("worlds.yml", false);
+            File parentFile = file.getParentFile();
+            if (parentFile.mkdirs()) {
+                bulMultiverseInstance.saveResource("worlds.yml", false);
+            }
         }
 
         fileConfiguration = new YamlConfiguration();

@@ -19,17 +19,20 @@ public class Teleport implements SubCommand {
             new Message(MessageType.ONLY_INGAME_COMMAND).sendMessage(sender);
             return;
         }
+        if (args.isEmpty()) {
+            new Message(MessageType.NO_WORLD_TARGET).sendMessage(sender);
+            return;
+        }
 
         Player player = (Player) sender;
-        try {
-            World world = Bukkit.getWorld(args.get(0));
+        World world = Bukkit.getWorld(args.get(0));
+        if (world == null) {
+            new Message(MessageType.WORLD_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, args.get(0)).sendMessage(sender);
+        } else {
             player.teleport(world.getSpawnLocation());
             new Message(MessageType.CMD_TELEPORT_SUCCESS).withPlaceHolder(PlaceHolder.NAME, world.getName()).sendMessage(sender);
-        } catch (NullPointerException exception) {
-            new Message(MessageType.WORLD_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, args.get(0)).sendMessage(sender);
-        } catch (ArrayIndexOutOfBoundsException exception) {
-            new Message(MessageType.NO_WORLD_TARGET).sendMessage(sender);
         }
+
     }
 
     @Override
