@@ -1,10 +1,8 @@
 package com.alihaine.bulmultiverse.file;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.world.WorldOption;
-import com.alihaine.bulmultiverse.world.WorldOptionManager;
+import com.alihaine.bulmultiverse.world.WorldData;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,13 +10,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class WorldsFile {
     private final File file;
     private final FileConfiguration fileConfiguration;
-    private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
 
     public WorldsFile(BulMultiverse bulMultiverseInstance) {
         file = new File(bulMultiverseInstance.getDataFolder(), "worlds.yml");
@@ -44,11 +39,8 @@ public class WorldsFile {
         }
     }
 
-    public void saveWorldsToFile() {
-        for (World world: Bukkit.getWorlds()) {
-            WorldData worldData = new WorldData(world);
-            fileConfiguration.createSection("worlds." + world.getName(), worldData.dumpsForSave());
-        }
+    public void saveWorldDataToFile(WorldData worldData) {
+        fileConfiguration.createSection("worlds." + worldData.getWorldName(), worldData.dumpsWorldDataForSave());
         saveFile();
     }
 
@@ -63,24 +55,21 @@ public class WorldsFile {
         if (worldsSection == null)
             return;
 
-        Map<WorldOption, String> convertToOptionString = new HashMap<>();
-
         for (String worldName : worldsSection.getKeys(false)) {
-            if (!worldOptionManager.isWorldFolderExisting(worldName)) {
+            if (!isWorldFolderExisting(worldName)) {
                 Bukkit.getConsoleSender().sendMessage("§cThe world " + worldName + " folder don't exist, but are in worlds.yml. Remove from worlds.yml");
                 removeWorldFromFile(worldName);
                 continue;
             }
 
-            ConfigurationSection worldSection = fileConfiguration.getConfigurationSection("worlds." + worldName);
-            worldSection.getValues(false).forEach((key, value) -> {
-                try {
-                    convertToOptionString.put(worldOptionManager.getOption(key), value.toString());
-                } catch (Exception exception) {
-                    Bukkit.getConsoleSender().sendMessage(exception.getMessage());
-                }
-            });
-            worldOptionManager.createWorldWithMap(Bukkit.getConsoleSender(), worldName, convertToOptionString);
+            WorldData worldData = new WorldData(fileConfiguration.getConfigurationSection("worlds." + worldName));
+            worldData.createWorld(Bukkit.getConsoleSender());
+            saveWorldDataToFile(worldData);
         }
+    }
+
+    public boolean isWorldFolderExisting(String worldName) {
+        File worldFolder = new File(Bukkit.getServer().getWorldContainer(), worldName);
+        return worldFolder.exists() && worldFolder.isDirectory();
     }
 }

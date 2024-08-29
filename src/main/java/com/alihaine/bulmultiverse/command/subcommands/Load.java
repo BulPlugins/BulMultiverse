@@ -1,10 +1,10 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.file.WorldsFile;
 import com.alihaine.bulmultiverse.message.Message;
 import com.alihaine.bulmultiverse.message.MessageType;
 import com.alihaine.bulmultiverse.message.PlaceHolder;
-import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.CommandSender;
@@ -12,7 +12,7 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class Load implements SubCommand {
-    WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
+    WorldsFile worldsFile = BulMultiverse.getWorldsFileInstance();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
@@ -23,7 +23,7 @@ public class Load implements SubCommand {
 
         String worldName = args.get(0);
 
-        if (!worldOptionManager.isWorldFolderExisting(worldName)) {
+        if (!worldsFile.isWorldFolderExisting(worldName)) {
             new Message(MessageType.WORLD_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, args.get(0)).sendMessage(sender);
             return;
         }

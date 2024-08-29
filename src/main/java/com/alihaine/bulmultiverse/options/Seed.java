@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.options;
 
 import com.alihaine.bulmultiverse.world.WorldOption;
+import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
 public class Seed extends WorldOption {
@@ -16,5 +17,10 @@ public class Seed extends WorldOption {
         } catch (NumberFormatException exception) {
             throw new Exception("§cInvalid seed: " + value + " Need to contain numbers only.");
         }
+    }
+
+    @Override
+    public Object getDefaultValue(World world) {
+        return world.getSeed();
     }
 }

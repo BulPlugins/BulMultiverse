@@ -4,6 +4,7 @@ import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.message.Message;
 import com.alihaine.bulmultiverse.message.MessageType;
 import com.alihaine.bulmultiverse.message.PlaceHolder;
+import com.alihaine.bulmultiverse.world.WorldData;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
@@ -19,7 +20,7 @@ public class Create implements SubCommand {
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        Map<WorldOption, String> convertToOptionString = new HashMap<>();
+        Map<WorldOption, Object> convertToOptionString = new HashMap<>();
         if (args.isEmpty()) {
             new Message(MessageType.NO_WORLD_TARGET).sendMessage(sender);
             return;
@@ -40,8 +41,9 @@ public class Create implements SubCommand {
             }
         }
 
-        worldOptionManager.createWorldWithMap(sender, worldName, convertToOptionString);
-        BulMultiverse.getWorldsFileInstance().saveWorldsToFile();
+        WorldData worldData = new WorldData(worldName, convertToOptionString);
+        worldData.createWorld(sender);
+        BulMultiverse.getWorldsFileInstance().saveWorldDataToFile(worldData);
     }
 
     @Override

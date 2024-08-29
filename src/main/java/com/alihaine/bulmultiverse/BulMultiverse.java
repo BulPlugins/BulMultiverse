@@ -3,7 +3,7 @@ package com.alihaine.bulmultiverse;
 import com.alihaine.bulmultiverse.command.BMV;
 import com.alihaine.bulmultiverse.file.ConfigFile;
 import com.alihaine.bulmultiverse.file.WorldsFile;
-import com.alihaine.bulmultiverse.world.WorldAddonManager;
+import com.alihaine.bulmultiverse.world.WorldDataManager;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -12,8 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Scanner;
@@ -24,6 +22,7 @@ public class BulMultiverse extends JavaPlugin {
     private static WorldsFile worldsFile;
     private static WorldOptionManager worldOptionManager;
     private static BMV bmv;
+    private static WorldDataManager worldDataManager;
 
     @Override
     public void onEnable() {
@@ -33,17 +32,18 @@ public class BulMultiverse extends JavaPlugin {
         this.saveDefaultConfig();
         ConfigFile.bulMultiverse = this;
 
+        worldDataManager = new WorldDataManager();
         worldOptionManager = new WorldOptionManager();
         worldOptionManager.loadDefaultOption();;
-
-        worldsFile = new WorldsFile(this);
-        worldsFile.extractWorldsFromFile();
 
         bmv = new BMV();
         this.getCommand("bmv").setExecutor(bmv);
         bmv.loadDefaultCommands();
 
         loadAddons();
+
+        worldsFile = new WorldsFile(this);
+        worldsFile.extractWorldsFromFile();
 
         Bukkit.getConsoleSender().sendMessage("§e[BulMultiverse] §aenable");
     }
@@ -71,8 +71,8 @@ public class BulMultiverse extends JavaPlugin {
                 URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader());
                 Class<?> addonMainClass = Class.forName("com.alihaine." + jarName.toLowerCase() + "." + jarName, true, loader);
                 Object addonInstance = addonMainClass.getDeclaredConstructor().newInstance();
-                if (addonInstance instanceof WorldAddonManager) {
-                    WorldAddonManager addon = (WorldAddonManager) addonInstance;
+                if (addonInstance instanceof BulMultiverseAddon) {
+                    BulMultiverseAddon addon = (BulMultiverseAddon) addonInstance;
                     addon.onEnable();
                 }
             } catch (Exception e) {
@@ -113,5 +113,9 @@ public class BulMultiverse extends JavaPlugin {
 
     public static BMV getBMVInstance() {
         return bmv;
+    }
+
+    public static WorldDataManager getWorldDataManager() {
+        return worldDataManager;
     }
 }

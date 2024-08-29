@@ -18,4 +18,9 @@ public class Environment extends WorldOption {
             throw new Exception("The environment " + value + " don't exist");
         }
     }
+
+    @Override
+    public Object getDefaultValue(World world) {
+        return world.getEnvironment().name();
+    }
 }

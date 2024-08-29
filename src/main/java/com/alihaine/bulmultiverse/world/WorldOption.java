@@ -23,11 +23,11 @@ public abstract class WorldOption {
         worldOptionManager.addNewOption(this);
     }
 
-    public void optionExecutor(String value, World world) throws Exception {
-        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_SET_OPTION));
+    public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
+        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_WORLD_CREATOR));
     }
 
-    public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
+    public void optionExecutor(String value, WorldData worldData) throws Exception {
         throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_WORLD_CREATOR));
     }
 
@@ -37,6 +37,12 @@ public abstract class WorldOption {
 
     public boolean matches(String option) {
         return this.name.equalsIgnoreCase(option) || this.shortName.equalsIgnoreCase(option);
+    }
+
+    public abstract Object getDefaultValue(World world);
+
+    public String getName() {
+        return this.name;
     }
 
     public String getUsage() {

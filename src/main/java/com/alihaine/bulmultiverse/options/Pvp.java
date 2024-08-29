@@ -1,6 +1,8 @@
 package com.alihaine.bulmultiverse.options;
 
+import com.alihaine.bulmultiverse.world.WorldData;
 import com.alihaine.bulmultiverse.world.WorldOption;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.bukkit.World;
 
 public class Pvp extends WorldOption {
@@ -9,7 +11,14 @@ public class Pvp extends WorldOption {
     }
 
     @Override
-    public void optionExecutor(String value, World world) {
-        world.setPVP(Boolean.parseBoolean(value));
+    public void optionExecutor(String value, WorldData worldData) {
+        boolean parsedValue = Boolean.parseBoolean(value);
+        worldData.getWorld().setPVP(parsedValue);
+        worldData.addOption(this, parsedValue);
+    }
+
+    @Override
+    public Object getDefaultValue(World world) {
+        return world.getPVP();
     }
 }

@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.options;
 
 import com.alihaine.bulmultiverse.world.WorldOption;
+import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
 public class Structures extends WorldOption {
@@ -11,5 +12,10 @@ public class Structures extends WorldOption {
     @Override
     public void optionExecutor(String value, WorldCreator worldCreator) {
         worldCreator.generateStructures(Boolean.parseBoolean(value));
+    }
+
+    @Override
+    public Object getDefaultValue(World world) {
+        return world.canGenerateStructures();
     }
 }

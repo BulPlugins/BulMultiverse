@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.options;
 
 import com.alihaine.bulmultiverse.world.WorldOption;
+import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 
@@ -17,5 +18,10 @@ public class Type extends WorldOption {
         } catch (IllegalArgumentException exception) {
             throw new Exception("§cThe type " + value + " don't exist");
         }
+    }
+
+    @Override
+    public Object getDefaultValue(World world) {
+        return world.getWorldType().name();
     }
 }
