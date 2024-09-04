@@ -90,10 +90,6 @@ public class WorldData {
         this.optionsAndValue.put(worldOption, value);
     }
 
-    public Object getWorldDataOptionValue(WorldOption worldOption) {
-        return this.optionsAndValue.get(worldOption);
-    }
-
     public Map<String, Object> dumpsWorldDataForSave() {
         Map<String, Object> dumpedOptions = new HashMap<>();
 
@@ -111,4 +107,11 @@ public class WorldData {
     public World getWorld() {
         return Bukkit.getWorld(this.getWorldName());
     }
+
+    public Map<WorldOption, Object> getOptionsAndValue() { return this.optionsAndValue; }
+
+    public Object getWorldDataOptionValue(WorldOption worldOption) {
+        return this.optionsAndValue.get(worldOption);
+    }
+
 }

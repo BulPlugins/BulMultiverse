@@ -2,6 +2,7 @@ world_disable_name: [logs, plugins, plugin, bStats, PluginMetrics]
 
 messages:
   no_world_target: "&e[BULMultiverse] &cYou didn't target any world or world name. &e/bmv help"
+  world_already_exist: "&e[BULMultiverse] &cA world with this name already exist"
   world_not_found: "&e[BULMultiverse] &cThe world &e%name% is not found. &e/bmv list"
   flag_not_found: "&e[BULMultiverse] &cThe flag %name% don't exist. &e/bmv flags"
   forbidden_world_name: "&e[BULMultiverse] &cYou can't create a world with this name, check your config.yml."
@@ -10,6 +11,7 @@ messages:
   cmd_unload_success: "&e[BULMultiverse] &aThe world: &2%name% is unload."
   error_set_option: "&e[BULMultiverse] &cImpossible to set this option."
   error_world_creator: "&e[BULMultiverse] &cThis option does not support WorldCreator."
+  infos_pattern: "&e%name% &8| &e%value%"
   help_pattern: "&e%usage% &8| &e%description%"
   flags_pattern: "&e%usage% &8| &e%description%"
   only_ingame_command: "&e[BULMultiverse] &cThis command can be executed only in-game."

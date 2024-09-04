@@ -8,11 +8,4 @@ public class ConfigFile {
     public static boolean isDisableWorldName(String worldName) {
         return bulMultiverse.getConfig().getList("world_disable_name").contains(worldName);
     }
-
-    public static String getMessageFromConfig(String path) {
-        String msg = bulMultiverse.getConfig().getString("messages." + path);
-        if (msg != null)
-            msg = msg.replaceAll("&", "§");
-        return msg;
-    }
 }

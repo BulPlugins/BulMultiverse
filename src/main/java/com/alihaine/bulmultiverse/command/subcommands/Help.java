@@ -13,7 +13,6 @@ public class Help implements SubCommand {
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
-
         bmvInstance.getSubCommandsHashMap().forEach((key, value) -> {
             new Message("help_pattern").
                     withPlaceHolder("usage", value.getUsage()).

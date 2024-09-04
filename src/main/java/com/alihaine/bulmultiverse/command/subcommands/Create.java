@@ -7,6 +7,7 @@ import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import com.alihaine.bulmultiverse.file.ConfigFile;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
@@ -27,6 +28,11 @@ public class Create implements SubCommand {
         String worldName = args.get(0);
         if (ConfigFile.isDisableWorldName(worldName)) {
             new Message("forbidden_world_name").sendMessage(sender);
+            return;
+        }
+
+        if (BulMultiverse.getWorldDataManager().isWorldAlreadyCreated(worldName)) {
+            new Message("world_already_exist").sendMessage(sender);
             return;
         }
 

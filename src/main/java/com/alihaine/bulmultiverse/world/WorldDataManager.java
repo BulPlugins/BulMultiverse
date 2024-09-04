@@ -17,4 +17,14 @@ public class WorldDataManager {
         }
         return null;
     }
+
+    public List<WorldData> getWorldsData() { return this.worldsData; }
+
+    public boolean isWorldAlreadyCreated(String worldName) {
+        for (WorldData worldData: this.worldsData) {
+            if (worldData.getWorldName().equalsIgnoreCase(worldName))
+                return true;
+        }
+        return false;
+    }
 }

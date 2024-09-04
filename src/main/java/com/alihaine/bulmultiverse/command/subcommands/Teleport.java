@@ -17,6 +17,7 @@ public class Teleport implements SubCommand {
             new Message("only_ingame_command").sendMessage(sender);
             return;
         }
+
         if (args.isEmpty()) {
             new Message("no_world_target").sendMessage(sender);
             return;
