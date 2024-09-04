@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.world;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
+import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -48,7 +49,7 @@ public class WorldData {
             try {
                 entry.getKey().optionExecutor(entry.getValue().toString(), newWorldCreator);
             } catch (Exception exception) {
-                sender.sendMessage("§c" + exception.getMessage());
+                new Message("error_world_creator").sendMessage(sender);
                 optionsError.put(entry.getKey(), entry.getValue());
             }
             iterator.remove();
@@ -62,7 +63,7 @@ public class WorldData {
             try {
                 entry.getKey().optionExecutor(entry.getValue().toString(), this);
             } catch (Exception exception) {
-                sender.sendMessage(exception.getMessage());
+                new Message("error_world_creator").sendMessage(sender);
                 optionsError.put(entry.getKey(), entry.getValue());
             }
             iterator.remove();
@@ -75,7 +76,7 @@ public class WorldData {
         });
 
         worldDataManager.addNewWorldData(this);
-        sender.sendMessage("§e[BULMultiverse] §aworld: §2" + this.getWorldName() + " §aloaded.");
+        new Message("cmd_load_success").withPlaceHolder("name", worldName).sendMessage(sender);
     }
 
     private void setAllNotSetOptions() {

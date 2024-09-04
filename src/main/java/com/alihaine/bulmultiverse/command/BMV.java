@@ -1,8 +1,7 @@
 package com.alihaine.bulmultiverse.command;
 
 import com.alihaine.bulmultiverse.command.subcommands.*;
-import com.alihaine.bulmultiverse.message.Message;
-import com.alihaine.bulmultiverse.message.MessageType;
+import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +30,7 @@ public class BMV implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             if (!sender.hasPermission("bulmultiverse.admin")) {
-                new Message(MessageType.NO_PERMISSION).sendMessage(sender);
+                new Message("no_permission").sendMessage(sender);
                 return true;
             }
         }

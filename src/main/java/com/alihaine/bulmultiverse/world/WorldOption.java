@@ -1,8 +1,6 @@
 package com.alihaine.bulmultiverse.world;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.file.ConfigFile;
-import com.alihaine.bulmultiverse.message.MessageType;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 
@@ -24,11 +22,11 @@ public abstract class WorldOption {
     }
 
     public void optionExecutor(String value, WorldCreator worldCreator) throws Exception {
-        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_WORLD_CREATOR));
+        throw new UnsupportedOperationException("Impossible to set the value " + value + " with worldcreator");
     }
 
     public void optionExecutor(String value, WorldData worldData) throws Exception {
-        throw new UnsupportedOperationException(ConfigFile.getMessageFromConfig(MessageType.ERROR_WORLD_CREATOR));
+        throw new UnsupportedOperationException("Impossible to set the value " + value + " with worldData");
     }
 
     public boolean isWorldRequired() {

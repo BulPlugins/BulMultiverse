@@ -1,9 +1,7 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.message.Message;
-import com.alihaine.bulmultiverse.message.MessageType;
-import com.alihaine.bulmultiverse.message.PlaceHolder;
+import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldData;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
@@ -19,7 +17,7 @@ public class Set implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         WorldData worldData = BulMultiverse.getWorldDataManager().getWorldDataFromWorldName(args.get(0));
         if (worldData == null) {
-            new Message(MessageType.WORLD_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, args.get(0)).sendMessage(sender);
+            new Message("world_not_found").withPlaceHolder("name", args.get(0)).sendMessage(sender);
             return;
         }
         try {
@@ -27,7 +25,7 @@ public class Set implements SubCommand {
             worldOption.optionExecutor(args.get(2), worldData);
             sender.sendMessage("§e[BULMultiverse] §aYou set the value §e" + args.get(1) + ": " + args.get(2) + " §ato the world §e" + worldData.getWorldName());
         } catch (Exception exception) {
-            sender.sendMessage(exception.getMessage());
+            new Message("error_world_creator").sendMessage(sender);
         }
         BulMultiverse.getWorldsFileInstance().saveWorldDataToFile(worldData);
     }

@@ -1,9 +1,7 @@
 package com.alihaine.bulmultiverse.command.subcommands;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
-import com.alihaine.bulmultiverse.message.Message;
-import com.alihaine.bulmultiverse.message.MessageType;
-import com.alihaine.bulmultiverse.message.PlaceHolder;
+import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldData;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
@@ -22,13 +20,13 @@ public class Create implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         Map<WorldOption, Object> convertToOptionString = new HashMap<>();
         if (args.isEmpty()) {
-            new Message(MessageType.NO_WORLD_TARGET).sendMessage(sender);
+            new Message("no_world_target").sendMessage(sender);
             return;
         }
 
         String worldName = args.get(0);
         if (ConfigFile.isDisableWorldName(worldName)) {
-            new Message(MessageType.FORBIDDEN_WORLD_NAME).sendMessage(sender);
+            new Message("forbidden_world_name").sendMessage(sender);
             return;
         }
 
@@ -37,7 +35,7 @@ public class Create implements SubCommand {
             try {
                 convertToOptionString.put(worldOptionManager.getOption(flag), args.get(i+1));
             } catch (Exception exception) {
-                new Message(MessageType.FLAG_NOT_FOUND).withPlaceHolder(PlaceHolder.NAME, flag).sendMessage(sender);
+                new Message("flag_not_found").withPlaceHolder("name", flag).sendMessage(sender);
             }
         }
 

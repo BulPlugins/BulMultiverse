@@ -3,9 +3,7 @@ package com.alihaine.bulmultiverse.command.subcommands;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.command.BMV;
 import com.alihaine.bulmultiverse.command.SubCommand;
-import com.alihaine.bulmultiverse.message.Message;
-import com.alihaine.bulmultiverse.message.MessageType;
-import com.alihaine.bulmultiverse.message.PlaceHolder;
+import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -17,16 +15,16 @@ public class Help implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
 
         bmvInstance.getSubCommandsHashMap().forEach((key, value) -> {
-            new Message(MessageType.HELP_PATTERN).
-                    withPlaceHolder(PlaceHolder.USAGE, value.getUsage()).
-                    withPlaceHolder(PlaceHolder.DESCRIPTION, value.getDescription()).
+            new Message("help_pattern").
+                    withPlaceHolder("usage", value.getUsage()).
+                    withPlaceHolder("description", value.getDescription()).
                     sendMessage(sender);
         });
     }
 
     @Override
     public String getUsage() {
-        return "/help";
+        return "/bmv help";
     }
 
     @Override
