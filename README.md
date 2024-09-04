@@ -55,7 +55,8 @@ messages:
 | bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) | bulmultiverse.admin |
 | bmv set [World Name] [Flag]     | Set the flag for the target world                                 | bulmultiverse.admin |
 | bmv tp [World Name]             | Teleport to the target world                                      | bulmultiverse.admin |
-| bmv list                        | List all the loaded worlds                                        | bulmultiverse.admin |
+| bmv list                        | List all the worlds managed by BulMultiverse                      | bulmultiverse.admin |
+| bmv infos (World Name)          | Display actual settings for the world                             | bulmultiverse.admin |
 | bmv help                        | Display the in-game help                                          | bulmultiverse.admin |
 | bmv flags                       | Display all the availables flag                                   | bulmultiverse.admin |
 
@@ -115,9 +116,9 @@ WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
 
 WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
 
-#### Portal
+#### LinkPortal
 
-WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
+This addon allow you to link nether or end portal to specific world.. [Download page](https://www.spigotmc.org/resources/119396/ "Click to download")
 
 <img id="distribution" src="https://img.shields.io/badge/Distribution-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
