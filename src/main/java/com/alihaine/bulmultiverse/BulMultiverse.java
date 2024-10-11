@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BulMultiverse extends JavaPlugin {
@@ -23,6 +25,7 @@ public class BulMultiverse extends JavaPlugin {
     private static WorldOptionManager worldOptionManager;
     private static BMV bmv;
     private static WorldDataManager worldDataManager;
+    private final List<BulMultiverseAddon> addons = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -34,7 +37,7 @@ public class BulMultiverse extends JavaPlugin {
 
         worldDataManager = new WorldDataManager();
         worldOptionManager = new WorldOptionManager();
-        worldOptionManager.loadDefaultOption();;
+        worldOptionManager.loadDefaultOption();
 
         bmv = new BMV();
         this.getCommand("bmv").setExecutor(bmv);
@@ -42,8 +45,12 @@ public class BulMultiverse extends JavaPlugin {
 
         loadAddons();
 
+        runAddonOnEnable();
+
         worldsFile = new WorldsFile(this);
         worldsFile.extractWorldsFromFile();
+
+        runAddonOnEnableAfterWorldsLoad();
 
         Bukkit.getConsoleSender().sendMessage("§e[BulMultiverse] §aenable");
     }
@@ -73,7 +80,7 @@ public class BulMultiverse extends JavaPlugin {
                 Object addonInstance = addonMainClass.getDeclaredConstructor().newInstance();
                 if (addonInstance instanceof BulMultiverseAddon) {
                     BulMultiverseAddon addon = (BulMultiverseAddon) addonInstance;
-                    addon.onEnable();
+                    addons.add(addon);
                 }
             } catch (Exception e) {
                 Bukkit.getConsoleSender().sendMessage("§cException when trying to load the addon: §e" + addonFile.getName());
@@ -82,6 +89,18 @@ public class BulMultiverse extends JavaPlugin {
                 Bukkit.getConsoleSender().sendMessage("§cSerious error when trying to load the addon: §e" + addonFile.getName());
                 Bukkit.getConsoleSender().sendMessage(e.getMessage());
             }
+        }
+    }
+
+    private void runAddonOnEnable() {
+        for (BulMultiverseAddon addon : addons) {
+            addon.onEnable();
+        }
+    }
+
+    private void runAddonOnEnableAfterWorldsLoad() {
+        for (BulMultiverseAddon addon : addons) {
+            addon.onEnableAfterWorldsLoad();
         }
     }
 

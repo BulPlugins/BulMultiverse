@@ -5,6 +5,8 @@ import java.io.*;
 public abstract class BulMultiverseAddon {
     public abstract void onEnable();
 
+    public abstract void onEnableAfterWorldsLoad();
+
     public abstract void onDisable();
 
     public File createCustomFile(String fileName, InputStream defaultValues) throws IOException {

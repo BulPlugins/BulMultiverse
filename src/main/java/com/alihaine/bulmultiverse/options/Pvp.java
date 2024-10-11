@@ -2,7 +2,6 @@ package com.alihaine.bulmultiverse.options;
 
 import com.alihaine.bulmultiverse.world.WorldData;
 import com.alihaine.bulmultiverse.world.WorldOption;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.bukkit.World;
 
 public class Pvp extends WorldOption {
