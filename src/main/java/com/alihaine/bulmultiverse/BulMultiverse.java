@@ -57,6 +57,7 @@ public class BulMultiverse extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        runAddonOnDisable();
         Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] disable");
     }
 
@@ -101,6 +102,12 @@ public class BulMultiverse extends JavaPlugin {
     private void runAddonOnEnableAfterWorldsLoad() {
         for (BulMultiverseAddon addon : addons) {
             addon.onEnableAfterWorldsLoad();
+        }
+    }
+
+    private void runAddonOnDisable() {
+        for (BulMultiverseAddon addon : addons) {
+            addon.onDisable();
         }
     }
 
