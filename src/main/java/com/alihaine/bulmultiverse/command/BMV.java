@@ -37,7 +37,7 @@ public class BMV implements CommandExecutor {
         for (Map.Entry<String, SubCommand> entry : subCommands.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(args[0])) {
                 if (sender instanceof Player) {
-                    if (!sender.hasPermission("bulmultiverse.admin") || !sender.hasPermission("bulmultiverse." + args[0].toLowerCase())) {
+                    if (!sender.hasPermission("bulmultiverse.admin") && !sender.hasPermission("bulmultiverse." + args[0].toLowerCase())) {
                         new Message("no_permission").sendMessage(sender);
                         return true;
                     }

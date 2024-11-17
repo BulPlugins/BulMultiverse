@@ -31,7 +31,7 @@ public class Create implements SubCommand {
             return;
         }
 
-        if (BulMultiverse.getWorldDataManager().isWorldAlreadyCreated(worldName)) {
+        if (BulMultiverse.getWorldDataManager().isWorldAlreadyCreated(worldName) || worldName.equalsIgnoreCase("overworld") ) {
             new Message("world_already_exist").sendMessage(sender);
             return;
         }
