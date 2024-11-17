@@ -46,19 +46,19 @@ messages:
   no_permission: "&e[BULMultiverse] &cYou don't have the permission to do that"
 ```
 
-<img id="commands-and-permissions" src="https://img.shields.io/badge/Commands_and_permissions-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
+<img id="commands" src="https://img.shields.io/badge/Commands-50C878?style=for-the-badge" alt="Commands" style="pointer-events: none;">
 
-| Command                         | Description                                                       | Permission          |
-|---------------------------------|-------------------------------------------------------------------|---------------------|
-| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags            | bulmultiverse.admin |
-| bmv load [World Name]           | Load the target existing world                                    | bulmultiverse.admin |
-| bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) | bulmultiverse.admin |
-| bmv set [World Name] [Flag]     | Set the flag for the target world                                 | bulmultiverse.admin |
-| bmv tp [World Name]             | Teleport to the target world                                      | bulmultiverse.admin |
-| bmv list                        | List all the worlds managed by BulMultiverse                      | bulmultiverse.admin |
-| bmv infos (World Name)          | Display actual settings for the world                             | bulmultiverse.admin |
-| bmv help                        | Display the in-game help                                          | bulmultiverse.admin |
-| bmv flags                       | Display all the availables flag                                   | bulmultiverse.admin |
+| Command                         | Description                                                       |
+|---------------------------------|-------------------------------------------------------------------|
+| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags            |
+| bmv load [World Name]           | Load the target existing world                                    |
+| bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) |
+| bmv set [World Name] [Flag]     | Set the flag for the target world                                 |
+| bmv tp [World Name]             | Teleport to the target world                                      |
+| bmv list                        | List all the worlds managed by BulMultiverse                      |
+| bmv infos (World Name)          | Display actual settings for the world                             |
+| bmv help                        | Display the in-game help                                          |
+| bmv flags                       | Display all the availables flag                                   |
 
 <img id="flags" src="https://img.shields.io/badge/Flags-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 
@@ -80,6 +80,14 @@ Missed a flag during creation? You can set it later using the set command:
 > Some flags like the seed, cannot be changed after the world is created. If you make an error in the command, such as setting an invalid difficulty:
 '/bmv create exemple -d SUPERHARDCORP'
 the default difficulty will be used instead. Be sure to check the console for errors when creating worlds.
+
+
+<img id="permission" src="https://img.shields.io/badge/Permission-50C878?style=for-the-badge" alt="Permission" style="pointer-events: none;">
+
+The permission **`bulmultiverse.admin`** grants access to all commands.
+
+However, you can also assign permissions for specific commands using the following syntax: bulmultiverse.COMMAND_NAME. For example, to grant permission only for
+_/bmv tp_ command, set the permission **`bulmultiverse.tp`**, for the _/bmv list_ command **`bulmultiverse.list`** and so on..
 
 <img id="how-to-delete-a-world" src="https://img.shields.io/badge/How_to_delete_a_world-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
 

@@ -29,13 +29,6 @@ public class BMV implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-            if (!sender.hasPermission("bulmultiverse.admin")) {
-                new Message("no_permission").sendMessage(sender);
-                return true;
-            }
-        }
-
         if (args.length == 0) {
             subCommands.get("help").executor(sender, null);
             return true;
@@ -43,6 +36,12 @@ public class BMV implements CommandExecutor {
 
         for (Map.Entry<String, SubCommand> entry : subCommands.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(args[0])) {
+                if (sender instanceof Player) {
+                    if (!sender.hasPermission("bulmultiverse.admin") || !sender.hasPermission("bulmultiverse." + args[0].toLowerCase())) {
+                        new Message("no_permission").sendMessage(sender);
+                        return true;
+                    }
+                }
                 entry.getValue().executor(sender, Arrays.asList(Arrays.copyOfRange(args, 1, args.length)));
                 return true;
             }
