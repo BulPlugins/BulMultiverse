@@ -4,8 +4,10 @@ import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.List;
 
@@ -23,13 +25,22 @@ public class Unload implements SubCommand {
             return;
         }
 
-        if (!world.getPlayers().isEmpty()) {
-            sender.sendMessage("§cYou can't unload a world who contain players");
+        List<Player> players = world.getPlayers();
+        if (!players.isEmpty()) {
+            World defaultworld = Bukkit.getWorlds().get(0);
+            Location spawn = defaultworld.getSpawnLocation();
+            for (Player player : players) {
+                player.teleport(spawn);
+            }
+        }
+
+        boolean success = Bukkit.unloadWorld(world, true);
+        if (!success) {
+            new Message("cmd_unload_failed").withPlaceHolder("name", world.getName()).sendMessage(sender);
             return;
         }
 
         BulMultiverse.getWorldsFileInstance().removeWorldFromFile(world.getName());
-        Bukkit.unloadWorld(world, true);
         new Message("cmd_unload_success").withPlaceHolder("name", args.get(0)).sendMessage(sender);
     }
 
