@@ -9,6 +9,7 @@ messages:
   cmd_load_success: "&e[BULMultiverse] &aworld: &2%name% &aloaded."
   cmd_teleport_success: "&e[BULMultiverse] &aYou are teleported to the world: &2%name%."
   cmd_unload_success: "&e[BULMultiverse] &aThe world: &2%name% is unload."
+  cmd_unload_failed: "&e[BULMultiverse] &cFailed to unload the world: &e%name%."
   error_set_option: "&e[BULMultiverse] &cImpossible to set this option."
   error_world_creator: "&e[BULMultiverse] &cThis option does not support WorldCreator."
   infos_pattern: "&e%name% &8| &e%value%"
