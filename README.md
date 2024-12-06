@@ -2,132 +2,21 @@
     <img src="https://i.goopics.net/77bvma.png" width="256">
 </p>
 
-BulMultiverse is an ultra-optimized lightweight world management plugin. Compatible with version 1.8 to the Latest Minecrat version. Unlike the default Multiverse-Core plugin, BulMultiverse is designed to be lean and efficient, without any unnecessary listeners.. This plugin don't contain and will never contain any listeners for any reason.
+### Welcome to the BulMultiverse plugin GitHub
+*below are all the links you may need*
 [Download page](https://www.spigotmc.org/resources/118884/ "Click to download")
+[Wiki with complete explanation](https://github.com/BulPlugins/BulMultiverse/wiki "Click to view")
+[Developer Api](https://github.com/BulPlugins/BulMultiverse/wiki/Dev-API "Click to code")
+[Discord server to get help](https://discord.gg/wxnTV68dX2 "Click to join")
 
-<img src="https://img.shields.io/badge/Table_of_contents-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
+### Bug reporting and suggestions
 
-1. [Features](#features)
-1. [Configuration file](#configuration-file)
-2. [Commands and permissions](#commands-and-permissions)
-3. [Flags](#flags)
-4. [How to delete a world](#how-to-delete-a-world)
-5. [Addons](#addons)
-6. [Distribution](#distribution)
+If you encounter any bugs or problems, or if you have a feature suggestion for the plugin, join the discord or open an "issue" ticket [here](https://github.com/BulPlugins/BulMultiverse/issues "Click to report")
 
-<img id="features" src="https://img.shields.io/badge/Features-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
+### Metrics
+--under construction--
 
-- Create world with customizable settings (e.g seed, difficulty, etc).
-- Modify Existing World Settings (e.g, difficulty, PvP, etc).
-- Teleport between world.
-- Load existing world.
-- List loaded worlds.
-- Disable invalid world names (e.g, "plugins").
+<span style="color: green;">54</span>  Servers running BulMultiverse 
+<span style="color: green;">479</span> Total Downloads (SpigotMC, BuiltByBit)
 
-<img id="configuration-file" src="https://img.shields.io/badge/Configuration_file-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
-
-```
-//Disable invalid world names
-world_disable_name: [plugins, bStats, PluginMetrics]
-
-messages:
-  no_world_target: "&e[BULMultiverse] &cYou didn't target any world or world name. &e/bmv help"
-  world_not_found: "&e[BULMultiverse] &cThe world &e%name% is not found. &e/bmv list"
-  flag_not_found: "&e[BULMultiverse] &cThe flag %name% don't exist. &e/bmv flags"
-  forbidden_world_name: "&e[BULMultiverse] &cYou can't create a world with this name, check your config.yml."
-  cmd_load_success: "&e[BULMultiverse] &aworld: &2%name% &aloaded."
-  cmd_teleport_success: "&e[BULMultiverse] &aYou are teleported to the world: &2%name%."
-  cmd_unload_success: "&e[BULMultiverse] &aThe world: &2%name% is unload."
-  error_set_option: "&e[BULMultiverse] &cImpossible to set this option."
-  error_world_creator: "&e[BULMultiverse] &cThis option does not support WorldCreator."
-  help_pattern: "&e%usage% &8| &e%description%"
-  flags_pattern: "&e%usage% &8| &e%description%"
-  only_ingame_command: "&e[BULMultiverse] &cThis command can be executed only in-game."
-  no_permission: "&e[BULMultiverse] &cYou don't have the permission to do that"
-```
-
-<img id="commands" src="https://img.shields.io/badge/Commands-50C878?style=for-the-badge" alt="Commands" style="pointer-events: none;">
-
-| Command                         | Description                                                       |
-|---------------------------------|-------------------------------------------------------------------|
-| bmv create [World Name] (Flags) | Create a world with the given name and optionals flags            |
-| bmv load [World Name]           | Load the target existing world                                    |
-| bmv unload [World Name]         | UnLoad the target existing world (This doesn't remove the folder) |
-| bmv set [World Name] [Flag]     | Set the flag for the target world                                 |
-| bmv tp [World Name]             | Teleport to the target world                                      |
-| bmv list                        | List all the worlds managed by BulMultiverse                      |
-| bmv infos (World Name)          | Display actual settings for the world                             |
-| bmv help                        | Display the in-game help                                          |
-| bmv flags                       | Display all the availables flag                                   |
-
-<img id="flags" src="https://img.shields.io/badge/Flags-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
-
-| Command            | Description                                           | example                             |
-|--------------------|-------------------------------------------------------|-------------------------------------|
-| -s [Number]        | Create a world with the given seed                    | /bmv create exemple -s 15648648949  |
-| -b [true or false] | Enable the default builds in the world (e.g, village) | /bmv create exemple -b false        |
-| -e [Environment]   | Set the environment (e.g, nether)                     | /bmv create exemple -e the_end      |
-| -p [true or false] | Enable the pvp                                        | /bmv create exemple -p false        |
-| -t [Type]          | Set type (e.g, flat, amplified)                       | /bmv create exemple -t large_biomes |
-| -d [Difficulty]    | Set difficulty (e.g, easy, hard)                      | /bmv create exemple -d peaceful     |
-
-You can chain flags together, for example:
-`/bmv create exemple -d peaceful -p false -t flat`
-
-Missed a flag during creation? You can set it later using the set command:
-`/bmv set exemple -d peaceful`
-> NOTE
-> Some flags like the seed, cannot be changed after the world is created. If you make an error in the command, such as setting an invalid difficulty:
-'/bmv create exemple -d SUPERHARDCORP'
-the default difficulty will be used instead. Be sure to check the console for errors when creating worlds.
-
-
-<img id="permission" src="https://img.shields.io/badge/Permission-50C878?style=for-the-badge" alt="Permission" style="pointer-events: none;">
-
-The permission **`bulmultiverse.admin`** grants access to all commands.
-
-However, you can also assign permissions for specific commands using the following syntax: bulmultiverse.COMMAND_NAME. For example, to grant permission only for
-_/bmv tp_ command, set the permission **`bulmultiverse.tp`**, for the _/bmv list_ command **`bulmultiverse.list`** and so on..
-
-<img id="how-to-delete-a-world" src="https://img.shields.io/badge/How_to_delete_a_world-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
-
-BulMultiverse does not delete server files or folders directly. To remove a world:
-1. Stop your server.
-2. Manually delete the world's folder.
-3. Restart your server.
-
-BulMultiverse will detect that the world folder is missing and automatically remove it from its worlds.yml file.
-
-<img id="addons" src="https://img.shields.io/badge/Addons-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
-
-> /!\ DO NOT RENAME THE ADDONS JAR FILE, OR THE PLUGIN WILL NOT DETECT THEM
-
-So the default BulMultiverse.jar is very light and optimized, but what if you want an additional specific feature ?
-
-To address this, I've created a robust addons system. This means you can add a specific .jar file (for example, PerWorldInventory.jar)
-to the 'addons' folder within the BulMultiverse directory, and you'll have a new feature: PerWorldInventory!
-
-#### VoidWorld
-
-This addon allow you to create a totally empty world. [Download page](https://www.spigotmc.org/resources/119020/ "Click to download")
-
-| Type    | value     | Description                     | example                     |
-|---------|-----------|---------------------------------|-----------------------------|
-| flag    | -c void   | Create a empty world (void)     | /bmv create exemple -c void |
-| command | /setblock | Create a block at your position | /setblock                   |
-
-#### PerWorldInventory
-
-WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
-
-#### GuiWorldManager
-
-WORK IN PROGRESS. To be notified join the discord https://discord.gg/wxnTV68dX2
-
-#### LinkPortal
-
-This addon allow you to link nether or end portal to specific world.. [Download page](https://www.spigotmc.org/resources/119396/ "Click to download")
-
-<img id="distribution" src="https://img.shields.io/badge/Distribution-50C878?style=for-the-badge" alt="Configuration file" style="pointer-events: none;">
-
-This is a public plugin. You are free to use it and create a fork to develop your own version. However you are not allowed to sell or distribute it in a private manner.
+Last review (SpigotMC)
