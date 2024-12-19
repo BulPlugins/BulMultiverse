@@ -24,6 +24,14 @@ public class Teleport implements SubCommand {
         }
 
         Player player = (Player) sender;
+        if (args.size() >= 3) {
+            player = Bukkit.getPlayer(args.get(2));
+            if (player == null) {
+                new Message("no_player_target").sendMessage(sender);
+                return;
+            }
+        }
+
         World world = Bukkit.getWorld(args.get(0));
         if (world == null) {
             new Message("world_not_found").withPlaceHolder("name", args.get(0)).sendMessage(sender);
@@ -35,7 +43,7 @@ public class Teleport implements SubCommand {
 
     @Override
     public String getUsage() {
-        return "/bmv tp <world_name>";
+        return "/bmv tp <world_name> (player)";
     }
 
     @Override

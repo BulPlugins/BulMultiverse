@@ -2,6 +2,7 @@ world_disable_name: [logs, plugins, plugin, bStats, PluginMetrics]
 
 messages:
   no_world_target: "&e[BULMultiverse] &cYou didn't target any world or world name. &e/bmv help"
+  no_player_target: "&e[BULMultiverse] &cThe target player don't exist or is not connected. &e/bmv help"
   world_already_exist: "&e[BULMultiverse] &cA world with this name already exist"
   world_not_found: "&e[BULMultiverse] &cThe world &e%name% is not found. &e/bmv list"
   flag_not_found: "&e[BULMultiverse] &cThe flag %name% don't exist. &e/bmv flags"
