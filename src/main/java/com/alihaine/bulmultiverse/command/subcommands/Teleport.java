@@ -24,8 +24,8 @@ public class Teleport implements SubCommand {
         }
 
         Player player = (Player) sender;
-        if (args.size() >= 3) {
-            player = Bukkit.getPlayer(args.get(2));
+        if (args.size() >= 2) {
+            player = Bukkit.getPlayer(args.get(1));
             if (player == null) {
                 new Message("no_player_target").sendMessage(sender);
                 return;
@@ -37,7 +37,7 @@ public class Teleport implements SubCommand {
             new Message("world_not_found").withPlaceHolder("name", args.get(0)).sendMessage(sender);
         } else {
             player.teleport(world.getSpawnLocation());
-            new Message("cmd_teleport_success").withPlaceHolder("name", world.getName()).sendMessage(sender);
+            new Message("cmd_teleport_success").withPlaceHolder("player", player.getName()).withPlaceHolder("name", world.getName()).sendMessage(sender);
         }
     }
 

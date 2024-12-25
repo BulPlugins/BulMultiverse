@@ -6,7 +6,6 @@ import com.alihaine.bulmultiverse.file.WorldsFile;
 import com.alihaine.bulmultiverse.world.WorldDataManager;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -15,8 +14,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Scanner;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class BulMultiverse extends JavaPlugin {
 
@@ -52,43 +54,45 @@ public class BulMultiverse extends JavaPlugin {
 
         runAddonOnEnableAfterWorldsLoad();
 
-        Bukkit.getConsoleSender().sendMessage("§e[BulMultiverse] §aenable");
+        getLogger().info("[BulMultiverse] Enable");
     }
 
     @Override
     public void onDisable() {
         runAddonOnDisable();
-        Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] disable");
+        getLogger().info("§c[BulMultiverse] Disable");
     }
 
     private void loadAddons() {
-        File addonsFolder = new File(this.getDataFolder() + "/addons");
-        if(!addonsFolder.exists()) {
-            addonsFolder.mkdir();
-            saveResource("addons/how_to_use.yml", false);
-            return;
-        }
-
-        File[] addonsJar = addonsFolder.listFiles((dir, name) -> name.endsWith(".jar"));
+        File[] addonsJar = new File(this.getDataFolder() + "/addons").listFiles((dir, name) -> name.endsWith(".jar"));
         if (addonsJar == null)
             return;
 
         for (File addonFile : addonsJar) {
-            String jarName = addonFile.getName().replace(".jar", "");
-            try {
-                URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader());
-                Class<?> addonMainClass = Class.forName("com.alihaine." + jarName.toLowerCase() + "." + jarName, true, loader);
-                Object addonInstance = addonMainClass.getDeclaredConstructor().newInstance();
-                if (addonInstance instanceof BulMultiverseAddon) {
-                    BulMultiverseAddon addon = (BulMultiverseAddon) addonInstance;
-                    addons.add(addon);
+            try (URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader())) {
+                try (JarFile jarFile = new JarFile(addonFile)) {
+                    Enumeration<JarEntry> entries = jarFile.entries();
+                    while (entries.hasMoreElements()) {
+                        JarEntry elem = entries.nextElement();
+                        if (!elem.getName().endsWith(".class"))
+                            continue;
+
+                        String classToLoad = elem.getName().replace('/', '.').replaceAll(".class", "");
+                        try {
+                            Class<?> clazz = loader.loadClass(classToLoad);
+                            if (clazz.getSuperclass().getName().contains("BulMultiverseAddon")) {
+                                BulMultiverseAddon addon = (BulMultiverseAddon) clazz.getDeclaredConstructor().newInstance();
+                                addons.add(addon);
+                            }
+                        } catch (Exception e) {
+                            printAddonError(addonFile.getName(), e);
+                        }
+                    }
+                } catch (IOException e) {
+                    printAddonError(addonFile.getName(), e);
                 }
-            } catch (Exception e) {
-                Bukkit.getConsoleSender().sendMessage("§cException when trying to load the addon: §e" + addonFile.getName());
-                Bukkit.getConsoleSender().sendMessage(e.getMessage());
-            } catch (Error e) {
-                Bukkit.getConsoleSender().sendMessage("§cSerious error when trying to load the addon: §e" + addonFile.getName());
-                Bukkit.getConsoleSender().sendMessage(e.getMessage());
+            } catch (SecurityException | NullPointerException | IOException e) {
+                printAddonError(addonFile.getName(), e);
             }
         }
     }
@@ -101,8 +105,23 @@ public class BulMultiverse extends JavaPlugin {
 
     private void runAddonOnEnableAfterWorldsLoad() {
         for (BulMultiverseAddon addon : addons) {
-            addon.onEnableAfterWorldsLoad();
+            try {
+                addon.onEnableAfterWorldsLoad();
+            } catch (AbstractMethodError e) {
+                this.printAddonError("null", e);
+                addons.remove(addon);
+                addon.onDisable();
+            }
         }
+    }
+
+    private void printAddonError(String addonName, Throwable e) {
+        getLogger().severe("------------------------------------------------------------------");
+        getLogger().severe("An error occurred with the addon " + addonName);
+        getLogger().severe("Error type: " + e);
+        getLogger().severe("Error details: ");
+        e.printStackTrace();
+        getLogger().severe("------------------------------------------------------------------");
     }
 
     private void runAddonOnDisable() {
@@ -114,13 +133,13 @@ public class BulMultiverse extends JavaPlugin {
     private void updateChecker() {
         try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=118884").openStream(); Scanner scanner = new Scanner(inputStream)) {
             if (!scanner.next().equals(this.getDescription().getVersion())) {
-                Bukkit.getConsoleSender().sendMessage("------------------------------------------------------------------");
-                Bukkit.getConsoleSender().sendMessage("There is a new update available for BulMultiverse !");
-                Bukkit.getConsoleSender().sendMessage("Download here : https://www.spigotmc.org/resources/118884");
-                Bukkit.getConsoleSender().sendMessage("------------------------------------------------------------------");
+                getLogger().info("------------------------------------------------------------------");
+                getLogger().info("There is a new update available for BulMultiverse !");
+                getLogger().info("Download here : https://www.spigotmc.org/resources/118884");
+                getLogger().info("------------------------------------------------------------------");
             }
         } catch (IOException exception) {
-            this.getLogger().info("[BulMultiverse] Cannot look for updates please join discord: https://discord.gg/wxnTV68dX2" + exception.getMessage());
+            getLogger().info("[BulMultiverse] Cannot look for updates please join discord: https://discord.gg/wxnTV68dX2" + exception.getMessage());
         }
     }
 

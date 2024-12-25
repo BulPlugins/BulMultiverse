@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://i.goopics.net/77bvma.png" width="256">
+    <img src="./workflow/bulmultiverse_icon.png" width="256">
 </p>
 
 ### Welcome to the BulMultiverse plugin GitHub
@@ -18,12 +18,4 @@
 If you encounter any bugs or problems, or if you have a feature suggestion for the plugin, join the discord or open an "issue" ticket [here](https://github.com/BulPlugins/BulMultiverse/issues "Click to report")
 
 ### Metrics
---under construction--
-
-$${\color{lightgreen}{SERVERS}}$$ Servers running BulMultiverse 
-
-$${\color{lightgreen}{DOWNLOADS}}$$ Total Downloads (SpigotMC, BuiltByBit)
-
-Last review (SpigotMC)
-
 --under construction--
