@@ -1,4 +1,6 @@
-package com.alihaine.bulmultiverse;
+package com.alihaine.bulmultiverse.addon;
+
+import com.alihaine.bulmultiverse.BulMultiverse;
 
 import java.io.*;
 

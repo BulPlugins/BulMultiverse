@@ -1,6 +1,6 @@
-package com.alihaine.bulmultiverse;
+package com.alihaine.bulmultiverse.addon;
 
 @FunctionalInterface
-interface AddonAction {
+public interface AddonAction {
     void execute(BulMultiverseAddon addon) throws Exception;
 }
