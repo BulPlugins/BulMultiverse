@@ -47,20 +47,20 @@ public class BulMultiverse extends JavaPlugin {
 
         loadAddons();
 
-        runAddonOnEnable();
+        runAddonsAction(BulMultiverseAddon::onEnable);
 
         worldsFile = new WorldsFile(this);
         worldsFile.extractWorldsFromFile();
 
-        runAddonOnEnableAfterWorldsLoad();
+        runAddonsAction(BulMultiverseAddon::onEnableAfterWorldsLoad);
 
         getLogger().info("[BulMultiverse] Enable");
     }
 
     @Override
     public void onDisable() {
-        runAddonOnDisable();
-        getLogger().info("§c[BulMultiverse] Disable");
+        runAddonsAction(BulMultiverseAddon::onDisable);
+        getLogger().info("[BulMultiverse] Disable");
     }
 
     private void loadAddons() {
@@ -83,6 +83,7 @@ public class BulMultiverse extends JavaPlugin {
                             if (clazz.getSuperclass().getName().contains("BulMultiverseAddon")) {
                                 BulMultiverseAddon addon = (BulMultiverseAddon) clazz.getDeclaredConstructor().newInstance();
                                 addons.add(addon);
+                                break;
                             }
                         } catch (Exception e) {
                             printAddonError(addonFile.getName(), e);
@@ -97,37 +98,34 @@ public class BulMultiverse extends JavaPlugin {
         }
     }
 
-    private void runAddonOnEnable() {
-        for (BulMultiverseAddon addon : addons) {
-            addon.onEnable();
-        }
-    }
+    private void runAddonsAction(AddonAction addonAction) {
+        List<BulMultiverseAddon> addonsToRemove = new ArrayList<>();
 
-    private void runAddonOnEnableAfterWorldsLoad() {
         for (BulMultiverseAddon addon : addons) {
             try {
-                addon.onEnableAfterWorldsLoad();
-            } catch (AbstractMethodError e) {
+                addonAction.execute(addon);
+            } catch (Exception | Error e) {
                 this.printAddonError("null", e);
-                addons.remove(addon);
-                addon.onDisable();
+                addonsToRemove.add(addon);
             }
         }
+
+        for (BulMultiverseAddon addon : addonsToRemove)
+            this.addonRemove(addon);
     }
 
     private void printAddonError(String addonName, Throwable e) {
-        getLogger().severe("------------------------------------------------------------------");
+        getLogger().warning("------------------------------------------------------------------");
         getLogger().severe("An error occurred with the addon " + addonName);
         getLogger().severe("Error type: " + e);
         getLogger().severe("Error details: ");
         e.printStackTrace();
-        getLogger().severe("------------------------------------------------------------------");
+        getLogger().warning("------------------------------------------------------------------");
     }
 
-    private void runAddonOnDisable() {
-        for (BulMultiverseAddon addon : addons) {
-            addon.onDisable();
-        }
+    private void addonRemove(BulMultiverseAddon addon) {
+        addons.remove(addon);
+        addon.onDisable();
     }
 
     private void updateChecker() {
