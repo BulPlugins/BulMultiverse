@@ -69,7 +69,8 @@ public class BulMultiverse extends JavaPlugin {
             return;
 
         for (File addonFile : addonsJar) {
-            try (URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader())) {
+            try {
+                URLClassLoader loader = new URLClassLoader(new URL[]{addonFile.toURI().toURL()}, this.getClass().getClassLoader());
                 try (JarFile jarFile = new JarFile(addonFile)) {
                     Enumeration<JarEntry> entries = jarFile.entries();
                     while (entries.hasMoreElements()) {
