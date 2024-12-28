@@ -15,12 +15,12 @@ public class AddonManager {
     private final List<BulMultiverseAddon> addons = new ArrayList<>();
 
     public AddonManager() {
-        HashMap<File, URL> jarFileAndURL = setupJarAndURL(new File(BulMultiverse.getBulMultiverseInstance().getDataFolder() + "/addons").listFiles((dir, name) -> name.endsWith(".jar")));
-        if (jarFileAndURL != null)
-            loadAddons(jarFileAndURL);
+        HashMap<File, URL> files = setupFile(new File(BulMultiverse.getBulMultiverseInstance().getDataFolder() + "/addons").listFiles((dir, name) -> name.endsWith(".jar")));
+        if (files != null)
+            loadAddons(files);
     }
 
-    public HashMap<File, URL> setupJarAndURL(File[] files) {
+    public HashMap<File, URL> setupFile(File[] files) {
         if (files == null)
             return null;
 
@@ -56,7 +56,6 @@ public class AddonManager {
                     try {
                         Class<?> clazz = Class.forName(classToLoad, true, loader);
                         if (clazz.getSuperclass().getName().contains("BulMultiverseAddon")) {
-                            System.out.println(jarFile.getName() + classToLoad);
                             BulMultiverseAddon addon = (BulMultiverseAddon) clazz.getDeclaredConstructor().newInstance();
                             addons.add(addon);
                             break;
@@ -99,16 +98,20 @@ public class AddonManager {
     }
 
     private void printAddonError(String addonName, Throwable e) {
-        Bukkit.getLogger().warning("------------------------------------------------------------------");
+        Bukkit.getLogger().warning(BulMultiverse.line);
         Bukkit.getLogger().severe("An error occurred with the addon " + addonName);
         Bukkit.getLogger().severe("Error type: " + e);
         Bukkit.getLogger().severe("Error details: ");
         e.printStackTrace();
-        Bukkit.getLogger().warning("------------------------------------------------------------------");
+        Bukkit.getLogger().warning(BulMultiverse.line);
     }
 
     private void addonRemove(BulMultiverseAddon addon) {
         addons.remove(addon);
         addon.onDisable();
+    }
+
+    public final List<BulMultiverseAddon> getAddonsList() {
+        return addons;
     }
 }

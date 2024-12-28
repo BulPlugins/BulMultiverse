@@ -17,6 +17,8 @@ import java.util.Scanner;
 
 public class BulMultiverse extends JavaPlugin {
 
+    public static final String line = "------------------------------------------------------------------";
+
     private static BulMultiverse bulMultiverse;
     private static WorldsFile worldsFile;
     private static WorldOptionManager worldOptionManager;
@@ -61,10 +63,10 @@ public class BulMultiverse extends JavaPlugin {
     private void updateChecker() {
         try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=118884").openStream(); Scanner scanner = new Scanner(inputStream)) {
             if (!scanner.next().equals(this.getDescription().getVersion())) {
-                getLogger().info("------------------------------------------------------------------");
+                getLogger().info(BulMultiverse.line);
                 getLogger().info("There is a new update available for BulMultiverse !");
                 getLogger().info("Download here : https://www.spigotmc.org/resources/118884");
-                getLogger().info("------------------------------------------------------------------");
+                getLogger().info(BulMultiverse.line);
             }
         } catch (IOException exception) {
             getLogger().info("[BulMultiverse] Cannot look for updates please join discord: https://discord.gg/wxnTV68dX2" + exception.getMessage());
@@ -91,4 +93,6 @@ public class BulMultiverse extends JavaPlugin {
     public static WorldDataManager getWorldDataManager() {
         return worldDataManager;
     }
+
+    public AddonManager getAddonManager() { return addonManager; }
 }

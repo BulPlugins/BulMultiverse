@@ -25,6 +25,7 @@ public class BMV implements CommandExecutor {
         subCommands.put("flags", new Flags());
         subCommands.put("help", new Help());
         subCommands.put("infos", new Infos());
+        subCommands.put("addons", new Addons());
     }
 
     @Override
