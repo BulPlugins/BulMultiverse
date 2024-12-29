@@ -15,7 +15,7 @@ public class AddonManager {
     private final List<BulMultiverseAddon> addons = new ArrayList<>();
 
     public AddonManager() {
-        HashMap<File, URL> files = setupFile(new File(BulMultiverse.getBulMultiverseInstance().getDataFolder() + "/addons").listFiles((dir, name) -> name.endsWith(".jar")));
+        HashMap<File, URL> files = setupFile(new File(BulMultiverse.getBulMultiverse().getDataFolder() + "/addons").listFiles((dir, name) -> name.endsWith(".jar")));
         if (files != null)
             loadAddons(files);
     }
@@ -78,7 +78,7 @@ public class AddonManager {
                 urls.add(value);
         });
 
-        return new URLClassLoader(urls.toArray(new URL[0]), BulMultiverse.getBulMultiverseInstance().getClass().getClassLoader());
+        return new URLClassLoader(urls.toArray(new URL[0]), BulMultiverse.getBulMultiverse().getClass().getClassLoader());
     }
 
     public void runAddonsAction(AddonAction addonAction) {

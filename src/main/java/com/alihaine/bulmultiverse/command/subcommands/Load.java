@@ -21,13 +21,13 @@ public class Load implements SubCommand {
         String worldName = args.get(0);
         Bukkit.getConsoleSender().sendMessage(worldName);
 
-        if (!BulMultiverse.getWorldsFileInstance().isWorldFolderExisting(worldName)) {
+        if (!BulMultiverse.getBulMultiverse().getWorldsFile().isWorldFolderExisting(worldName)) {
             new Message("world_not_found").withPlaceHolder("name", args.get(0)).sendMessage(sender);
             return;
         }
         WorldData worldData = new WorldData(worldName, new HashMap<>());
         worldData.createWorld(sender);
-        BulMultiverse.getWorldsFileInstance().saveWorldDataToFile(worldData);
+        BulMultiverse.getBulMultiverse().getWorldsFile().saveWorldDataToFile(worldData);
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
 public class Addons implements SubCommand {
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        final List<BulMultiverseAddon> addonList = BulMultiverse.getBulMultiverseInstance().getAddonManager().getAddonsList();
+        final List<BulMultiverseAddon> addonList = BulMultiverse.getBulMultiverse().getAddonManager().getAddonsList();
 
         for (BulMultiverseAddon addon : addonList) {
             sender.sendMessage("Addon name: " + addon.getName());

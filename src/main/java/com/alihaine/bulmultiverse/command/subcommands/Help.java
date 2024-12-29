@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class Help implements SubCommand {
-    private final BMV bmvInstance = BulMultiverse.getBMVInstance();
+    private final BMV bmvInstance = BulMultiverse.getBulMultiverse().getBMV();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {

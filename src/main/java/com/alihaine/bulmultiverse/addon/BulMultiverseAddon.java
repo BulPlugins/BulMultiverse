@@ -26,7 +26,7 @@ public abstract class BulMultiverseAddon {
     public abstract void onDisable();
 
     public File createCustomFile(String fileName, InputStream defaultValues) {
-        File newFile = new File(BulMultiverse.getBulMultiverseInstance().getDataFolder(), fileName);
+        File newFile = new File(BulMultiverse.getBulMultiverse().getDataFolder(), fileName);
         if (!newFile.exists()) {
             newFile.getParentFile().mkdirs();
             try {

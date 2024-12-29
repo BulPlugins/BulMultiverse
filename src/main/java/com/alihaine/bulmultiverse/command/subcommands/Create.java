@@ -7,7 +7,6 @@ import com.alihaine.bulmultiverse.world.WorldOption;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
 import com.alihaine.bulmultiverse.command.SubCommand;
 import com.alihaine.bulmultiverse.file.ConfigFile;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.util.HashMap;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Create implements SubCommand {
-    private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
+    private final WorldOptionManager worldOptionManager = BulMultiverse.getBulMultiverse().getWorldOptionManager();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
@@ -31,7 +30,7 @@ public class Create implements SubCommand {
             return;
         }
 
-        if (BulMultiverse.getWorldDataManager().isWorldAlreadyCreated(worldName) || worldName.equalsIgnoreCase("overworld") ) {
+        if (BulMultiverse.getBulMultiverse().getWorldDataManager().isWorldAlreadyCreated(worldName) || worldName.equalsIgnoreCase("overworld") ) {
             new Message("world_already_exist").sendMessage(sender);
             return;
         }
@@ -47,7 +46,7 @@ public class Create implements SubCommand {
 
         WorldData worldData = new WorldData(worldName, convertToOptionString);
         worldData.createWorld(sender);
-        BulMultiverse.getWorldsFileInstance().saveWorldDataToFile(worldData);
+        BulMultiverse.getBulMultiverse().getWorldsFile().saveWorldDataToFile(worldData);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class Unload implements SubCommand {
             return;
         }
 
-        BulMultiverse.getWorldsFileInstance().removeWorldFromFile(world.getName());
+        BulMultiverse.getBulMultiverse().getWorldsFile().removeWorldFromFile(world.getName());
         Bukkit.unloadWorld(world, true);
         new Message("cmd_unload_success").withPlaceHolder("name", args.get(0)).sendMessage(sender);
     }

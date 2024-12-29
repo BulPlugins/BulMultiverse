@@ -23,7 +23,7 @@ public class Infos implements SubCommand {
         else
             worldName = args.get(0);
 
-        WorldData worldData = BulMultiverse.getWorldDataManager().getWorldDataFromWorldName(worldName);
+        WorldData worldData = BulMultiverse.getBulMultiverse().getWorldDataManager().getWorldDataFromWorldName(worldName);
         if (worldData == null) {
             new Message("world_not_found").withPlaceHolder("name", worldName).sendMessage(sender);
             return;

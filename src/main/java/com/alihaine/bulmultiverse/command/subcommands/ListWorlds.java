@@ -9,7 +9,7 @@ public class ListWorlds implements SubCommand {
     @Override
     public void executor(CommandSender sender, java.util.List<String> args) {
         sender.sendMessage("§aLoaded worlds");
-        BulMultiverse.getWorldDataManager().getWorldsData().forEach(worldData -> {
+        BulMultiverse.getBulMultiverse().getWorldDataManager().getWorldsData().forEach(worldData -> {
             sender.sendMessage(worldData.getWorldName());
         });
     }

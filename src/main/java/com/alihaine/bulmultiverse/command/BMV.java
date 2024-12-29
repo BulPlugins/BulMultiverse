@@ -55,6 +55,13 @@ public class BMV implements CommandExecutor {
         return this.subCommands;
     }
 
+
+    /**
+     * Adds a subcommand to the collection of subcommands.
+     *
+     * @param command the name of the command to be added (and also the identifier to execute the associated subcommand). It must NOT BE NULL.
+     * @param subCommand the subcommand object to associate with the command. It must NOT BE NULL.
+     */
     public void addCommand(String command, SubCommand subCommand) {
         this.subCommands.put(command, subCommand);
     }

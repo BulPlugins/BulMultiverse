@@ -8,7 +8,7 @@ public class Message {
     String message;
 
     public Message(String messagePath) {
-        this.message = BulMultiverse.getBulMultiverseInstance().getConfig().getString("messages." + messagePath);
+        this.message = BulMultiverse.getBulMultiverse().getConfig().getString("messages." + messagePath);
     }
 
     public Message(String messagePath, FileConfiguration customConfigFile) {

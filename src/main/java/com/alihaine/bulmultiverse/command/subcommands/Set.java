@@ -11,11 +11,11 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class Set implements SubCommand {
-    private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
+    private final WorldOptionManager worldOptionManager = BulMultiverse.getBulMultiverse().getWorldOptionManager();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {
-        WorldData worldData = BulMultiverse.getWorldDataManager().getWorldDataFromWorldName(args.get(0));
+        WorldData worldData = BulMultiverse.getBulMultiverse().getWorldDataManager().getWorldDataFromWorldName(args.get(0));
         if (worldData == null) {
             new Message("world_not_found").withPlaceHolder("name", args.get(0)).sendMessage(sender);
             return;
@@ -27,7 +27,7 @@ public class Set implements SubCommand {
         } catch (Exception exception) {
             new Message("error_world_creator").sendMessage(sender);
         }
-        BulMultiverse.getWorldsFileInstance().saveWorldDataToFile(worldData);
+        BulMultiverse.getBulMultiverse().getWorldsFile().saveWorldDataToFile(worldData);
     }
 
     @Override

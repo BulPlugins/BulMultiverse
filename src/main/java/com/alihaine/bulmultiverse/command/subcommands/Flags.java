@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 public class Flags implements SubCommand {
-    private final WorldOptionManager worldOptionManagerInstance = BulMultiverse.getWorldOptionManager();
+    private final WorldOptionManager worldOptionManagerInstance = BulMultiverse.getBulMultiverse().getWorldOptionManager();
 
     @Override
     public void executor(CommandSender sender, List<String> args) {

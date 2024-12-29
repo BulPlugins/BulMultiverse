@@ -20,10 +20,10 @@ public class BulMultiverse extends JavaPlugin {
     public static final String line = "------------------------------------------------------------------";
 
     private static BulMultiverse bulMultiverse;
-    private static WorldsFile worldsFile;
-    private static WorldOptionManager worldOptionManager;
-    private static BMV bmv;
-    private static WorldDataManager worldDataManager;
+    private WorldsFile worldsFile;
+    private WorldOptionManager worldOptionManager;
+    private BMV bmv;
+    private WorldDataManager worldDataManager;
     private AddonManager addonManager;
 
     @Override
@@ -62,35 +62,34 @@ public class BulMultiverse extends JavaPlugin {
 
     private void updateChecker() {
         try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=118884").openStream(); Scanner scanner = new Scanner(inputStream)) {
-            if (!scanner.next().equals(this.getDescription().getVersion())) {
-                getLogger().info(BulMultiverse.line);
-                getLogger().info("There is a new update available for BulMultiverse !");
-                getLogger().info("Download here : https://www.spigotmc.org/resources/118884");
-                getLogger().info(BulMultiverse.line);
-            }
+            if (scanner.next().equals(this.getDescription().getVersion()))
+                return;
+            getLogger().info(BulMultiverse.line);
+            getLogger().info("There is a new update available for BulMultiverse !");
+            getLogger().info("Download here : https://www.spigotmc.org/resources/118884");
+            getLogger().info(BulMultiverse.line);
         } catch (IOException exception) {
             getLogger().info("[BulMultiverse] Cannot look for updates please join discord: https://discord.gg/wxnTV68dX2" + exception.getMessage());
         }
     }
 
-
-    public static BulMultiverse getBulMultiverseInstance() {
+    public static BulMultiverse getBulMultiverse() {
         return bulMultiverse;
     }
 
-    public static WorldsFile getWorldsFileInstance() {
+    public WorldsFile getWorldsFile() {
         return worldsFile;
     }
 
-    public static WorldOptionManager getWorldOptionManager() {
+    public WorldOptionManager getWorldOptionManager() {
         return worldOptionManager;
     }
 
-    public static BMV getBMVInstance() {
+    public BMV getBMV() {
         return bmv;
     }
 
-    public static WorldDataManager getWorldDataManager() {
+    public WorldDataManager getWorldDataManager() {
         return worldDataManager;
     }
 
