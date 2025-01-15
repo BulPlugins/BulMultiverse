@@ -15,7 +15,10 @@ public class AddonManager {
     private final List<BulMultiverseAddon> addons = new ArrayList<>();
 
     public AddonManager() {
-        HashMap<File, URL> files = setupFile(new File(BulMultiverse.getBulMultiverse().getDataFolder() + "/addons").listFiles((dir, name) -> name.endsWith(".jar")));
+        File addonsFolder = new File(BulMultiverse.getBulMultiverse().getDataFolder() + "/addons");
+        if (!addonsFolder.exists())
+            BulMultiverse.getBulMultiverse().saveResource("addons/how_to_use.yml", false);
+        HashMap<File, URL> files = setupFile(addonsFolder.listFiles((dir, name) -> name.endsWith(".jar")));
         if (files != null)
             loadAddons(files);
     }
