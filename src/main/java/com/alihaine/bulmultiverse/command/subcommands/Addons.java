@@ -12,10 +12,21 @@ public class Addons implements SubCommand {
     public void executor(CommandSender sender, List<String> args) {
         final List<BulMultiverseAddon> addonList = BulMultiverse.getBulMultiverse().getAddonManager().getAddonsList();
 
-        for (BulMultiverseAddon addon : addonList) {
+        if (addonList.isEmpty()) {
+            sender.sendMessage("No addon found.");
+            return;
+        }
+
+        if (args.isEmpty()) {
+            for (BulMultiverseAddon addon : addonList)
+                sender.sendMessage("Addon name: " + addon.getName());
+        } else {
+            BulMultiverseAddon addon = BulMultiverse.getBulMultiverse().getAddonManager().getAddonFromName(args.get(0));
+            if (addon == null) {
+                sender.sendMessage("Addon with name: " + args.get(0) + " not found");
+                return;
+            }
             sender.sendMessage("Addon name: " + addon.getName());
-            if (!args.isEmpty())
-                continue;
             sender.sendMessage("Authors : " + addon.getAuthors());
             sender.sendMessage("Download links: " + addon.getDownloadLinks());
             sender.sendMessage("To get help and support about this addon: " + addon.getSupportLink());

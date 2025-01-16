@@ -91,7 +91,7 @@ public class AddonManager {
             try {
                 addonAction.execute(addon);
             } catch (Exception | Error e) {
-                this.printAddonError("null", e);
+                this.printAddonError(addon.getName(), e);
                 addonsToRemove.add(addon);
             }
         }
@@ -116,5 +116,9 @@ public class AddonManager {
 
     public final List<BulMultiverseAddon> getAddonsList() {
         return addons;
+    }
+
+    public BulMultiverseAddon getAddonFromName(String name) {
+        return addons.stream().filter(addon -> addon.getName().equalsIgnoreCase(name)).findAny().orElse(null);
     }
 }

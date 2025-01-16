@@ -12,7 +12,7 @@ public abstract class BulMultiverseAddon {
     protected final List<String> downloadLinks;
     protected final String supportLink;
 
-    BulMultiverseAddon(String name, List<String> authors, List<String> downloadLinks, String supportLink) {
+    public BulMultiverseAddon(String name, List<String> authors, List<String> downloadLinks, String supportLink) {
         this.name = name;
         this.authors = authors;
         this.downloadLinks = downloadLinks;

@@ -51,13 +51,13 @@ public class BulMultiverse extends JavaPlugin {
 
         addonManager.runAddonsAction(BulMultiverseAddon::onEnableAfterWorldsLoad);
 
-        getLogger().info("[BulMultiverse] Enable");
+        getLogger().info("Enable");
     }
 
     @Override
     public void onDisable() {
         addonManager.runAddonsAction(BulMultiverseAddon::onDisable);
-        getLogger().info("[BulMultiverse] Disable");
+        getLogger().info("Disable");
     }
 
     private void updateChecker() {
