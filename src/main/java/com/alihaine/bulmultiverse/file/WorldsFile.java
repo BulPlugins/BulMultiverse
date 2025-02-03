@@ -10,6 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class WorldsFile {
     private final File file;
@@ -29,6 +30,8 @@ public class WorldsFile {
             Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] Error with the worlds saver file");
             e.printStackTrace();
         }
+        if (fileConfiguration.getConfigurationSection("worlds") == null)
+            this.loadDefaultWorld();
     }
 
     public void saveFile() {
@@ -71,5 +74,9 @@ public class WorldsFile {
     public boolean isWorldFolderExisting(String worldName) {
         File worldFolder = new File(Bukkit.getServer().getWorldContainer(), worldName);
         return worldFolder.exists() && worldFolder.isDirectory();
+    }
+
+    private void loadDefaultWorld() {
+        this.saveWorldDataToFile(new WorldData(Bukkit.getWorlds().get(0).getName(), new HashMap<>()));
     }
 }
