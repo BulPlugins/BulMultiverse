@@ -40,7 +40,7 @@ public class Infos implements SubCommand {
 
     @Override
     public String getUsage() {
-        return "/bul infos (world_name)";
+        return "/bmv infos (world_name)";
     }
 
     @Override
