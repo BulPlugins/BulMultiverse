@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
 public class TeleportCommand extends BaseBmvCommand {
-
     private World getWorld(CommandSender sender, String worldName) {
         final World world = Bukkit.getWorld(worldName);
         if (world == null) {

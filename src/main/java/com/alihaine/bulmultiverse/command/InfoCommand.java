@@ -11,9 +11,8 @@ import org.bukkit.entity.Player;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
 public class InfoCommand extends BaseBmvCommand {
-
     private WorldData getWorldData(String worldName, CommandSender sender) {
-        WorldData worldData = BulMultiverse.getBulMultiverse().getWorldDataManager().getWorldDataFromWorldName(worldName);
+        WorldData worldData = worldDataManager.getWorldDataFromWorldName(worldName);
         if (worldData == null) {
             new Message("world_not_found").withPlaceHolder("name", worldName).sendMessage(sender);
             return null;

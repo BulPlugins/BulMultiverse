@@ -73,7 +73,9 @@ public class BulMultiverse extends JavaPlugin {
         commandManager.registerCommand(new TeleportCommand());
         commandManager.registerCommand(new LoadCommand());
         commandManager.registerCommand(new UnloadCommand());
-
+        commandManager.registerCommand(new CreateCommand());
+        commandManager.registerCommand(new SetCommand());
+        commandManager.registerCommand(new FlagsCommand());
     }
 
     private void updateChecker() {

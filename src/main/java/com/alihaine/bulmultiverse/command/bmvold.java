@@ -12,12 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class bmvold implements CommandExecutor {
-
     private final HashMap<String, SubCommand> subCommands = new HashMap<>();
 
     public void loadDefaultCommands() {
-        subCommands.put("create", new Create());
-        subCommands.put("set", new Set());
         subCommands.put("flags", new Flags());
         subCommands.put("help", new Help());
     }

@@ -12,13 +12,10 @@ import java.util.List;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
 public class AddonsCommand extends BaseBmvCommand {
-
-    private final List<BulMultiverseAddon> addonList = BulMultiverse.getBulMultiverse().getAddonManager().getAddonsList();
-
     @Subcommand("addon|addons")
     public void onAddonList(CommandSender sender) {
         sender.sendMessage("§eLoaded addons: ");
-        for (BulMultiverseAddon addon : addonList)
+        for (BulMultiverseAddon addon : addonManager.getAddonsList())
             sender.sendMessage("§e" + addon.getName());
 
     }
@@ -37,15 +34,4 @@ public class AddonsCommand extends BaseBmvCommand {
             sender.sendMessage("§6" + link);
         sender.sendMessage("§aTo get help and support about this addon: §e" + addon.getSupportLink());
     }
-
-    /*
-    @Override
-    public String getUsage() {
-        return "/bmv addons (addon_name)";
-    }
-
-    @Override
-    public String getDescription() {
-        return "Display addons list or infos about a specified addon";
-    }*/
 }
