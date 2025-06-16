@@ -11,27 +11,32 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BMV implements CommandExecutor {
+public class bmvold implements CommandExecutor {
 
     private final HashMap<String, SubCommand> subCommands = new HashMap<>();
 
     public void loadDefaultCommands() {
         subCommands.put("create", new Create());
-        subCommands.put("load", new Load());
-        subCommands.put("unload", new Unload());
-        subCommands.put("tp", new Teleport());
-        subCommands.put("list", new ListWorlds());
         subCommands.put("set", new Set());
         subCommands.put("flags", new Flags());
         subCommands.put("help", new Help());
-        subCommands.put("infos", new Infos());
-        subCommands.put("addons", new Addons());
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
             subCommands.get("help").executor(sender, null);
+            return true;
+        }
+
+        SubCommand cmdToExec = subCommands.get(args[0]);
+        if (cmdToExec == null) {
+            subCommands.get("help").executor(sender, null);
+            return true;
+        }
+
+        if (!sender.hasPermission("bulmultiverse.admin") && !sender.hasPermission("bulmultiverse." + args[0].toLowerCase())) {
+            new Message("no_permission").sendMessage(sender);
             return true;
         }
 

@@ -1,8 +1,9 @@
 package com.alihaine.bulmultiverse;
 
+import co.aikar.commands.PaperCommandManager;
 import com.alihaine.bulmultiverse.addon.AddonManager;
 import com.alihaine.bulmultiverse.addon.BulMultiverseAddon;
-import com.alihaine.bulmultiverse.command.BMV;
+import com.alihaine.bulmultiverse.command.*;
 import com.alihaine.bulmultiverse.file.ConfigFile;
 import com.alihaine.bulmultiverse.file.WorldsFile;
 import com.alihaine.bulmultiverse.world.WorldDataManager;
@@ -22,9 +23,11 @@ public class BulMultiverse extends JavaPlugin {
     private static BulMultiverse bulMultiverse;
     private WorldsFile worldsFile;
     private WorldOptionManager worldOptionManager;
-    private BMV bmv;
+    private bmvold bmvold;
     private WorldDataManager worldDataManager;
     private AddonManager addonManager;
+    private PaperCommandManager commandManager;
+
 
     @Override
     public void onEnable() {
@@ -38,11 +41,13 @@ public class BulMultiverse extends JavaPlugin {
         worldOptionManager = new WorldOptionManager();
         worldOptionManager.loadDefaultOption();
 
-        bmv = new BMV();
-        this.getCommand("bmv").setExecutor(bmv);
-        bmv.loadDefaultCommands();
+        //bmvold = new bmvold();
+        //this.getCommand("bmv").setExecutor(bmv);
+        //bmv.loadDefaultCommands();
 
         addonManager = new AddonManager();
+
+        this.setupDefaultCommands();
 
         addonManager.runAddonsAction(BulMultiverseAddon::onEnable);
 
@@ -58,6 +63,17 @@ public class BulMultiverse extends JavaPlugin {
     public void onDisable() {
         addonManager.runAddonsAction(BulMultiverseAddon::onDisable);
         getLogger().info("Disable");
+    }
+
+    private void setupDefaultCommands() {
+        commandManager = new PaperCommandManager(this);
+        commandManager.registerCommand(new AddonsCommand());
+        commandManager.registerCommand(new InfoCommand());
+        commandManager.registerCommand(new ListCommand());
+        commandManager.registerCommand(new TeleportCommand());
+        commandManager.registerCommand(new LoadCommand());
+        commandManager.registerCommand(new UnloadCommand());
+
     }
 
     private void updateChecker() {
@@ -85,8 +101,8 @@ public class BulMultiverse extends JavaPlugin {
         return worldOptionManager;
     }
 
-    public BMV getBMV() {
-        return bmv;
+    public bmvold getBMV() {
+        return bmvold;
     }
 
     public WorldDataManager getWorldDataManager() {

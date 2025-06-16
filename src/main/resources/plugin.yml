@@ -4,6 +4,3 @@ description: ${project.description}
 author: AliHaine
 main: com.alihaine.bulmultiverse.BulMultiverse
 api-version: 1.13
-commands:
-  bmv:
-    description: "Main command"

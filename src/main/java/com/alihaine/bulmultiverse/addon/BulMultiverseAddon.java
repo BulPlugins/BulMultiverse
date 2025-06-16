@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.addon;
 
 import com.alihaine.bulmultiverse.BulMultiverse;
+import org.bukkit.event.Listener;
 
 import java.io.*;
 import java.util.List;
@@ -37,6 +38,10 @@ public abstract class BulMultiverseAddon {
             }
         }
         return newFile;
+    }
+
+    public void registerEvents(Listener listener) {
+        BulMultiverse.getBulMultiverse().getServer().getPluginManager().registerEvents(listener, BulMultiverse.getBulMultiverse());
     }
 
     private void copyDefaultResource(String fileName, File file, InputStream defaultValues) throws IOException  {
