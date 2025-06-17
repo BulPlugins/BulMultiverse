@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldData;
@@ -10,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import java.util.HashMap;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
+@Description("Load existing world")
 public class LoadCommand extends BaseBmvCommand {
     @Subcommand("load")
     public void onLoad(CommandSender sender, String targetWorld) {

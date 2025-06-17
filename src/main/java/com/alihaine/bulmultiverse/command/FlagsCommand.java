@@ -1,11 +1,13 @@
 package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.command.CommandSender;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
+@Description("Display all the available flags")
 public class FlagsCommand extends BaseBmvCommand {
     @Subcommand("flag|flags")
     public void onFlags(CommandSender sender) {

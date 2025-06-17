@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.Bukkit;
@@ -9,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
+@Description("Teleport to the target world")
 public class TeleportCommand extends BaseBmvCommand {
     private World getWorld(CommandSender sender, String worldName) {
         final World world = Bukkit.getWorld(worldName);

@@ -1,16 +1,13 @@
 package com.alihaine.bulmultiverse.command;
 
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandPermission;
-import co.aikar.commands.annotation.Default;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.addon.BulMultiverseAddon;
 import org.bukkit.command.CommandSender;
 
-import java.util.List;
-
 @CommandAlias("bmv|bulmv|bulmultiverse")
+@CommandPermission("test")
+@Description("Display addons list or infos about a specified addon")
 public class AddonsCommand extends BaseBmvCommand {
     @Subcommand("addon|addons")
     public void onAddonList(CommandSender sender) {

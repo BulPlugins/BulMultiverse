@@ -1,6 +1,7 @@
 package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.ConfigFile;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
+@Description("Create a new world")
 public class CreateCommand extends BaseBmvCommand {
     @Subcommand("create")
     public void onCreate(CommandSender sender, String worldName, String[] flags) {

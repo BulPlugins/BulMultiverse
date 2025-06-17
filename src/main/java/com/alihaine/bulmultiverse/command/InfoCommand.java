@@ -2,6 +2,7 @@ package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
+import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.Message;
@@ -10,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandAlias("bmv|bulmv|bulmultiverse")
+@Description("Display infos about world")
 public class InfoCommand extends BaseBmvCommand {
     private WorldData getWorldData(String worldName, CommandSender sender) {
         WorldData worldData = worldDataManager.getWorldDataFromWorldName(worldName);

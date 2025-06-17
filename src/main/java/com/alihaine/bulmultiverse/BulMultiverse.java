@@ -23,7 +23,6 @@ public class BulMultiverse extends JavaPlugin {
     private static BulMultiverse bulMultiverse;
     private WorldsFile worldsFile;
     private WorldOptionManager worldOptionManager;
-    private bmvold bmvold;
     private WorldDataManager worldDataManager;
     private AddonManager addonManager;
     private PaperCommandManager commandManager;
@@ -40,10 +39,6 @@ public class BulMultiverse extends JavaPlugin {
         worldDataManager = new WorldDataManager();
         worldOptionManager = new WorldOptionManager();
         worldOptionManager.loadDefaultOption();
-
-        //bmvold = new bmvold();
-        //this.getCommand("bmv").setExecutor(bmv);
-        //bmv.loadDefaultCommands();
 
         addonManager = new AddonManager();
 
@@ -101,10 +96,6 @@ public class BulMultiverse extends JavaPlugin {
 
     public WorldOptionManager getWorldOptionManager() {
         return worldOptionManager;
-    }
-
-    public bmvold getBMV() {
-        return bmvold;
     }
 
     public WorldDataManager getWorldDataManager() {

@@ -10,6 +10,9 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+/*
+* This class is only used to manage Addon (load, unload, display..)
+*/
 public class AddonManager {
 
     private final List<BulMultiverseAddon> addons = new ArrayList<>();

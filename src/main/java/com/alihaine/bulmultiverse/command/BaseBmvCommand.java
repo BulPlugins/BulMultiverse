@@ -2,6 +2,7 @@ package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.Default;
+import co.aikar.commands.annotation.UnknownHandler;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.addon.AddonManager;
 import com.alihaine.bulmultiverse.file.WorldsFile;
@@ -13,7 +14,7 @@ public class BaseBmvCommand extends BaseCommand {
     /*
     * Commands may need to use these instances frequently
     * To improve readability and make access easier, they are defined here.
-     */
+    */
     protected final WorldDataManager worldDataManager = BulMultiverse.getBulMultiverse().getWorldDataManager();
     protected final WorldsFile worldsFile = BulMultiverse.getBulMultiverse().getWorldsFile();
     protected final WorldOptionManager worldOptionManager = BulMultiverse.getBulMultiverse().getWorldOptionManager();
@@ -21,6 +22,6 @@ public class BaseBmvCommand extends BaseCommand {
 
     @Default
     public void onDefault(CommandSender sender) {
-        sender.sendMessage("§cMissing arguments. Use /<cmd> help for info.");
+        sender.sendMessage("§cCsMissing arguments. Use /<cmd> help for info.");
     }
 }
