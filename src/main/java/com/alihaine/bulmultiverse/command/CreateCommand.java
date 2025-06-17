@@ -1,8 +1,6 @@
 package com.alihaine.bulmultiverse.command;
 
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.ConfigFile;
 import com.alihaine.bulmultiverse.file.Message;
@@ -14,10 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@CommandAlias("bmv|bulmv|bulmultiverse")
-@Description("Create a new world")
+@CommandAlias(BaseBmvCommand.commandRootAlias)
+@CommandPermission("bulmultiverse.create")
 public class CreateCommand extends BaseBmvCommand {
     @Subcommand("create")
+    @Description("Create a new world")
+    @Syntax("/bmv create [World Name] (Flags)")
     public void onCreate(CommandSender sender, String worldName, String[] flags) {
         Map<WorldOption, Object> convertToOptionString = new HashMap<>();
 

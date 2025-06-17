@@ -1,17 +1,17 @@
 package com.alihaine.bulmultiverse.command;
 
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
-@CommandAlias("bmv|bulmv|bulmultiverse")
-@Description("UnLoad existing world")
+@CommandAlias(BaseBmvCommand.commandRootAlias)
+@CommandPermission("bulmultiverse.unload")
 public class UnloadCommand extends BaseBmvCommand {
     @Subcommand("unload")
+    @Description("UnLoad existing world")
+    @Syntax("/bmv unload [world_name]")
     public void onUnload(CommandSender sender, String targetWorld) {
         World world = Bukkit.getWorld(targetWorld);
         if (world == null) {

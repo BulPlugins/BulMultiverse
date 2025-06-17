@@ -41,7 +41,7 @@ public class WorldData {
         Map<WorldOption, Object> optionsError = new HashMap<>();
 
         Iterator<Map.Entry<WorldOption, Object>> iterator = options.entrySet().iterator();
-        sender.sendMessage("§e[BULMultiverse] §aStart the creation and loading of the world: §2" + this.getWorldName());
+        sender.sendMessage("§e[BulMultiverse] §aStart the creation and loading of the world: §2" + this.getWorldName());
         while (iterator.hasNext()) {
             Map.Entry<WorldOption, Object> entry = iterator.next();
             if (entry.getKey().isWorldRequired())

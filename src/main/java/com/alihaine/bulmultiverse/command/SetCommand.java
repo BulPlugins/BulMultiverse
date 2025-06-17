@@ -1,18 +1,18 @@
 package com.alihaine.bulmultiverse.command;
 
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldData;
 import com.alihaine.bulmultiverse.world.WorldOption;
 import org.bukkit.command.CommandSender;
 
-@CommandAlias("bmv|bulmv|bulmultiverse")
-@Description("Set a option/flag to the target world")
+@CommandAlias(BaseBmvCommand.commandRootAlias)
+@CommandPermission("bulmultiverse.set")
 public class SetCommand extends BaseBmvCommand {
     @Subcommand("set")
+    @Description("Set a flag to the target world")
+    @Syntax("/bmv set [world_name] [flag] [value]")
     public void onSet(CommandSender sender, String targetWorld, String flagName, String flagValue) {
         WorldData worldData = worldDataManager.getWorldDataFromWorldName(targetWorld);
         if (worldData == null) {

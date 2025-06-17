@@ -61,6 +61,7 @@ public class BulMultiverse extends JavaPlugin {
 
     private void setupDefaultCommands() {
         commandManager = new PaperCommandManager(this);
+        commandManager.enableUnstableAPI("help");
         commandManager.registerCommand(new AddonsCommand());
         commandManager.registerCommand(new InfoCommand());
         commandManager.registerCommand(new ListCommand());
@@ -70,6 +71,7 @@ public class BulMultiverse extends JavaPlugin {
         commandManager.registerCommand(new CreateCommand());
         commandManager.registerCommand(new SetCommand());
         commandManager.registerCommand(new FlagsCommand());
+        commandManager.registerCommand(new HelpCommand());
     }
 
     private void updateChecker() {

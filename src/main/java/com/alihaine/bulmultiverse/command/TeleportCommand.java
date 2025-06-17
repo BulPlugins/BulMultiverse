@@ -1,16 +1,14 @@
 package com.alihaine.bulmultiverse.command;
 
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandAlias("bmv|bulmv|bulmultiverse")
-@Description("Teleport to the target world")
+@CommandAlias(BaseBmvCommand.commandRootAlias)
+@CommandPermission("bulmultiverse.teleport")
 public class TeleportCommand extends BaseBmvCommand {
     private World getWorld(CommandSender sender, String worldName) {
         final World world = Bukkit.getWorld(worldName);
@@ -31,6 +29,8 @@ public class TeleportCommand extends BaseBmvCommand {
     }
 
     @Subcommand("tp|teleport")
+    @Description("Teleport to the target world")
+    @Syntax("/bmv tp [world_name]")
     public void onTeleport(Player player, String worldName) {
         final World world = getWorld(player, worldName);
         if (world == null)
@@ -39,6 +39,8 @@ public class TeleportCommand extends BaseBmvCommand {
     }
 
     @Subcommand("tp|teleport")
+    @Description("Teleport a player to the target world")
+    @Syntax("/bmv tp [world_name] [player]")
     public void onTeleportTarget(CommandSender sender, String worldName, String playerName) {
         final World world = getWorld(sender, worldName);
         if (world == null)

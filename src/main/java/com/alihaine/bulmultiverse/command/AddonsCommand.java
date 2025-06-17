@@ -5,11 +5,12 @@ import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.addon.BulMultiverseAddon;
 import org.bukkit.command.CommandSender;
 
-@CommandAlias("bmv|bulmv|bulmultiverse")
-@CommandPermission("test")
-@Description("Display addons list or infos about a specified addon")
+@CommandAlias(BaseBmvCommand.commandRootAlias)
+@CommandPermission("bulmultiverse.addon")
 public class AddonsCommand extends BaseBmvCommand {
     @Subcommand("addon|addons")
+    @Description("Display loaded addons")
+    @Syntax("/bmv addon")
     public void onAddonList(CommandSender sender) {
         sender.sendMessage("§eLoaded addons: ");
         for (BulMultiverseAddon addon : addonManager.getAddonsList())
@@ -18,6 +19,8 @@ public class AddonsCommand extends BaseBmvCommand {
     }
 
     @Subcommand("addon|addons")
+    @Description("Display infos about a specified addon")
+    @Syntax("/bmv addon [addon_name]")
     public void onAddonTarget(CommandSender sender, String addonName) {
         BulMultiverseAddon addon = BulMultiverse.getBulMultiverse().getAddonManager().getAddonFromName(addonName);
         if (addon == null) {

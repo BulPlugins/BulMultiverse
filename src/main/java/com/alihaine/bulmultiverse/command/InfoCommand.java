@@ -1,17 +1,14 @@
 package com.alihaine.bulmultiverse.command;
 
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandPermission;
-import co.aikar.commands.annotation.Description;
-import co.aikar.commands.annotation.Subcommand;
+import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.Message;
 import com.alihaine.bulmultiverse.world.WorldData;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandAlias("bmv|bulmv|bulmultiverse")
-@Description("Display infos about world")
+@CommandAlias(BaseBmvCommand.commandRootAlias)
+@CommandPermission("bulmultiverse.info")
 public class InfoCommand extends BaseBmvCommand {
     private WorldData getWorldData(String worldName, CommandSender sender) {
         WorldData worldData = worldDataManager.getWorldDataFromWorldName(worldName);
@@ -33,6 +30,8 @@ public class InfoCommand extends BaseBmvCommand {
     }
 
     @Subcommand("info|infos")
+    @Description("Display infos about world")
+    @Syntax("/bmv info")
     public void onInfo(Player player) {
         String worldName = player.getWorld().getName();
         WorldData worldData = getWorldData(worldName, player);
@@ -41,6 +40,8 @@ public class InfoCommand extends BaseBmvCommand {
     }
 
     @Subcommand("info|infos")
+    @Description("Display infos about a specific world")
+    @Syntax("/bmv info [world_name]")
     public void onInfoTarget(CommandSender sender, String worldName) {
         final WorldData worldData = getWorldData(worldName, sender);
         if (worldData != null)
