@@ -20,6 +20,13 @@ public abstract class BulMultiverseAddon {
         this.supportLink = supportLink;
     }
 
+    public BulMultiverseAddon(String name, List<String> authors, List<String> downloadLinks) {
+        this.name = name;
+        this.authors = authors;
+        this.downloadLinks = downloadLinks;
+        this.supportLink = "https://discord.gg/HQ6WnVTQJm";
+    }
+
     public abstract void onEnable();
 
     public abstract void onEnableAfterWorldsLoad();

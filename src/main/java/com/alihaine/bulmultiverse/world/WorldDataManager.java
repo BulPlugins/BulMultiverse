@@ -10,6 +10,15 @@ public class WorldDataManager {
         worldsData.add(worldData);
     }
 
+    public void removeWorldData(String worldName) {
+        for (WorldData worldData : worldsData) {
+            if (worldData.getWorldName().equalsIgnoreCase(worldName)) {
+                worldsData.remove(worldData);
+                break;
+            }
+        }
+    }
+
     public WorldData getWorldDataFromWorldName(String worldName) {
         for (WorldData worldData : this.worldsData) {
             if (worldData.getWorldName().equals(worldName))

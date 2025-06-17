@@ -25,7 +25,7 @@ public class TeleportCommand extends BaseBmvCommand {
 
     private void teleportPlayer(Player player, World world) {
         player.teleport(world.getSpawnLocation());
-        new Message("cmd_teleport_success").withPlaceHolder("player", player.getName())
+        new Message("cmd_teleport")
                 .withPlaceHolder("name", world.getName())
                 .sendMessage(player);
     }
@@ -49,5 +49,8 @@ public class TeleportCommand extends BaseBmvCommand {
             return;
         }
         teleportPlayer(player, world);
+        new Message("cmd_teleport_success").withPlaceHolder("player", player.getName())
+                .withPlaceHolder("name", world.getName())
+                .sendMessage(sender);
     }
 }

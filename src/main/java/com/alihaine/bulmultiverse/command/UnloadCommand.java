@@ -27,6 +27,7 @@ public class UnloadCommand extends BaseBmvCommand {
         }
 
         worldsFile.removeWorldFromFile(world.getName());
+        worldDataManager.removeWorldData(world.getName());
         Bukkit.unloadWorld(world, true);
         new Message("cmd_unload_success")
                 .withPlaceHolder("name", targetWorld)

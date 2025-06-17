@@ -42,13 +42,12 @@ public class BulMultiverse extends JavaPlugin {
 
         addonManager = new AddonManager();
 
-        this.setupDefaultCommands();
-
         addonManager.runAddonsAction(BulMultiverseAddon::onEnable);
 
         worldsFile = new WorldsFile(this);
         worldsFile.extractWorldsFromFile();
 
+        this.setupDefaultCommands();
         addonManager.runAddonsAction(BulMultiverseAddon::onEnableAfterWorldsLoad);
 
         getLogger().info("Enable");
@@ -103,4 +102,11 @@ public class BulMultiverse extends JavaPlugin {
     }
 
     public AddonManager getAddonManager() { return addonManager; }
+
+    /*
+     * Addons must use this function to register additional commands.
+     */
+    public void registerCommand(BaseBmvCommand newCommand) {
+        commandManager.registerCommand(newCommand);
+    }
 }

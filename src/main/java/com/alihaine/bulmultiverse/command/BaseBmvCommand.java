@@ -12,9 +12,9 @@ import org.bukkit.command.CommandSender;
 
 public class BaseBmvCommand extends BaseCommand {
     /*
-    * Commands may need to use these instances frequently
-    * To improve readability and make access easier, they are defined here.
-    */
+     * Commands may need to use these instances frequently
+     * To improve readability and make access easier, they are defined here.
+     */
     protected final WorldDataManager worldDataManager = BulMultiverse.getBulMultiverse().getWorldDataManager();
     protected final WorldsFile worldsFile = BulMultiverse.getBulMultiverse().getWorldsFile();
     protected final WorldOptionManager worldOptionManager = BulMultiverse.getBulMultiverse().getWorldOptionManager();

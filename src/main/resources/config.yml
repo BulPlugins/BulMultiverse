@@ -8,6 +8,7 @@ messages:
   flag_not_found: "&e[BulMultiverse] &cThe flag %name% don't exist. &e/bmv flags"
   forbidden_world_name: "&e[BulMultiverse] &cYou can't create a world with this name, check your config.yml."
   cmd_load_success: "&e[BulMultiverse] &aworld: &2%name% &aloaded."
+  cmd_teleport: "&e[BulMultiverse] &aYou was teleported to the world: &2%name%."
   cmd_teleport_success: "&e[BulMultiverse] &aThe player %player% was teleported to the world: &2%name%."
   cmd_unload_success: "&e[BulMultiverse] &aThe world: &2%name% is unload."
   error_set_option: "&e[BulMultiverse] &cImpossible to set this option."
