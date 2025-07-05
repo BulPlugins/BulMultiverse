@@ -4,8 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.bulmultiverse</groupId>
+    <groupId>dev.aliyag</groupId>
     <artifactId>BulMultiverse</artifactId>
+    <name>BulMultiverse</name>
+    <description>BulMultiverse is a Minecraft plugin, ultra light and optimized world manager</description>
+    <url>https://github.com/BulPlugins/BulMultiverse</url>
     <version>0.14</version>
 
     <properties>
@@ -13,6 +16,17 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>central</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
@@ -25,7 +39,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.20.1-R0.1-SNAPSHOT</version>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -88,6 +102,80 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/AliHaine/BulMultiverse</url>
+        <connection>scm:git:https://github.com/AliHaine/BulMultiverse.git</connection>
+        <developerConnection>scm:git:git@github.com:AliHaine/BulMultiverse.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <id>AliBulMultiverse</id>
+            <name>Ali YAGMUR</name>
+            <email>pro@aliyag.dev</email>
+        </developer>
+    </developers>
 </project>

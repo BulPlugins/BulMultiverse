@@ -13,9 +13,8 @@
 
 [Discord server to get help](https://discord.gg/wxnTV68dX2 "Click to join")
 
-### Bug reporting and suggestions
-
-If you encounter any bugs or problems, or if you have a feature suggestion for the plugin, join the discord or open an "issue" ticket [here](https://github.com/BulPlugins/BulMultiverse/issues "Click to report")
-
 ### Metrics
---under construction--
+
+Check out metrics and more details on my personal website https://aliyag.dev/project/bulmultiverse
+
+Check out bStats complete metrics https://bstats.org/plugin/bukkit/BulMultiverse/22989 
