@@ -13,6 +13,11 @@
 
 [Discord server to get help](https://discord.gg/wxnTV68dX2 "Click to join")
 
+### Why BulMultiverse ?
+Ultra-light, ultra-fast, highly optimized, and zero listeners: meaning no unnecessary performance impact.
+
+<img src="./workflow/multiverseversus.png">
+
 ### Metrics
 
 Check out metrics and more details on my personal website https://aliyag.dev/project/bulmultiverse

@@ -9,7 +9,7 @@
     <name>BulMultiverse</name>
     <description>BulMultiverse is a Minecraft plugin, ultra light and optimized world manager</description>
     <url>https://github.com/BulPlugins/BulMultiverse</url>
-    <version>0.14</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

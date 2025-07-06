@@ -42,6 +42,9 @@ public class BulMultiverse extends JavaPlugin {
 
         addonManager = new AddonManager();
 
+        commandManager = new PaperCommandManager(this);
+        commandManager.enableUnstableAPI("help");
+
         addonManager.runAddonsAction(BulMultiverseAddon::onEnable);
 
         worldsFile = new WorldsFile(this);
@@ -60,8 +63,6 @@ public class BulMultiverse extends JavaPlugin {
     }
 
     private void setupDefaultCommands() {
-        commandManager = new PaperCommandManager(this);
-        commandManager.enableUnstableAPI("help");
         commandManager.registerCommand(new AddonsCommand());
         commandManager.registerCommand(new InfoCommand());
         commandManager.registerCommand(new ListCommand());

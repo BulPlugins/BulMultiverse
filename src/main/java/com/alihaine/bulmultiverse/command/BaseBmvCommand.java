@@ -2,19 +2,15 @@ package com.alihaine.bulmultiverse.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Default;
-import co.aikar.commands.annotation.UnknownHandler;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.addon.AddonManager;
 import com.alihaine.bulmultiverse.file.WorldsFile;
 import com.alihaine.bulmultiverse.world.WorldDataManager;
 import com.alihaine.bulmultiverse.world.WorldOptionManager;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 @CommandAlias(BaseBmvCommand.commandRootAlias)
-@CommandPermission("")
 public class BaseBmvCommand extends BaseCommand {
     /*
      * Commands may need to use these instances frequently
@@ -28,7 +24,6 @@ public class BaseBmvCommand extends BaseCommand {
     public static final String commandRootAlias = "bmv|bulmv|bulmultiverse";
 
     @Default
-    @CommandPermission("")
     public void onDefault(CommandSender sender) {
         sender.sendMessage("§eBulMultiverse §8| §6Version: " + BulMultiverse.getBulMultiverse().getDescription().getVersion());
         sender.sendMessage("§dDiscord support §8| §5https://discord.com/invite/wxnTV68dX2");
