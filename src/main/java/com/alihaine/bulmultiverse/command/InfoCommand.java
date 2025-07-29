@@ -1,5 +1,6 @@
 package com.alihaine.bulmultiverse.command;
 
+import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.Message;
@@ -9,9 +10,9 @@ import org.bukkit.entity.Player;
 
 @CommandAlias(BaseBmvCommand.commandRootAlias)
 @CommandPermission("bulmultiverse.info")
-public class InfoCommand extends BaseBmvCommand {
+public class InfoCommand extends BaseCommand {
     private WorldData getWorldData(String worldName, CommandSender sender) {
-        WorldData worldData = worldDataManager.getWorldDataFromWorldName(worldName);
+        WorldData worldData = BulMultiverse.getWorldDataManager().getWorldDataFromWorldName(worldName);
         if (worldData == null) {
             new Message("world_not_found").withPlaceHolder("name", worldName).sendMessage(sender);
             return null;

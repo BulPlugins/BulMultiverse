@@ -15,8 +15,8 @@ import java.util.Map;
 public class WorldData {
     private final String worldName;
     private Map<WorldOption, Object> optionsAndValue = new HashMap<>();
-    private final WorldOptionManager worldOptionManager = BulMultiverse.getBulMultiverse().getWorldOptionManager();
-    private final WorldDataManager worldDataManager = BulMultiverse.getBulMultiverse().getWorldDataManager();
+    private final WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
+    private final WorldDataManager worldDataManager = BulMultiverse.getWorldDataManager();
 
     public WorldData(String name, Map<WorldOption, Object> options) {
         this.worldName = name;

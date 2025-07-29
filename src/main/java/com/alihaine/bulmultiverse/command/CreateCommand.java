@@ -1,5 +1,6 @@
 package com.alihaine.bulmultiverse.command;
 
+import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.file.ConfigFile;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 @CommandAlias(BaseBmvCommand.commandRootAlias)
 @CommandPermission("bulmultiverse.create")
-public class CreateCommand extends BaseBmvCommand {
+public class CreateCommand extends BaseCommand {
     @Subcommand("create")
     @Description("Create a new world")
     @Syntax("/bmv create [World Name] (Flags)")
@@ -26,7 +27,7 @@ public class CreateCommand extends BaseBmvCommand {
             return;
         }
 
-        if (BulMultiverse.getBulMultiverse().getWorldDataManager().isWorldAlreadyCreated(worldName) || worldName.equalsIgnoreCase("overworld") ) {
+        if (BulMultiverse.getWorldDataManager().isWorldAlreadyCreated(worldName) || worldName.equalsIgnoreCase("overworld") ) {
             new Message("world_already_exist").sendMessage(sender);
             return;
         }
@@ -34,7 +35,7 @@ public class CreateCommand extends BaseBmvCommand {
         for (int i = 0; i < flags.length - 1; i+=2) {
             String flag = flags[i];
             try {
-                convertToOptionString.put(worldOptionManager.getOption(flag), flags[i+1]);
+                convertToOptionString.put(BulMultiverse.getWorldOptionManager().getOption(flag), flags[i+1]);
             } catch (Exception exception) {
                 new Message("flag_not_found")
                         .withPlaceHolder("name", flag)
@@ -44,6 +45,6 @@ public class CreateCommand extends BaseBmvCommand {
 
         WorldData worldData = new WorldData(worldName, convertToOptionString);
         worldData.createWorld(sender);
-        BulMultiverse.getBulMultiverse().getWorldsFile().saveWorldDataToFile(worldData);
+        BulMultiverse.getWorldsFile().saveWorldDataToFile(worldData);
     }
 }

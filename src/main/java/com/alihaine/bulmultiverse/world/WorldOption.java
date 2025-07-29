@@ -10,7 +10,7 @@ public abstract class WorldOption {
     protected String usage;
     protected String description;
     protected boolean needWorld;
-    WorldOptionManager worldOptionManager = BulMultiverse.getBulMultiverse().getWorldOptionManager();
+    WorldOptionManager worldOptionManager = BulMultiverse.getWorldOptionManager();
 
     public WorldOption(String name, String shortName, String usage, String description, boolean needWorld) {
         this.name = name;

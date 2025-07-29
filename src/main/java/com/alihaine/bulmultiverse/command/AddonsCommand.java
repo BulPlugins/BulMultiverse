@@ -1,5 +1,6 @@
 package com.alihaine.bulmultiverse.command;
 
+import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import com.alihaine.bulmultiverse.BulMultiverse;
 import com.alihaine.bulmultiverse.addon.BulMultiverseAddon;
@@ -7,13 +8,13 @@ import org.bukkit.command.CommandSender;
 
 @CommandAlias(BaseBmvCommand.commandRootAlias)
 @CommandPermission("bulmultiverse.addon")
-public class AddonsCommand extends BaseBmvCommand {
+public class AddonsCommand extends BaseCommand {
     @Subcommand("addon|addons")
     @Description("Display loaded addons")
     @Syntax("/bmv addon")
     public void onAddonList(CommandSender sender) {
         sender.sendMessage("§eLoaded addons: ");
-        for (BulMultiverseAddon addon : addonManager.getAddonsList())
+        for (BulMultiverseAddon addon :  BulMultiverse.getAddonManager().getAddonsList())
             sender.sendMessage("§e" + addon.getName());
 
     }
@@ -22,7 +23,7 @@ public class AddonsCommand extends BaseBmvCommand {
     @Description("Display infos about a specified addon")
     @Syntax("/bmv addon [addon_name]")
     public void onAddonTarget(CommandSender sender, String addonName) {
-        BulMultiverseAddon addon = BulMultiverse.getBulMultiverse().getAddonManager().getAddonFromName(addonName);
+        BulMultiverseAddon addon = BulMultiverse.getAddonManager().getAddonFromName(addonName);
         if (addon == null) {
             sender.sendMessage("Addon with name: " + addonName + " not found");
             return;

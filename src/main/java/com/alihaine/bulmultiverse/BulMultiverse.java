@@ -1,5 +1,6 @@
 package com.alihaine.bulmultiverse;
 
+import co.aikar.commands.BaseCommand;
 import co.aikar.commands.PaperCommandManager;
 import com.alihaine.bulmultiverse.addon.AddonManager;
 import com.alihaine.bulmultiverse.addon.BulMultiverseAddon;
@@ -21,11 +22,11 @@ public class BulMultiverse extends JavaPlugin {
     public static final String line = "------------------------------------------------------------------";
 
     private static BulMultiverse bulMultiverse;
-    private WorldsFile worldsFile;
-    private WorldOptionManager worldOptionManager;
-    private WorldDataManager worldDataManager;
-    private AddonManager addonManager;
-    private PaperCommandManager commandManager;
+    private static WorldsFile worldsFile;
+    private static WorldOptionManager worldOptionManager;
+    private static WorldDataManager worldDataManager;
+    private static AddonManager addonManager;
+    private static PaperCommandManager commandManager;
 
 
     @Override
@@ -63,6 +64,7 @@ public class BulMultiverse extends JavaPlugin {
     }
 
     private void setupDefaultCommands() {
+        commandManager.registerCommand(new BaseBmvCommand());
         commandManager.registerCommand(new AddonsCommand());
         commandManager.registerCommand(new InfoCommand());
         commandManager.registerCommand(new ListCommand());
@@ -92,24 +94,24 @@ public class BulMultiverse extends JavaPlugin {
         return bulMultiverse;
     }
 
-    public WorldsFile getWorldsFile() {
+    public static WorldsFile getWorldsFile() {
         return worldsFile;
     }
 
-    public WorldOptionManager getWorldOptionManager() {
+    public static WorldOptionManager getWorldOptionManager() {
         return worldOptionManager;
     }
 
-    public WorldDataManager getWorldDataManager() {
+    public static WorldDataManager getWorldDataManager() {
         return worldDataManager;
     }
 
-    public AddonManager getAddonManager() { return addonManager; }
+    public static AddonManager getAddonManager() { return addonManager; }
 
     /*
      * Addons must use this function to register additional commands.
      */
-    public void registerCommand(BaseBmvCommand newCommand) {
+    public void registerCommand(BaseCommand newCommand) {
         commandManager.registerCommand(newCommand);
     }
 }

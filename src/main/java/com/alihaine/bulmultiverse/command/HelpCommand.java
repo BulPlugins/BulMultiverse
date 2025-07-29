@@ -1,5 +1,6 @@
 package com.alihaine.bulmultiverse.command;
 
+import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.HelpEntry;
 import co.aikar.commands.annotation.*;
@@ -7,7 +8,7 @@ import com.alihaine.bulmultiverse.file.Message;
 import org.bukkit.command.CommandSender;
 
 @CommandAlias(BaseBmvCommand.commandRootAlias)
-public class HelpCommand extends BaseBmvCommand {
+public class HelpCommand extends BaseCommand {
 
     @Subcommand("help")
     @Description("Display the help menu")
