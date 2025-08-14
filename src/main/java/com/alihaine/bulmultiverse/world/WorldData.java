@@ -29,7 +29,7 @@ public class WorldData {
             try {
                 optionsAndValue.put(worldOptionManager.getOption(key), value);
             } catch (Exception exception) {
-                Bukkit.getConsoleSender().sendMessage(exception.getMessage());
+                Bukkit.getLogger().warning(exception.getMessage());
             }
         });
     }
@@ -41,7 +41,9 @@ public class WorldData {
         Map<WorldOption, Object> optionsError = new HashMap<>();
 
         Iterator<Map.Entry<WorldOption, Object>> iterator = options.entrySet().iterator();
-        sender.sendMessage("§e[BulMultiverse] §aStart the creation and loading of the world: §2" + this.getWorldName());
+        new Message("world_startup_loading")
+                .withPlaceHolder("name", this.getWorldName())
+                .sendMessage(sender);
         while (iterator.hasNext()) {
             Map.Entry<WorldOption, Object> entry = iterator.next();
             if (entry.getKey().isWorldRequired())

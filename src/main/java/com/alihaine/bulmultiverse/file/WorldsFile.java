@@ -27,7 +27,7 @@ public class WorldsFile {
         try {
             fileConfiguration.load(file);
         } catch (IOException | InvalidConfigurationException e) {
-            Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] Error with the worlds saver file");
+            Bukkit.getLogger().severe("Major error with the worlds.yml");
             e.printStackTrace();
         }
         if (fileConfiguration.getConfigurationSection("worlds") == null)
@@ -38,7 +38,7 @@ public class WorldsFile {
         try {
             fileConfiguration.save(file);
         } catch (IOException e) {
-            Bukkit.getConsoleSender().sendMessage("§c[BulMultiverse] Error when trying to save worlds to file");
+            Bukkit.getLogger().severe("Error when trying to save worlds to file");
         }
     }
 
@@ -50,7 +50,6 @@ public class WorldsFile {
     public void removeWorldFromFile(String worldName) {
         fileConfiguration.set("worlds." + worldName, null);
         saveFile();
-        Bukkit.getConsoleSender().sendMessage("§eThe world " + worldName + " is removed from worlds.yml file.");
     }
 
     public void extractWorldsFromFile() {
@@ -60,7 +59,7 @@ public class WorldsFile {
 
         for (String worldName : worldsSection.getKeys(false)) {
             if (!isWorldFolderExisting(worldName)) {
-                Bukkit.getConsoleSender().sendMessage("§cThe world " + worldName + " folder don't exist, but are in worlds.yml. Remove from worlds.yml");
+                Bukkit.getLogger().info("The world " + worldName + " folder don't exist, but are in worlds.yml. Remove from worlds.yml");
                 removeWorldFromFile(worldName);
                 continue;
             }

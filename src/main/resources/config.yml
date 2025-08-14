@@ -1,6 +1,7 @@
 world_disable_name: [logs, plugins, plugin, bStats, PluginMetrics]
 
 messages:
+  world_startup_loading: "&e[BulMultiverse] &aStart the creation and loading of the world: &2%name%"
   no_world_target: "&e[BulMultiverse] &cYou didn't target any world or world name. &e/bmv help"
   no_player_target: "&e[BulMultiverse] &cThe target player don't exist or is not connected. &e/bmv help"
   world_already_exist: "&e[BulMultiverse] &cA world with this name already exist"
