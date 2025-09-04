@@ -7,8 +7,7 @@ import com.alihaine.bulmultiverse.world.WorldData;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,12 +24,29 @@ public class ListCommand extends BaseCommand {
                 .stream()
                 .map(WorldData::getWorldName)
                 .collect(Collectors.toSet());
+        this.displayWorlds(commandSender, loadedWorlds);
+    }
 
-        Bukkit.getWorlds().forEach(world -> {
-            if (loadedWorlds.contains(world.getName()))
-                commandSender.sendMessage("§e" + world.getName());
+    private void displayWorlds(CommandSender commandSender, Set<String> loadedWorlds) {
+        File worldContainer = Bukkit.getWorldContainer();
+        File[] worldFolders = worldContainer.listFiles();
+
+        if (worldFolders == null)
+            return;
+        for (File worldFolder : worldFolders) {
+            //World will have at least one of these files.
+            //The exact files depend on the server version and world type, and may differ.
+            File levelDat = new File(worldFolder, "level.dat");
+            File uidDat = new File(worldFolder, "uid.dat");
+            File regionFolder = new File(worldFolder, "region");
+            if (!levelDat.exists() && !regionFolder.exists() && !uidDat.exists())
+                continue;
+            if (loadedWorlds.contains(worldFolder.getName()))
+                commandSender.sendMessage("§e" + worldFolder.getName());
+            else if (Bukkit.getWorld(worldFolder.getName()) != null)
+                commandSender.sendMessage("§e" + worldFolder.getName() + " §o§cnot loaded with BulMultiverse");
             else
-                commandSender.sendMessage("§e" + world.getName() + " §o§cnot loaded with BulMultiverse");
-        });
+                commandSender.sendMessage("§e" + worldFolder.getName() + " §o§dnot loaded at all");
+        }
     }
 }
